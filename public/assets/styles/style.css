@@ -1,0 +1,37 @@
+h1 {
+  color: green;
+}
+
+header {
+  background-color: yellow;
+}
+
+/*////////////////from w3//////////////*/
+ul {
+    margin: 0;
+    padding: 0;
+    width: 200px;
+    background-color: #f1f1f1;
+}
+
+ul li {
+  list-style-type: none;
+  display: inline-block;
+}
+
+li a {
+    display: block;
+    color: white;
+    background-color: blue;
+    padding: 8px 16px 8px 16px;
+    border: 1px solid black;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+/* Change the link color on hover */
+li a:hover {
+    background-color: #555;
+    color: white;
+}
+/*///////////////////////from w3//////////////*/

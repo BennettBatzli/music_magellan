@@ -1,0 +1,18 @@
+<h3>discover music</h3>
+
+
+<button ng-click="discoverSongs()">discovveerrrrr!!!</button>
+
+<div ng-repeat="tune in discoveredSong">
+  <h2>Here's what you discovered!</h2>
+  <p>
+    {{tune.song}}
+  </p>
+  <p>
+    {{tune.artist}}
+  </p>
+  <p>
+    {{tune.album}}
+  </p>
+  <button ng-click="addDiscoveredSongs">Add these songs to playlist!</button>
+</div>
