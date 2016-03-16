@@ -14,5 +14,25 @@
   <p>
     {{tune.album}}
   </p>
-  <button ng-click="addDiscoveredSongs">Add these songs to playlist!</button>
+  <button ng-click="addDiscoveredSongs(discoveredSongObject)">add these songs</button>
+  <!-- make this into addDiscoveredSongs() if you get there -->
 </div>
+
+
+<section ng-repeat="music in temporaryPlaylistArray">
+  <h2>your playlist:</h2>
+  <p>
+    {{music.tracks[0].song}} --- {{music.tracks[0].artist}} --- {{music.tracks[0].album}}
+  </p>
+  <p>
+    {{music.tracks[1].song}} --- {{music.tracks[1].artist}} --- {{music.tracks[1].album}}
+  </p>
+  <p>
+    {{music.tracks[2].song}} --- {{music.tracks[2].artist}} --- {{music.tracks[2].album}}
+  </p>
+  <p>
+    {{music.tracks[3].song}} --- {{music.tracks[3].artist}} --- {{music.tracks[3].album}}
+  </p>
+
+  <button ng-click="savePlaylist(id)">SAVE PLAYLIST!</button>
+</section>

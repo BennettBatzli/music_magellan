@@ -10,6 +10,7 @@ var session = require('express-session');
 var signIn = require('./routes/signIn');
 var user = require('./routes/user');
 var register = require('./routes/register');
+var favoritesData = require('./routes/favoritesData');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
@@ -31,6 +32,7 @@ app.use(passport.session());
 app.use('/register', register);
 app.use('/user', user);
 app.use('/signIn', signIn);
+app.use('/favoritesData', favoritesData);
 
 // Serve back static files
 app.use(express.static('public'));

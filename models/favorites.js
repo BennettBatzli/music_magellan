@@ -6,7 +6,12 @@ var favoritesSchema = new Schema({
     "playlist_name": String,
     "comments": String,
     "tracklist": [{
-      "track_info": {
+      "track_one_info": {
+        "song": String,
+        "artist": String,
+        "album": String
+      },
+      "track_two_info": {
         "song": String,
         "artist": String,
         "album": String

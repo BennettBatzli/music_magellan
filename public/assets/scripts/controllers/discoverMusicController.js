@@ -43,21 +43,59 @@ myApp.controller('discoverMusicController', ['$scope', '$http', 'DataFactory', f
         );
   };
 
+  // $scope.discoveredSongArray = [];
+
   function getSong(){
     $scope.discoveredSongObject = {
       song: $scope.tune.items[0].name,
-      artist: [$scope.tune.items[0].artists[0].name],
+      artist: $scope.tune.items[0].artists[0].name,
       album: $scope.tune.items[0].album.name
     };
 
-    for (var i = 0; i < $scope.tune.items[0].artists[i].length; i++) {
-      $scope.discoveredSongObject.artist.push($scope.tune.items[0].artists[i].name);
-      console.log('ARTISTS IN ARRAY::', $scope.tune.items[0].artists[i].name);
-    }
+    // for (var i = 0; i < $scope.tune.items[0].artists[i].length; i++) {
+    //   $scope.discoveredSongObject.artist.push($scope.tune.items[0].artists[i].name);
+    //   console.log('ARTISTS IN ARRAY::', $scope.tune.items[0].artists[i].name);
+    // }
 
+    // $scope.discoveredSongArray.push($scope.discoveredSongObject);
     $scope.discoveredSong = [$scope.discoveredSongObject];
   }
 
-  $scope.dataFactory.factorySaveFavorite($scope.discoveredSongObject);
+  $scope.temporaryPlaylist = {
+    tracks: []
+  };
+
+  $scope.addDiscoveredSongs = function(songObject) {
+    console.log('discovered song array::', $scope.discoveredSongArray);
+    // $scope.temporaryPlaylist = {
+    //   tracks: []
+    // };
+    $scope.temporaryPlaylist.tracks.push(songObject);
+
+    // $scope.temporaryPlaylist.tracks.push($scope.discoveredSongObject);
+    console.log($scope.temporaryPlaylist);
+
+    $scope.temporaryPlaylistArray = [$scope.temporaryPlaylist];
+    console.log('playlist songs array:', $scope.temporaryPlaylist.tracks);
+  };
+
+  $scope.dataFactory.factoryUserAuthenication().then(function(userDatum) {
+    $scope.userData = userDatum;
+    $scope.id = userDatum.id;
+    $scope.userName = userDatum.userName;
+
+    console.log('userdatum:::::', userDatum.userName);
+    // $scope.userData = $scope.dataFactory.factoryUserInfo();
+    // $scope.userName = $scope.dataFactory.factoryUserInfo().username;
+    // console.log('username?', $scope.dataFactory.factoryUserInfo().username);
+  });
+
+  $scope.savePlaylist = function(id){
+    console.log('discovered song object with ARRay in save playlist function::', $scope.temporaryPlaylist);
+    // console.log('it would be awesome if userData showed up!', id);
+
+    $scope.dataFactory.factorySaveFavorite($scope.temporaryPlaylist, id);
+
+  };
 
 }]);

@@ -29,28 +29,29 @@ myApp.factory('DataFactory', ['$http', '$window', function($http, $window) {
   // };
 
   //STILL PRIVATEEEE
-  var privateSaveFavorite = function(favorite) {
-    console.log('saving fav!!', favorite);
-    var promise = $http.post('/favorites', favorite).then(function(response){
+  var privateSaveFavorite = function(favorite, id) {
+    console.log('i really hope the id appears!', id);
+    console.log('fav!!', favorite);
+    var promise = $http.post('/favoritesData/' + id, favorite).then(function(response){
       console.log('here is post response::', response);
     });
-
+    console.log('promise::', promise);
     return promise;
-  }
+  };
 
 
 
   //public
   var publicApi = {
-    factoryUserAuthenication: function(favorite) {
-      return privateUserAuthentication(favorite);
+    factoryUserAuthenication: function() {
+      return privateUserAuthentication();
     },
     // factoryUserInfo: function() {
     //   userInfo();
     //   return userData;
     // }
-    factorySaveFavorite: function() {
-      return privateSaveFavorite();
+    factorySaveFavorite: function(favorite, id) {
+      return privateSaveFavorite(favorite, id);
     },
     factoryRetrieveData: function() {
 
