@@ -1,1 +1,19 @@
 <h1>saved playlists page!</h1>
+
+
+<select ng-model="selectedPlaylist" ng-options="favorite.playlist.playlist_name for favorite in favoritesArray"></select>
+
+<div ng-if="selectedPlaylist">
+
+  <h1>{{selectedPlaylist.playlist.playlist_name}}</h1>
+  <p>
+    {{selectedPlaylist.playlist.tracklist[0].track_one_info.song}}  {{selectedPlaylist.playlist.tracklist[0].track_one_info.artist}}
+
+  </p>
+  <p>
+    {{selectedPlaylist.playlist.tracklist[0].track_two_info.song}} {{selectedPlaylist.playlist.tracklist[0].track_two_info.artist}}
+  </p>
+  <p>
+    {{selectedPlaylist.playlist.tracklist[0].track_three_info.song}} {{selectedPlaylist.playlist.tracklist[0].track_three_info.artist}}
+  </p>
+</div>

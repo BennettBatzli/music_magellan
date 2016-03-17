@@ -7,28 +7,10 @@ var Favorite = require('../models/favorites');
 // var errorHelper = require('mongoose-error-helper').errorHelper;
 
 
-// this will go by individual user id... I believe
+// this will go by individual user id
 router.post('/:id', function(req, res) {
-  console.log('req body', req.body);
-
-  // var newFavorite = new Favorite({
-  //
-  //   "playlist": {
-  //     "playlist_name": req.body.playlist_name,
-  //     "comments": req.body.comments,
-  //     "tracklist": [{
-  //       "track_info": {
-  //         "song": req.body.song,
-  //         "artist": req.body.artist,
-  //         "album": req.body.album
-  //       }
-  //     }]
-  //   }
-  //
-  // });
-  // console.log('newfave: ', newFavorite);
-  // console.log('request params id::', req.params.id);
-
+  // console.log('req body', req.body);
+  // console.log('req params::', req.params);
   User.findById(req.params.id, function (err, result) {
 
       // console.log('RESULT', result);
@@ -40,7 +22,7 @@ router.post('/:id', function(req, res) {
         "playlist": {
           "playlist_name": req.body.playlist_name,
           "comments": req.body.comments,
-          "tracklist": [{
+          "tracklist": {
             "track_one_info": {
               "song": req.body.tracks[0].song,
               "artist": req.body.tracks[0].artist,
@@ -51,7 +33,7 @@ router.post('/:id', function(req, res) {
               "artist": req.body.tracks[1].artist,
               "album": req.body.tracks[1].album
             }
-          }]
+          }
         }
 
       });
@@ -64,14 +46,25 @@ router.post('/:id', function(req, res) {
               console.log('error message::', err);
           }
 
-          // res.send(result);
+          res.send(result);
           console.log('sent result', result);
-          res.send({
-                message:'the appointment has been saved'
-            });
+          // res.send({
+          //       message:'the appointment has been saved'
+          //   });
       });
 
   });
+
+});
+
+router.get('/:playlistID', function(req, res){
+  console.log('req body', req.body);
+  console.log('req params::', req.params);
+  // findBYId? User or would it be deeper?
+
+
+
+  // User.find({"favorites._id" : ObjectId("56e98e0ceab36e5db3a4e135")});
 
 });
 

@@ -3,6 +3,15 @@ myApp.controller('discoverMusicController', ['$scope', '$http', 'DataFactory', f
 
   $scope.dataFactory = DataFactory;
 
+  $scope.dataFactory.factoryUserAuthenication().then(function(userDatum) {
+    $scope.userData = userDatum;
+    $scope.id = userDatum.id;
+    $scope.userName = userDatum.userName;
+    $scope.favoritesArray = userDatum.favorites;
+
+    console.log('userdatum:::::', userDatum.userName);
+  });
+
   var randomNumber = function (min, max){
     return Math.floor(Math.random() * (1 + max - min) + min);
   };
@@ -13,14 +22,21 @@ myApp.controller('discoverMusicController', ['$scope', '$http', 'DataFactory', f
 
     // var request = baseURL + encodeURI(query) + '&callback=JSON_CALLBACK';
     // console.log('the rquest!!!', request);
+    // var songsArray = ['*a*', '*o*', '*u*', '*i*', '*e*'];
 
+    // var songsArray = ['*a*', 'a*', '*e*', 'e*', '*i*', 'i*', '*o*', 'o*', '*y*'];
 
-    var songsArray = ['%25a%25', 'a%25', '%25e%25', 'e%25', '%25i%25', 'i%25', '%25o%25', 'o%25'];
+    var songsArray = ['a'];
+
+    // var songsArray = ['%25a%25', 'a%25', '%25e%25', 'e%25', '%25i%25', 'i%25', '%25o%25', 'o%25'];
     var randomTrack = songsArray[Math.floor(Math.random()*songsArray.length)];
     var randomOffset = randomNumber(1, 100);
-
+    // var genre =
+    console.log('the wild card', randomTrack);
     var baseURL = "https://api.spotify.com/v1/search";
-    var query = "?q=" + randomTrack;
+    var query = "?q=";
+    query += "%20genre:%22" + $scope.selectedGenre + "%22";
+
     query += "&offset=" + randomOffset;
     query += "&limit=1&type=track&callback=JSON_CALLBACK";
     var bestRequest = baseURL + query;
@@ -67,28 +83,35 @@ myApp.controller('discoverMusicController', ['$scope', '$http', 'DataFactory', f
 
   $scope.addDiscoveredSongs = function(songObject) {
     console.log('discovered song array::', $scope.discoveredSongArray);
-    // $scope.temporaryPlaylist = {
-    //   tracks: []
-    // };
+
     $scope.temporaryPlaylist.tracks.push(songObject);
 
-    // $scope.temporaryPlaylist.tracks.push($scope.discoveredSongObject);
     console.log($scope.temporaryPlaylist);
 
     $scope.temporaryPlaylistArray = [$scope.temporaryPlaylist];
     console.log('playlist songs array:', $scope.temporaryPlaylist.tracks);
   };
 
-  $scope.dataFactory.factoryUserAuthenication().then(function(userDatum) {
-    $scope.userData = userDatum;
-    $scope.id = userDatum.id;
-    $scope.userName = userDatum.userName;
+  $scope.addOwnSong = function() {
+    $scope.ownSongObject = {
+      song: $scope.song,
+      artist: $scope.artist,
+      album: $scope.album
+    };
 
-    console.log('userdatum:::::', userDatum.userName);
-    // $scope.userData = $scope.dataFactory.factoryUserInfo();
-    // $scope.userName = $scope.dataFactory.factoryUserInfo().username;
-    // console.log('username?', $scope.dataFactory.factoryUserInfo().username);
-  });
+    $scope.song = '';
+    $scope.artist = '';
+    $scope.album = '';
+    console.log('add song!', $scope.ownSongObject);
+
+    $scope.songChoice = [$scope.ownSongObject];
+    console.log('song choiceeee', $scope.songChoice);
+
+    $scope.temporaryPlaylist.tracks.push($scope.ownSongObject);
+    console.log('from added songs:', $scope.temporaryPlaylist.tracks);
+
+    $scope.temporaryPlaylistArray = [$scope.temporaryPlaylist];
+  };
 
   $scope.savePlaylist = function(id){
     console.log('discovered song object with ARRay in save playlist function::', $scope.temporaryPlaylist);
@@ -96,6 +119,11 @@ myApp.controller('discoverMusicController', ['$scope', '$http', 'DataFactory', f
 
     $scope.dataFactory.factorySaveFavorite($scope.temporaryPlaylist, id);
 
+  };
+
+  $scope.addPlaylistName = function(){
+
+    $scope.temporaryPlaylist.playlist_name = $scope.playlistTitle;
   };
 
 }]);
