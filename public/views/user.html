@@ -16,11 +16,10 @@
 
 </head>
 <body>
-  <h1>Log In Successful! Welcome back, {{userData.userName}}.</h1>
-
-  <header ng-include="'/templates/userHeader.html'"></header>
+  <header ng-include="'/templates/header.html'"></header>
+  <nav ng-include="'/templates/nav.html'"></nav>
   <main ng-view></main>
-
+  <footer ng-include="'/templates/footer.html'"></footer>
 
 </body>
 </html>

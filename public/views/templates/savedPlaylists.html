@@ -1,19 +1,31 @@
-<h1>saved playlists page!</h1>
 
 
 <select ng-model="selectedPlaylist" ng-options="favorite.playlist.playlist_name for favorite in favoritesArray"></select>
 
-<div ng-if="selectedPlaylist">
+<section class="saved-playlist-container">
+<h3>Select a Playlist</h3>
+<br />
 
-  <h1>{{selectedPlaylist.playlist.playlist_name}}</h1>
-  <p>
-    {{selectedPlaylist.playlist.tracklist[0].track_one_info.song}}  {{selectedPlaylist.playlist.tracklist[0].track_one_info.artist}}
+  <div class="saved-playlist-container-tracklist" ng-if="selectedPlaylist">
 
-  </p>
-  <p>
-    {{selectedPlaylist.playlist.tracklist[0].track_two_info.song}} {{selectedPlaylist.playlist.tracklist[0].track_two_info.artist}}
-  </p>
-  <p>
-    {{selectedPlaylist.playlist.tracklist[0].track_three_info.song}} {{selectedPlaylist.playlist.tracklist[0].track_three_info.artist}}
-  </p>
-</div>
+    <h1>{{selectedPlaylist.playlist.playlist_name}}</h1>
+    <p><span class="track-span">Track 1 ::</span>
+      {{selectedPlaylist.playlist.tracklist[0].track_one_info.song}} -- {{selectedPlaylist.playlist.tracklist[0].track_one_info.artist}} -- {{selectedPlaylist.playlist.tracklist[0].track_one_info.album}}
+
+    </p>
+    <br />
+    <p><span class="track-span">Track 2 ::</span>
+      {{selectedPlaylist.playlist.tracklist[0].track_two_info.song}} -- {{selectedPlaylist.playlist.tracklist[0].track_two_info.artist}} -- {{selectedPlaylist.playlist.tracklist[0].track_two_info.album}}
+    </p>
+    <br />
+    <p><span class="track-span">Track 3 ::</span>
+      {{selectedPlaylist.playlist.tracklist[0].track_three_info.song}} -- {{selectedPlaylist.playlist.tracklist[0].track_three_info.artist}} -- {{selectedPlaylist.playlist.tracklist[0].track_three_info.album}}
+    </p>
+    <br />
+    <p><span class="track-span">Track 4 ::</span>
+      {{selectedPlaylist.playlist.tracklist[0].track_four_info.song}} -- {{selectedPlaylist.playlist.tracklist[0].track_four_info.artist}} -- {{selectedPlaylist.playlist.tracklist[0].track_four_info.album}}
+
+    </p>
+    <!-- <button ng-click="deletePlaylist(selectedPlaylist._id)">Delete Playlist</button> -->
+  </div>
+</section>

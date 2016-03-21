@@ -15,8 +15,8 @@ myApp.controller('userHomeController', ['$scope', 'DataFactory', '$http', functi
   });
 
 
-  $scope.givePlaylistName = function() {
-    prompt("What is this playlist called?");
-  };
+  // $scope.givePlaylistName = function() {
+  //   prompt("What is this playlist called?");
+  // };
 
 }]);

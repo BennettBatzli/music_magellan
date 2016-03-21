@@ -15,7 +15,8 @@ router.post('/', function(req, res, next) {
          if(err) {
              next(err);
          } else {
-             res.redirect('/views/templates/registerSuccess.html');
+             res.redirect('/views/user.html');
+             //consider changing to the userHome page on successful registration
          }
     });
 });

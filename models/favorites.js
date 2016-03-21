@@ -15,6 +15,16 @@ var favoritesSchema = new Schema({
         "song": String,
         "artist": String,
         "album": String
+      },
+      "track_three_info": {
+        "song": String,
+        "artist": String,
+        "album": String
+      },
+      "track_four_info": {
+        "song": String,
+        "artist": String,
+        "album": String
       }
     }]
   }

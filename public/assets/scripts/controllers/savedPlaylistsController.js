@@ -31,5 +31,9 @@ myApp.controller('savedPlaylistsController', ['$scope', '$http', 'DataFactory', 
   //   userDatum.favoritesArrayData
   // };
 
+  $scope.deletePlaylist = function(playlistID){
+    console.log('the playlist ID:', playlistID);
+    $scope.dataFactory.factoryDeletePlaylist(playlistID);
+  };
 
 }]);
