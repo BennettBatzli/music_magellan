@@ -9,7 +9,11 @@ myApp.controller('userHomeController', ['$scope', 'DataFactory', '$http', functi
     $scope.userName = userDatum.userName;
 
     console.log('userdatum:::::', userDatum.userName);
-    // $scope.userData = $scope.dataFactory.factoryUserInfo();
+
+
+     //$scope.userData = $scope.dataFactory.factoryUserInfo();
+
+
     // $scope.userName = $scope.dataFactory.factoryUserInfo().username;
     // console.log('username?', $scope.dataFactory.factoryUserInfo().username);
   });

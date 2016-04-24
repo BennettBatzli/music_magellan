@@ -188,9 +188,10 @@ main {
 	text-align: left;
 	width: 60%;
 	min-width: 400px;
-	height: 150px;
+	height: 200px;
 	margin: 0 auto;
 	line-height: 1.5;
+	border: 3px solid #634b30;
 }
 
 .track-span{

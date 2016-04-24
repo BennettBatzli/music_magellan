@@ -138,6 +138,8 @@ myApp.controller('discoverMusicController', ['$scope', '$http', 'DataFactory', f
     console.log('discovered song object with ARRay in save playlist function::', $scope.temporaryPlaylist);
 
     $scope.dataFactory.factorySaveFavorite($scope.temporaryPlaylist, id);
+
+    alert('Playlist Saved!');
   };
 
   $scope.addPlaylistName = function(){
