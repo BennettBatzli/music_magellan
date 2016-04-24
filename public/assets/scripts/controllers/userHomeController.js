@@ -1,22 +1,36 @@
-myApp.controller('userHomeController', ['$scope', 'DataFactory', '$http', function($scope, DataFactory, $http){
+myApp.controller('userHomeController', ['$scope', 'DataFactory', 'PassportFactory', '$location', '$http', function($scope, DataFactory, PassportFactory, $location, $http){
   console.log("USERRR home controller!");
 
   $scope.dataFactory = DataFactory;
 
+  $scope.passportFactory = PassportFactory;
 
-  $scope.dataFactory.factoryUserAuthenication().then(function(userDatum) {
-    $scope.userData = userDatum;
-    $scope.userName = userDatum.userName;
+  $scope.loggedInUser = $scope.passportFactory.factoryLoggedInUser();
 
-    console.log('userdatum:::::', userDatum.userName);
+  validateUser();
 
+  function validateUser() {
+    if($scope.loggedInUser.username) {
+      $scope.userName = $scope.loggedInUser.username;
 
-     //$scope.userData = $scope.dataFactory.factoryUserInfo();
+    } else {
+      $location.path('/home');
+    }
+  }
 
-
-    // $scope.userName = $scope.dataFactory.factoryUserInfo().username;
-    // console.log('username?', $scope.dataFactory.factoryUserInfo().username);
-  });
+  //$scope.dataFactory.factoryUserAuthenication().then(function(userDatum) {
+  //  $scope.userData = userDatum;
+  //  $scope.userName = userDatum.userName;
+  //
+  //  console.log('userdatum:::::', userDatum.userName);
+  //
+  //
+  //   //$scope.userData = $scope.dataFactory.factoryUserInfo();
+  //
+  //
+  //  // $scope.userName = $scope.dataFactory.factoryUserInfo().username;
+  //  // console.log('username?', $scope.dataFactory.factoryUserInfo().username);
+  //});
 
 
   // $scope.givePlaylistName = function() {

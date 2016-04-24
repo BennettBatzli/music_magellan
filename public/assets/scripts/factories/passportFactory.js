@@ -13,8 +13,9 @@ myApp.factory('PassportFactory', ['$http', '$location', function($http, $locatio
     };
 
     $http.post('/signIn', user).then( function(response) {
-      loggedInUser = response.data;
 
+      loggedInUser = response.data;
+      console.log('logged user', loggedInUser);
       $location.path('/userHome');
 
     });

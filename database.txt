@@ -1,0 +1,16 @@
+CREATE TABLE users (
+ user_id SERIAL PRIMARY KEY,
+ username VARCHAR(100) NOT NULL UNIQUE,
+ password VARCHAR(120) NOT NULL
+);
+
+CREATE TABLE playlists (
+    playlist_id SERIAL PRIMARY KEY,
+    title VARCHAR(100) NOT NULL,
+    tracklist jsonb,
+    deleted BOOLEAN NOT NULL DEFAULT FALSE
+);
+
+CREATE TABLE favorites (
+
+);

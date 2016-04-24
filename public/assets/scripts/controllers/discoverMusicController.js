@@ -1,16 +1,26 @@
-myApp.controller('discoverMusicController', ['$scope', '$http', 'DataFactory', function($scope, $http, DataFactory) {
+myApp.controller('discoverMusicController', ['$scope', '$http', 'DataFactory', 'PassportFactory', function($scope, $http, DataFactory, PassportFactory) {
   console.log("discover mus controller!");
 
   $scope.dataFactory = DataFactory;
 
-  $scope.dataFactory.factoryUserAuthenication().then(function(userDatum) {
-    $scope.userData = userDatum;
-    $scope.id = userDatum.id;
-    $scope.userName = userDatum.userName;
-    $scope.favoritesArray = userDatum.favorites;
+  $scope.passportFactory = PassportFactory;
 
-    console.log('userdatum:::::', userDatum.userName);
-  });
+  $scope.loggedInUser = $scope.passportFactory.factoryLoggedInUser();
+
+  if($scope.loggedInUser.username){
+    var userName = $scope.loggedInUser.username;
+    $scope.loggedInMessage = 'Logged in as ' + userName + '.';
+  } else {
+    $scope.loggedInMessage = 'You are not logged in! You won\'t be able to save this Playlist!';
+  }
+  //$scope.dataFactory.factoryUserAuthenication().then(function(userDatum) {
+  //  $scope.userData = userDatum;
+  //  $scope.id = userDatum.id;
+  //  $scope.userName = userDatum.userName;
+  //  $scope.favoritesArray = userDatum.favorites;
+  //
+  //  console.log('userdatum:::::', userDatum.userName);
+  //});
 
   var randomNumber = function (min, max){
     return Math.floor(Math.random() * (1 + max - min) + min);
@@ -136,10 +146,13 @@ myApp.controller('discoverMusicController', ['$scope', '$http', 'DataFactory', f
 
   $scope.savePlaylist = function(id){
     console.log('discovered song object with ARRay in save playlist function::', $scope.temporaryPlaylist);
+    if($scope.loggedInUser.username) {
+      $scope.dataFactory.factorySaveFavorite($scope.temporaryPlaylist, id);
 
-    $scope.dataFactory.factorySaveFavorite($scope.temporaryPlaylist, id);
-
-    alert('Playlist Saved!');
+      alert('Playlist Saved!');
+    } else {
+      alert('Cannot save playlist. You must be logged in.')
+    }
   };
 
   $scope.addPlaylistName = function(){

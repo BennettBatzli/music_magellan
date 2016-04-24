@@ -1,9 +1,23 @@
-myApp.controller('savedPlaylistsController', ['$scope', '$http', 'DataFactory', function($scope, $http, DataFactory) {
+myApp.controller('savedPlaylistsController', ['$scope', '$http', 'DataFactory', 'PassportFactory', '$location', function($scope, $http, DataFactory, PassportFactory, $location) {
   console.log("saved playlists controller!");
 
 
   $scope.dataFactory = DataFactory;
 
+  $scope.passportFactory = PassportFactory;
+
+  $scope.loggedInUser = $scope.passportFactory.factoryLoggedInUser();
+
+  validateUser();
+
+  function validateUser() {
+    if($scope.loggedInUser.username) {
+      $scope.userName = $scope.loggedInUser.username;
+
+    } else {
+      $location.path('/home');
+    }
+  }
 
   // if ($scope.dataFactory.playlistNameData() === undefined){
   //   $scope.dataFactory.factoryRetrievePlaylistNames().then(function(){
