@@ -8,6 +8,14 @@ myApp.config(['$routeProvider', function($routeProvider) {
       templateUrl: '/views/templates/home.html',
       controller: 'homeController'
     })
+    .when('/savedPlaylists', {
+      templateUrl: '/views/templates/savedPlaylists.html',
+      controller: 'savedPlaylistsController'
+    })
+    .when('/userHome', {
+      templateUrl: '/views/templates/userHome.html',
+      controller: 'userHomeController'
+    })
     .when('/signIn', {
       templateUrl: '/views/templates/signIn.html',
       controller: 'signInController'
@@ -19,10 +27,6 @@ myApp.config(['$routeProvider', function($routeProvider) {
     .when('/discoverMusic', {
       templateUrl: '/views/templates/discoverMusic.html',
       controller: 'discoverMusicController'
-    })
-    .when('/addSongs', {
-      templateUrl: '/views/templates/addSongs.html',
-      controller: 'addSongsController'
     })
     .otherwise({
       redirectTo: 'home'

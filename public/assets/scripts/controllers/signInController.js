@@ -1,16 +1,22 @@
-myApp.controller('signInController', ['$scope', 'DataFactory', '$http', function($scope, DataFactory, $http) {
+myApp.controller('signInController', ['$scope', 'DataFactory', 'PassportFactory', '$http', function($scope, DataFactory, PassportFactory, $http) {
   // $scope.userName;
   $scope.dataFactory = DataFactory;
 
-  $scope.signInUser = function() {
-    $scope.user = {
-      username: $scope.username,
-      // password: $scope.password
-    };
+  $scope.passportFactory = PassportFactory;
 
-    console.log('user object thing:: ', $scope.user);
-    // $scope.dataFactory.factoryUserAuthenication();
+  $scope.loginUser = function (username, password) {
+    $scope.passportFactory.factoryUserSubmit(username, password)
   };
+
+  //$scope.signInUser = function() {
+  //  $scope.user = {
+  //    username: $scope.username,
+  //    // password: $scope.password
+  //  };
+  //
+  //  console.log('user object thing:: ', $scope.user);
+  //  // $scope.dataFactory.factoryUserAuthenication();
+  //};
 
   // $scope.dataFactory.factoryUserAuthenication().then(function() {
   //   $scope.userData = $scope.dataFactory.factoryUserInfo();
@@ -18,7 +24,6 @@ myApp.controller('signInController', ['$scope', 'DataFactory', '$http', function
   // });
 // $scope.userName = $scope.dataFactory.factoryUserInfo().username;
 
-  console.log('userNAME???', $scope.userName);
 
 
   // // This happens after page load, which means it has authenticated if it was ever going to
