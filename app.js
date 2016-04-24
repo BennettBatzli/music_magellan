@@ -1,9 +1,9 @@
 var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
-var mongoose = require('mongoose');
+//var mongoose = require('mongoose');
 
-var passport = require('./strategies/user');
+var passport = require('./strategies/user_sql.js');
 var session = require('express-session');
 
 // Route includes
@@ -42,19 +42,19 @@ app.use(express.static('public/assets/scripts'));
 app.use(express.static('public/assets/styles'));
 app.use(express.static('public/vendors'));
 
-// Mongo Connection //
-var mongoURI = "mongodb://localhost:27017/music_magellan_app";
-//var mongoURI = "";
-
-var mongoDB = mongoose.connect(mongoURI).connection;
-
-mongoDB.on('error', function(err){
-   if(err) console.log("MONGO ERROR: ", err);
-});
-
-mongoDB.once('open', function(){
-   console.log("Connected to Mongo, meow!");
-});
+//// Mongo Connection //
+//var mongoURI = "mongodb://localhost:27017/music_magellan_app";
+////var mongoURI = "";
+//
+//var mongoDB = mongoose.connect(mongoURI).connection;
+//
+//mongoDB.on('error', function(err){
+//   if(err) console.log("MONGO ERROR: ", err);
+//});
+//
+//mongoDB.once('open', function(){
+//   console.log("Connected to Mongo, meow!");
+//});
 
 app.set('port', process.env.PORT || 5000);
 app.listen(app.get('port'), function() {
