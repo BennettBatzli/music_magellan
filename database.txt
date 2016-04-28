@@ -7,10 +7,23 @@ CREATE TABLE users (
 CREATE TABLE playlists (
     playlist_id SERIAL PRIMARY KEY,
     title VARCHAR(100) NOT NULL,
-    tracklist jsonb,
+    author VARCHAR(120) NOT NULL,
+    author_id INTEGER NOT NULL,
     deleted BOOLEAN NOT NULL DEFAULT FALSE
 );
 
-CREATE TABLE favorites (
+CREATE TABLE songs (
+    song_id SERIAL PRIMARY KEY,
+    song VARCHAR(100) NOT NULL,
+    artist VARCHAR(100) NOT NULL,
+    album VARCHAR(100) NOT NULL,
+    fk_playlist_id INTEGER NOT NULL REFERENCES playlists (playlist_id)
+);
 
+CREATE TABLE favorites
+     (
+     favorite_id SERIAL NOT NULL PRIMARY KEY,
+     fk_user_id INTEGER NOT NULL REFERENCES users (user_id),
+     fk_playlist_id INTEGER NOT NULL REFERENCES playlists (playlist_id),
+     favorite_status BOOLEAN NOT NULL
 );
