@@ -27,11 +27,9 @@ myApp.factory('DataFactory', ['$http', '$window', function($http, $window) {
     return promise;
   };
 
-  //STILL PRIVATEEEE
-  var privateSaveFavorite = function(favorite, id) {
-    // console.log('i really hope the id appears!', id);
+  var privateSaveFavorite = function(favorite) {
     console.log('fav!!', favorite);
-    var promise = $http.post('/favoritesData/' + id, favorite).then(function(response){
+    var promise = $http.post('/favoritesData/', favorite).then(function(response){
       // console.log('here is post response::', response);
       console.log('this is what i really need: the playlist obj id', response.data);
 
@@ -41,9 +39,9 @@ myApp.factory('DataFactory', ['$http', '$window', function($http, $window) {
     return promise;
   };
 
-  var privateRetrievePlaylistNames = function(playlistID){
+  var privateRetrievePlaylistNames = function(userID){
     console.log('getting names from datafactory');
-    var promise = $http.get('/favoritesData/' + playlistID).then(function(response){
+    var promise = $http.get('/favoritesData/' + userID).then(function(response){
       console.log('get playlist names RESPONSE.data ::', response.data);
       playlistNames = response.data;
     });
@@ -62,11 +60,11 @@ myApp.factory('DataFactory', ['$http', '$window', function($http, $window) {
     factoryUserAuthenication: function() {
       return privateUserAuthentication();
     },
-    factorySaveFavorite: function(favorite, id) {
-      return privateSaveFavorite(favorite, id);
+    factorySaveFavorite: function(favorite) {
+      return privateSaveFavorite(favorite);
     },
-    factoryRetrievePlaylistNames: function(playlistID) {
-      return privateRetrievePlaylistNames(playlistID);
+    factoryRetrievePlaylistNames: function(userID) {
+      return privateRetrievePlaylistNames(userID);
     },
     playlistNameData: function() {
       return playlistNames;

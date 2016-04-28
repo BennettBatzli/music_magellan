@@ -1,12 +1,23 @@
 <h2>You are {{userName}}</h2>
 
-<select ng-model="selectedPlaylist" ng-options="favorite.playlist.playlist_name for favorite in favoritesArray"></select>
+<select ng-model="selectedPlaylist" ng-options="playlistName.title for playlistName in playlistNames"></select>
+
+<section class="playlist-selector-container" ng-repeat="playlistName in playlistNames">
+  <button class="playlist-selector-button" ng-click="getPlaylistInfo()">{{playlistName.title}}</button>
+</section>
+
 
 <section class="saved-playlist-container">
 <h3>Select a Playlist</h3>
 <br />
 
   <div class="saved-playlist-container-tracklist" ng-if="selectedPlaylist">
+
+    <p><span class="track-span">Track 1 ::</span>
+      {{selectedPlaylist.song}} -- {{selectedPlaylist.playlist.tracklist[0].track_one_info.artist}} -- {{selectedPlaylist.playlist.tracklist[0].track_one_info.album}}
+
+    </p>
+
 
     <h1>{{selectedPlaylist.playlist.playlist_name}}</h1>
     <p><span class="track-span">Track 1 ::</span>
