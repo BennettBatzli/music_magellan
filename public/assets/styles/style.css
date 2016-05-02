@@ -164,19 +164,27 @@ main {
   height: 300px;
 }
 
+.playlist-page-container{
+	display: inline;
+	width: 100%;
+}
+
 .saved-playlist-container {
-	margin: 0 auto;
-  background-color: #634b30;
+	margin: 0 0 0 30%;
+	background-color: #634b30;
 	color: white;
 	border-radius: 5px;
-  width: 60%;
-  min-width: 400px;
-  height: 400px;
+	width: 60%;
+	/*min-width: 400px;*/
+	/*height: 400px;*/
 	line-height: 1.25;
+	display: inline-block;
 }
-.saved-playlist-container-tracklist {
+.playlist-selector-container {
 	text-align: left;
-	margin-left: 5%
+	width: 30%;
+	margin: 0 60% 0 0;
+	display: inline-block;
 }
 
 .discovered-songs-container {
@@ -234,6 +242,10 @@ button:focus {
 
 }
 
+.playlist-selector-button {
+	width: 100%;
+	display: inline-block;
+}
 
 select {
   border: none;

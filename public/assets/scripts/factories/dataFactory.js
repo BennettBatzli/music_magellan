@@ -2,6 +2,8 @@ myApp.factory('DataFactory', ['$http', '$window', function($http, $window) {
 
   //private
   var playlistNames = undefined;
+  var playlistInfo = undefined;
+
 
   // This happens after page load, which means it has authenticated if it was ever going to
   // NOT SECURE
@@ -48,6 +50,15 @@ myApp.factory('DataFactory', ['$http', '$window', function($http, $window) {
     return promise;
   };
 
+  var privateGetPlaylistInfo = function(playlistID){
+    console.log('is it', playlistID);
+    var promise = $http.get('/getPlaylistInfo/' + playlistID).then(function(response){
+      console.log('get playlistInfo!!', response.data);
+      playlistInfo = response.data;
+    });
+    return promise;
+  };
+
   var privateDeletePlaylist = function(playlistID) {
     var promise = $http.delete('/favoritesData/' + playlistID).then(function(response) {
       console.log('delete playlist RESPONSE.data ::', response.data);
@@ -68,6 +79,12 @@ myApp.factory('DataFactory', ['$http', '$window', function($http, $window) {
     },
     playlistNameData: function() {
       return playlistNames;
+    },
+    factoryGetPlaylistInfo: function(playlistID) {
+      return privateGetPlaylistInfo(playlistID);
+    },
+    playlistInfoData: function() {
+      return playlistInfo;
     },
     factoryDeletePlaylist: function(playlistID) {
       return privateDeletePlaylist(playlistID);

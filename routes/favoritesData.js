@@ -92,34 +92,35 @@ router.get('/:user_id', function(req, res){
 });
 
 
-//router.get('/:user_id', function(req, res){
-//  var results = [];
-//  console.log(req.body.user_id);
-//  var author_id = req.params.user_id;
-//  pg.connect(connection, function(err, client, done) {
-//    var query = client.query('SELECT * ' +
-//      'FROM playlists ' +
-//      'JOIN songs ON playlists.playlist_id = songs.fk_playlist_id ' +
-//      'WHERE playlists.author_id = ($1) AND playlists.deleted IS NOT true',
-//      [author_id]);
-//
-//    //Stream results back one row at a time
-//    query.on('row', function(row) {
-//      results.push(row);
-//    });
-//
-//    //close connection
-//    query.on('end', function() {
-//      done();
-//
-//      return res.json(results);
-//    });
-//
-//    if(err) {
-//      console.log(err);
-//    }
-//  });
-//});
+router.get('/:playlist_id', function(req, res){
+  var results = [];
+  console.log('what req.body???', req.body);
+  var playlist_id = req.params.playlist_id;
+  pg.connect(connection, function(err, client, done) {
+    var query = client.query('SELECT * ' +
+      //'FROM playlists ' +
+      //'JOIN songs ON playlists.playlist_id = songs.fk_playlist_id ' +
+      //'WHERE playlists.author_id = ($1) AND playlists.deleted IS NOT true'
+      'FROM songs WHERE playlist_id = ($1)',
+      [playlist_id]);
+
+    //Stream results back one row at a time
+    query.on('row', function(row) {
+      results.push(row);
+    });
+
+    //close connection
+    query.on('end', function() {
+      done();
+
+      return res.json(results);
+    });
+
+    if(err) {
+      console.log(err);
+    }
+  });
+});
 
 
 router.delete('/:playlistID', function(req, res){
