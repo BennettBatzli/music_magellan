@@ -11,6 +11,7 @@ var signIn = require('./routes/signIn');
 var user = require('./routes/user');
 var register = require('./routes/register');
 var favoritesData = require('./routes/favoritesData');
+var getPlaylistInfo = require('./routes/getPlaylistInfo')
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
@@ -33,6 +34,7 @@ app.use('/register', register);
 app.use('/user', user);
 app.use('/signIn', signIn);
 app.use('/favoritesData', favoritesData);
+app.use('/getPlaylistInfo', getPlaylistInfo);
 
 // Serve back static files
 app.use(express.static('public'));

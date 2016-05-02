@@ -19,15 +19,14 @@ myApp.controller('savedPlaylistsController', ['$scope', '$http', 'DataFactory', 
     }
   }
   function getPlaylistNames() {
-    if ($scope.dataFactory.playlistNameData() === undefined) {
-      console.log('hmm 1');
+    //if ($scope.dataFactory.playlistNameData() === undefined) {
       $scope.dataFactory.factoryRetrievePlaylistNames($scope.loggedInUser.user_id).then(function() {
         $scope.playlistNames = $scope.dataFactory.playlistNameData();
         console.log('playlist names???', $scope.playlistNames);
       });
-    } else {
-      $scope.playlistNames = $scope.dataFactory.playlistNameData();
-    }
+    //} else {
+    //  $scope.playlistNames = $scope.dataFactory.playlistNameData();
+    //}
   }
   //$scope.dataFactory.factoryUserAuthenication().then(function(userDatum) {
   //  $scope.userData = userDatum;
@@ -46,9 +45,12 @@ myApp.controller('savedPlaylistsController', ['$scope', '$http', 'DataFactory', 
   // $scope.showPlaylist = function() {
   //   userDatum.favoritesArrayData
   // };
-  $scope.getPlaylistInfo = function(){
-    $scope.dataFactory.factoryGetPlaylistInfo().then(function() {
-
+  $scope.getPlaylistInfo = function(index){
+    console.log('eh?', $scope.playlistNames[index]);
+    $scope.dataFactory.factoryGetPlaylistInfo($scope.playlistNames[index].playlist_id).then(function() {
+      console.log('well hey');
+      $scope.playlistInfo = $scope.dataFactory.playlistInfoData();
+      console.log('moneyyyyy', $scope.playlistInfo);
     });
   };
 
