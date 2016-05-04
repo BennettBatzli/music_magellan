@@ -45,18 +45,26 @@ myApp.controller('savedPlaylistsController', ['$scope', '$http', 'DataFactory', 
   // $scope.showPlaylist = function() {
   //   userDatum.favoritesArrayData
   // };
+  var currentPlaylistID = {};
   $scope.getPlaylistInfo = function(index){
+
     console.log('eh?', $scope.playlistNames[index]);
     $scope.dataFactory.factoryGetPlaylistInfo($scope.playlistNames[index].playlist_id).then(function() {
       console.log('well hey');
       $scope.playlistInfo = $scope.dataFactory.playlistInfoData();
       console.log('moneyyyyy', $scope.playlistInfo);
+      $scope.showDeletePlaylistButton = true;
     });
+
+    currentPlaylistID = {
+      playlist_id: $scope.playlistNames[index].playlist_id
+    };
+
   };
 
-  $scope.deletePlaylist = function(playlistID){
-    console.log('the playlist ID:', playlistID);
-    $scope.dataFactory.factoryDeletePlaylist(playlistID);
+  $scope.deletePlaylist = function(){
+    console.log('the playlist ID:', currentPlaylistID);
+    $scope.dataFactory.factoryDeletePlaylist(currentPlaylistID);
   };
 
 }]);

@@ -12,10 +12,14 @@
       <!--<div class="playlist-page-container">-->
       <table class="table">
         <thead>
-          <tr><th>Your Playlists</th></tr>
+          <tr>
+            <th>Your Playlists</th>
+          </tr>
         </thead>
         <tbody ng-repeat="playlistName in playlistNames">
-          <tr class="select-playlist-table-row" ng-click="getPlaylistInfo($index)"><td>{{playlistName.title}}</td></tr>
+          <tr class="select-playlist-table-row" ng-click="getPlaylistInfo($index)">
+            <td>{{playlistName.title}}</td>
+          </tr>
         </tbody>
       </table>
 
@@ -28,16 +32,17 @@
       <div class="col-md-6">
         <table class="table">
           <thead>
-          <tr>
-            <th>Track</th><th>Song</th><th>Artist</th><th>Album</th>
-          </tr>
+            <tr>
+              <th>Track</th><th>Song</th><th>Artist</th><th>Album</th>
+            </tr>
           </thead>
           <tbody ng-repeat="playlist in playlistInfo">
-          <tr class="track-info-table-row">
-            <td></td><td>{{playlist.song}}</td><td>{{playlist.artist}}</td><td>{{playlist.album}}</td>
-          </tr>
+            <tr class="track-info-table-row">
+              <td></td><td>{{playlist.song}}</td><td>{{playlist.artist}}</td><td>{{playlist.album}}</td>
+            </tr>
           </tbody>
         </table>
+        <button ng-show="showDeletePlaylistButton" ng-click="deletePlaylist()">Delete Playlist</button>
 
 
         <!--<section class="saved-playlist-container" ng-repeat="playlist in playlistInfo">-->
