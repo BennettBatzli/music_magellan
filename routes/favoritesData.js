@@ -39,14 +39,23 @@ router.post('/', function(req, res) {
           //}
           console.log('what result', result);
           var sqlString = 'INSERT INTO "songs" ("fk_playlist_id", "song", "artist", "album") VALUES ';
+          var song = '';
+          var artist = '';
+          var album = '';
+
           for (var i = 0; i < playlist.tracklist.length; i++){
-            sqlString = sqlString + '(' + result.rows[0].playlist_id + ', \'' + playlist.tracklist[i].song + '\', \'' +
-              playlist.tracklist[i].artist + '\', \'' + playlist.tracklist[i].album + '\')';
+            song = song +  playlist.tracklist[i].song.replace(/'/g, "''");
+            artist = artist +  playlist.tracklist[i].artist.replace(/'/g, "''");
+            album = album +  playlist.tracklist[i].album.replace(/'/g, "''");
+
+            sqlString = sqlString + '(' + result.rows[0].playlist_id + ', \'' + song + '\', \'' +
+              artist + '\', \'' + album + '\')';
             if (i < (playlist.tracklist.length - 1)){
               sqlString = sqlString + ', ';
             }
           }
           console.log('the string', sqlString);
+
           client.query(sqlString,
             function (err, result) {
               done();
