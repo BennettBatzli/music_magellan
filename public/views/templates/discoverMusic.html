@@ -1,71 +1,77 @@
-<h2>{{loggedInMessage}}</h2>
-<form class="form-group">
-    <label for="playlistTitle">Add a Title to your Playlist:</label>
-    <input type="text" ng-model="playlistTitle" id="playlistTitle" />
-    <button ng-click="addPlaylistName()">Add</button>
-</form>
-<br />
-<h2>{{temporaryPlaylist.playlist_name}}</h2>
-<button class="discovery-tab" ng-click="addOwn=false">Discover New Songs</button>
-<button class="discovery-tab" ng-click="addOwn=true">Add Your Own Music</button>
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2">
+      <h2>{{loggedInMessage}}</h2>
+      <form class="form-group">
+          <label for="playlistTitle">Add a Title to your Playlist:</label>
+          <input type="text" ng-model="playlistTitle" id="playlistTitle" />
+          <button ng-click="addPlaylistName()">Add</button>
+      </form>
+      <br />
+      <h2>{{temporaryPlaylist.playlist_name}}</h2>
+      <button class="discovery-tab" ng-click="addOwn=false">Discover New Songs</button>
+      <button class="discovery-tab" ng-click="addOwn=true">Add Your Own Music</button>
 
-<div class="discovery-form-container">
+      <div class="discovery-form-container">
 
 
-  <section ng-hide="addOwn">
-    <h3>Discover new songs!</h3>
-    <select ng-model="selectedGenre" ng-options="genre.query as genre.label for genre in genres">Select a Genre!</select>
+        <section ng-hide="addOwn">
+          <h3>Discover new songs!</h3>
+          <select ng-model="selectedGenre" ng-options="genre.query as genre.label for genre in genres">Select a Genre!</select>
 
-    <button class="discover-button" ng-click="discoverSongs()">Discover</button>
+          <button class="discover-button" ng-click="discoverSongs()">Discover</button>
 
-    <div ng-repeat="tune in discoveredSong">
-      <h3>Here's what you discovered!</h3>
-      <div class="discovered-songs-container">
-        <p>Song ::
-          {{tune.song}}
-        </p>
-        <p>Artist ::
-          {{tune.artist}}
-        </p>
-        <p>Album ::
-          {{tune.album}}
-        </p>
+          <div ng-repeat="tune in discoveredSong">
+            <h3>Here's what you discovered!</h3>
+            <div class="discovered-songs-container">
+              <p>Song ::
+                {{tune.song}}
+              </p>
+              <p>Artist ::
+                {{tune.artist}}
+              </p>
+              <p>Album ::
+                {{tune.album}}
+              </p>
+            </div>
+            <button ng-click="addDiscoveredSongs(discoveredSongObject)">Add Song</button>
+          </div>
+        </section>
+
+        <section ng-show="addOwn">
+          <h2>add some songs!</h2>
+          <form>
+            <label for="song">Song:</label>
+            <input type="text" ng-model="song" id="song" />
+            <label for="artist">Artist:</label>
+            <input type="text" ng-model="artist" id="artist" />
+            <label for="album">Album:</label>
+            <input type="text" ng-model="album" id="album" />
+
+            <button id="add-song-button" ng-click="addOwnSong()">Add to Playlist</button>
+
+          </form>
+        </section>
       </div>
-      <button ng-click="addDiscoveredSongs(discoveredSongObject)">Add Song</button>
+
+      <section ng-repeat="music in temporaryPlaylistArray">
+        <h2>your playlist:</h2>
+        <div class="temporary-playlist">
+          <p><span class="track-span">Track 1 ::</span>
+            {{music.tracks[0].song}} --- {{music.tracks[0].artist}} --- {{music.tracks[0].album}}
+          </p>
+          <p><span class="track-span">Track 2 ::</span>
+            {{music.tracks[1].song}} --- {{music.tracks[1].artist}} --- {{music.tracks[1].album}}
+          </p>
+          <p><span class="track-span">Track 3 ::</span>
+            {{music.tracks[2].song}} --- {{music.tracks[2].artist}} --- {{music.tracks[2].album}}
+          </p>
+          <p><span class="track-span">Track 4 ::</span>
+            {{music.tracks[3].song}} --- {{music.tracks[3].artist}} --- {{music.tracks[3].album}}
+          </p>
+        </div>
+        <button ng-click="savePlaylist(id)">Save Playlist</button>
+      </section>
     </div>
-  </section>
-
-  <section ng-show="addOwn">
-    <h2>add some songs!</h2>
-    <form>
-      <label for="song">Song:</label>
-      <input type="text" ng-model="song" id="song" />
-      <label for="artist">Artist:</label>
-      <input type="text" ng-model="artist" id="artist" />
-      <label for="album">Album:</label>
-      <input type="text" ng-model="album" id="album" />
-
-      <button id="add-song-button" ng-click="addOwnSong()">Add to Playlist</button>
-
-    </form>
-  </section>
-</div>
-
-<section ng-repeat="music in temporaryPlaylistArray">
-  <h2>your playlist:</h2>
-  <div class="temporary-playlist">
-    <p><span class="track-span">Track 1 ::</span>
-      {{music.tracks[0].song}} --- {{music.tracks[0].artist}} --- {{music.tracks[0].album}}
-    </p>
-    <p><span class="track-span">Track 2 ::</span>
-      {{music.tracks[1].song}} --- {{music.tracks[1].artist}} --- {{music.tracks[1].album}}
-    </p>
-    <p><span class="track-span">Track 3 ::</span>
-      {{music.tracks[2].song}} --- {{music.tracks[2].artist}} --- {{music.tracks[2].album}}
-    </p>
-    <p><span class="track-span">Track 4 ::</span>
-      {{music.tracks[3].song}} --- {{music.tracks[3].artist}} --- {{music.tracks[3].album}}
-    </p>
   </div>
-  <button ng-click="savePlaylist(id)">Save Playlist</button>
-</section>
+</div>
