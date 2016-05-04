@@ -60,7 +60,8 @@ myApp.factory('DataFactory', ['$http', '$window', function($http, $window) {
   };
 
   var privateDeletePlaylist = function(playlistID) {
-    var promise = $http.delete('/favoritesData/' + playlistID).then(function(response) {
+    console.log('datafactory playlist id', playlistID);
+    var promise = $http.put('/deletePlaylist/', playlistID).then(function(response) {
       console.log('delete playlist RESPONSE.data ::', response.data);
     });
     return promise;

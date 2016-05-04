@@ -122,23 +122,23 @@ router.get('/:playlist_id', function(req, res){
   });
 });
 
-
-router.delete('/:playlistID', function(req, res){
-  console.log('req body', req.body);
-  console.log('req params::', req.params);
-
-  User.findByIdAndRemove(req.params.id, function (err, result) {
-    if(err) {
-        console.log('error message::', err);
-    }
-
-    res.send(result);
-    console.log('sent result', result);
-    // res.send({
-    //       message:'the appointment has been saved'
-    //   });
-  });
-});
+//
+//router.delete('/:playlistID', function(req, res){
+//  console.log('req body', req.body);
+//  console.log('req params::', req.params);
+//
+//  User.findByIdAndRemove(req.params.id, function (err, result) {
+//    if(err) {
+//        console.log('error message::', err);
+//    }
+//
+//    res.send(result);
+//    console.log('sent result', result);
+//    // res.send({
+//    //       message:'the appointment has been saved'
+//    //   });
+//  });
+//});
 
 
 // router.get('/:playlistID', function(req, res){
