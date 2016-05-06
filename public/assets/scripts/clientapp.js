@@ -29,7 +29,7 @@ myApp.config(['$routeProvider', function($routeProvider) {
       controller: 'discoverMusicController'
     })
     .otherwise({
-      redirectTo: 'home'
+      redirectTo: 'signIn'
     });
 
 }]);

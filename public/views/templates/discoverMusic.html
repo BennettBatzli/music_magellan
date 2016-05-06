@@ -54,24 +54,44 @@
         </section>
       </div>
 
-      <section ng-repeat="music in temporaryPlaylistArray">
-        <h2>your playlist:</h2>
-        <div class="temporary-playlist">
-          <p><span class="track-span">Track 1 ::</span>
-            {{music.tracks[0].song}} --- {{music.tracks[0].artist}} --- {{music.tracks[0].album}}
-          </p>
-          <p><span class="track-span">Track 2 ::</span>
-            {{music.tracks[1].song}} --- {{music.tracks[1].artist}} --- {{music.tracks[1].album}}
-          </p>
-          <p><span class="track-span">Track 3 ::</span>
-            {{music.tracks[2].song}} --- {{music.tracks[2].artist}} --- {{music.tracks[2].album}}
-          </p>
-          <p><span class="track-span">Track 4 ::</span>
-            {{music.tracks[3].song}} --- {{music.tracks[3].artist}} --- {{music.tracks[3].album}}
-          </p>
-        </div>
-        <button ng-click="savePlaylist(id)">Save Playlist</button>
-      </section>
+      <!--<section ng-repeat="music in temporaryPlaylistArray">-->
+        <!--<h2>your playlist:</h2>-->
+        <!--<div class="temporary-playlist">-->
+          <!--<p><span class="track-span">Track 1 ::</span>-->
+            <!--{{music.tracks[0].song}} -&#45;&#45; {{music.tracks[0].artist}} -&#45;&#45; {{music.tracks[0].album}}-->
+          <!--</p>-->
+          <!--<p><span class="track-span">Track 2 ::</span>-->
+            <!--{{music.tracks[1].song}} -&#45;&#45; {{music.tracks[1].artist}} -&#45;&#45; {{music.tracks[1].album}}-->
+          <!--</p>-->
+          <!--<p><span class="track-span">Track 3 ::</span>-->
+            <!--{{music.tracks[2].song}} -&#45;&#45; {{music.tracks[2].artist}} -&#45;&#45; {{music.tracks[2].album}}-->
+          <!--</p>-->
+          <!--<p><span class="track-span">Track 4 ::</span>-->
+            <!--{{music.tracks[3].song}} -&#45;&#45; {{music.tracks[3].artist}} -&#45;&#45; {{music.tracks[3].album}}-->
+          <!--</p>-->
+        <!--</div>-->
+        <!--<button ng-click="savePlaylist(id)">Save Playlist</button>-->
+      <!--</section>-->
     </div>
   </div>
+
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2">
+      <table class="table">
+        <thead>
+        <tr>
+          <th>Track</th><th>Song</th><th>Artist</th><th>Album</th>
+        </tr>
+        </thead>
+        <tbody ng-repeat="music in temporaryPlaylistArray">
+        <tr class="track-info-table-row">
+          <td></td><td>{{music.song}}</td><td>{{music.artist}}</td><td>{{music.album}}</td>
+        </tr>
+        </tbody>
+      </table>
+      <button ng-click="savePlaylist(id)">Save Playlist</button>
+
+    </div>
+  </div>
+
 </div>

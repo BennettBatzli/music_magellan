@@ -349,14 +349,26 @@
 	/*margin-right: 20%;*/
 /*}*/
 
+.login-form {
+    margin: 80px auto 0 auto;
+}
+
+.login-username-field {
+    margin: 10px auto;
+}
+
+.login-password-field {
+    margin: 10px auto;
+}
+
 .select-playlist-table-row {
     cursor: pointer;
 }
 
-.select-playlist-table-row:active {
+.select-playlist-table-row:hover {
     background-color: grey;
 }
 
-.select-playlist-table-row:hover {
-    background-color: grey;
+.active {
+    color: blue;
 }

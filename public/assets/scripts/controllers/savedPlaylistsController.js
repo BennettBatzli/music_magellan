@@ -15,7 +15,7 @@ myApp.controller('savedPlaylistsController', ['$scope', '$http', 'DataFactory', 
       getPlaylistNames();
 
     } else {
-      $location.path('/home');
+      $location.path('/signIn');
     }
   }
   function getPlaylistNames() {
@@ -47,6 +47,7 @@ myApp.controller('savedPlaylistsController', ['$scope', '$http', 'DataFactory', 
   // };
   var currentPlaylistID = {};
   $scope.getPlaylistInfo = function(index){
+    $scope.isActive = $scope.playlistNames[index];
 
     console.log('eh?', $scope.playlistNames[index]);
     $scope.dataFactory.factoryGetPlaylistInfo($scope.playlistNames[index].playlist_id).then(function() {
