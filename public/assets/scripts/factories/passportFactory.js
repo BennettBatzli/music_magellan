@@ -16,7 +16,7 @@ myApp.factory('PassportFactory', ['$http', '$location', function($http, $locatio
 
       loggedInUser = response.data;
       console.log('logged user', loggedInUser);
-      $location.path('/userHome');
+      $location.path('/discoverMusic');
 
     });
   };

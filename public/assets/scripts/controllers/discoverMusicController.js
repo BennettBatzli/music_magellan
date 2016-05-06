@@ -117,8 +117,12 @@ myApp.controller('discoverMusicController', ['$scope', '$http', 'DataFactory', '
 
     console.log($scope.temporaryPlaylist);
 
-    $scope.temporaryPlaylistArray = [$scope.temporaryPlaylist];
+    //$scope.temporaryPlaylistArray = [$scope.temporaryPlaylist];
+    $scope.temporaryPlaylistArray = $scope.temporaryPlaylist.tracks;
+
     console.log('playlist songs array:', $scope.temporaryPlaylist.tracks);
+
+    $scope.discoveredSong = undefined;
   };
 
   $scope.addOwnSong = function() {
