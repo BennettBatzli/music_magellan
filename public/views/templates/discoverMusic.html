@@ -2,11 +2,11 @@
   <div class="row">
     <div class="col-md-8 col-md-offset-2">
       <h2>{{loggedInMessage}}</h2>
-      <form class="form-group">
-          <label for="playlistTitle">Add a Title to your Playlist:</label>
-          <input type="text" ng-model="playlistTitle" id="playlistTitle" />
+      <!--<form class="form-group">-->
+          <!--<label for="playlistTitle">Add a Title to your Playlist:</label>-->
+          <!--<input type="text" ng-model="playlistTitle" id="playlistTitle" />-->
           <button ng-click="addPlaylistName()">Add</button>
-      </form>
+      <!--</form>-->
       <br />
       <h2>{{temporaryPlaylist.playlist_name}}</h2>
       <button class="discovery-tab" ng-click="addOwn=false">Discover New Songs</button>
@@ -95,3 +95,18 @@
   </div>
 
 </div>
+
+<script type="text/ng-template" id="addTitleModalContent.html">
+  <div class="modal-header">
+    <h3 class="modal-title">I'm a modal!</h3>
+  </div>
+  <div class="modal-body">
+    <label for="playlistTitle">Add a Title to your Playlist:</label>
+    <input type="text" ng-model="playlistTitle" id="playlistTitle" />
+    <!--<button ng-click="addPlaylistName()">Add</button>-->
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
+    <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+  </div>
+</script>

@@ -1,9 +1,11 @@
-myApp.controller('discoverMusicController', ['$scope', '$http', 'DataFactory', 'PassportFactory', function($scope, $http, DataFactory, PassportFactory) {
+myApp.controller('discoverMusicController', ['$scope', '$http', 'DataFactory', 'PassportFactory', '$uibModal', '$log', function($scope, $http, DataFactory, PassportFactory, $uibModal, $log) {
   console.log("discover mus controller!");
 
   $scope.dataFactory = DataFactory;
 
   $scope.passportFactory = PassportFactory;
+
+  $scope.animationsEnabled = true;
 
   $scope.loggedInUser = $scope.passportFactory.factoryLoggedInUser();
 
@@ -161,12 +163,39 @@ myApp.controller('discoverMusicController', ['$scope', '$http', 'DataFactory', '
     }
   };
 
-  $scope.addPlaylistName = function(){
-    if($scope.playlistTitle) {
-      $scope.temporaryPlaylist.playlist_name = $scope.playlistTitle;
-    } else {
-      $scope.temporaryPlaylist.playlist_name = "Untitled Playlist";
-    }
+  $scope.addPlaylistName = function(size){
+    //if($scope.playlistTitle) {
+    //  $scope.temporaryPlaylist.playlist_name = $scope.playlistTitle;
+    //} else {
+    //  $scope.temporaryPlaylist.playlist_name = "Untitled Playlist";
+    //}
+    var modalInstance = $uibModal.open({
+      animation: $scope.animationsEnabled,
+      templateUrl: 'addTitleModalContent.html',
+      controller: 'newPlaylistModalController',
+      size: size,
+      resolve: {
+        author: function () {
+          return $scope.loggedInUser.username
+        },
+        author_id: function () {
+          return $scope.loggedInUser.user_id
+        },
+        playlistTitle: function () {
+          return $scope.playlistTitle
+        }
+      }
+    });
+
+    modalInstance.result.then(function () {
+
+    }, function () {
+      $log.info('Modal dismissed at: ' + new Date());
+    });
+  };
+
+  $scope.toggleAnimation = function () {
+    $scope.animationsEnabled = !$scope.animationsEnabled;
   };
 
 }]);
