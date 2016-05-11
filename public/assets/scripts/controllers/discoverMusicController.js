@@ -108,6 +108,7 @@ myApp.controller('discoverMusicController', ['$scope', '$http', 'DataFactory', '
   $scope.temporaryPlaylist = {
     tracks: [],
     playlist_name: "Untitled Playlist",
+    playlist_id: $scope.playlistID,
     author: $scope.loggedInUser.username,
     author_id: $scope.loggedInUser.user_id
   };
@@ -153,9 +154,10 @@ myApp.controller('discoverMusicController', ['$scope', '$http', 'DataFactory', '
   };
 
   $scope.savePlaylist = function(){
+
     console.log('discovered song object with ARRay in save playlist function::', $scope.temporaryPlaylist);
     if($scope.loggedInUser.username) {
-      $scope.dataFactory.factorySaveFavorite($scope.temporaryPlaylist);
+      $scope.dataFactory.factoryAddSongs($scope.temporaryPlaylist);
 
       alert('Playlist Saved!');
     } else {
@@ -183,12 +185,19 @@ myApp.controller('discoverMusicController', ['$scope', '$http', 'DataFactory', '
         },
         playlistTitle: function () {
           return $scope.playlistTitle
+        },
+        playlistID: function () {
+          return $scope.playlistID
         }
       }
     });
 
-    modalInstance.result.then(function () {
-
+    modalInstance.result.then(function (myPlaylist) {
+      $scope.playlistTitle = myPlaylist.playlist_name;
+      $scope.playlistID = myPlaylist.playlist_id;
+      $scope.temporaryPlaylist.playlist_id = myPlaylist.playlist_id;
+      console.log('is this id getting thru', myPlaylist);
+      $scope.temporaryPlaylist.playlist_name = myPlaylist.playlist_name;
     }, function () {
       $log.info('Modal dismissed at: ' + new Date());
     });

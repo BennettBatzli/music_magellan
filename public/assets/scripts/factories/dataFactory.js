@@ -4,6 +4,8 @@ myApp.factory('DataFactory', ['$http', '$window', function($http, $window) {
   var playlistNames = undefined;
   var playlistInfo = undefined;
 
+  var playlistID = undefined;
+
 
   // This happens after page load, which means it has authenticated if it was ever going to
   // NOT SECURE
@@ -33,7 +35,8 @@ myApp.factory('DataFactory', ['$http', '$window', function($http, $window) {
     console.log('fav!!', favorite);
     var promise = $http.post('/favoritesData/', favorite).then(function(response){
       // console.log('here is post response::', response);
-      console.log('this is what i really need: the playlist obj id', response.data);
+      console.log('this is what i really need: the playlist id', response.data.rows[0].playlist_id);
+      playlistID = response.data.rows[0].playlist_id;
 
       // var favoritesArrayData = response.data.favorites;
     });
@@ -67,6 +70,13 @@ myApp.factory('DataFactory', ['$http', '$window', function($http, $window) {
     return promise;
   };
 
+  var privateAddSongs = function(playlistID){
+    var promise = $http.post('/tracklistData/', playlistID).then(function(response) {
+      console.log('add songs post call RESPONSE.data ::', response.data);
+    });
+    return promise;
+  };
+
   //public
   var publicApi = {
     factoryUserAuthenication: function() {
@@ -89,6 +99,12 @@ myApp.factory('DataFactory', ['$http', '$window', function($http, $window) {
     },
     factoryDeletePlaylist: function(playlistID) {
       return privateDeletePlaylist(playlistID);
+    },
+    factoryAddSongs: function(playlistID) {
+      return privateAddSongs(playlistID);
+    },
+    factoryPlaylistID: function(){
+      return playlistID;
     }
   };
 

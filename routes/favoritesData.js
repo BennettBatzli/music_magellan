@@ -28,44 +28,38 @@ router.post('/', function(req, res) {
           console.log('Error inserting data', err);
           res.send(false);
         } else {
-          //res.send(true);
+          res.send(result);
 
-          //var sqlString = 'INSERT INTO lesson_tag ( fk_lesson_id, fk_tag_id ) VALUES';
-          //for (var i = 0; i < lessonPlan.tags.length; i++){
-          //  sqlString = sqlString + '(' + result.rows[0].lesson_id + ',' + lessonPlan.tags[i] + ')';
-          //  if (i < (lessonPlan.tags.length - 1)){
-          //    sqlString = sqlString + ',';
+
+          //console.log('what result', result);
+          //var sqlString = 'INSERT INTO "songs" ("fk_playlist_id", "song", "artist", "album") VALUES ';
+          //var song = '';
+          //var artist = '';
+          //var album = '';
+          //
+          //for (var i = 0; i < playlist.tracklist.length; i++){
+          //  song = song +  playlist.tracklist[i].song.replace(/'/g, "''");
+          //  artist = artist +  playlist.tracklist[i].artist.replace(/'/g, "''");
+          //  album = album +  playlist.tracklist[i].album.replace(/'/g, "''");
+          //
+          //  sqlString = sqlString + '(' + result.rows[0].playlist_id + ', \'' + song + '\', \'' +
+          //    artist + '\', \'' + album + '\')';
+          //  if (i < (playlist.tracklist.length - 1)){
+          //    sqlString = sqlString + ', ';
           //  }
           //}
-          console.log('what result', result);
-          var sqlString = 'INSERT INTO "songs" ("fk_playlist_id", "song", "artist", "album") VALUES ';
-          var song = '';
-          var artist = '';
-          var album = '';
-
-          for (var i = 0; i < playlist.tracklist.length; i++){
-            song = song +  playlist.tracklist[i].song.replace(/'/g, "''");
-            artist = artist +  playlist.tracklist[i].artist.replace(/'/g, "''");
-            album = album +  playlist.tracklist[i].album.replace(/'/g, "''");
-
-            sqlString = sqlString + '(' + result.rows[0].playlist_id + ', \'' + song + '\', \'' +
-              artist + '\', \'' + album + '\')';
-            if (i < (playlist.tracklist.length - 1)){
-              sqlString = sqlString + ', ';
-            }
-          }
-          console.log('the string', sqlString);
-
-          client.query(sqlString,
-            function (err, result) {
-              done();
-              if(err) {
-                console.log("Error inserting data: ", err);
-                res.send(false);
-              } else {
-                res.send(result);
-              }
-            });
+          //console.log('the string', sqlString);
+          //
+          //client.query(sqlString,
+          //  function (err, result) {
+          //    done();
+          //    if(err) {
+          //      console.log("Error inserting data: ", err);
+          //      res.send(false);
+          //    } else {
+          //      res.send(result);
+          //    }
+          //  });
         }
       });
   });
