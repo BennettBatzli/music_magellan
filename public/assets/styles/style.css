@@ -372,3 +372,8 @@
 .active {
     color: blue;
 }
+
+.modal-body {
+    /*background-color: blue;*/
+    height: 300px;
+}
