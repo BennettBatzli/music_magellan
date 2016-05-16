@@ -1,10 +1,12 @@
-myApp.controller('savedPlaylistsController', ['$scope', '$http', 'DataFactory', 'PassportFactory', '$location', function($scope, $http, DataFactory, PassportFactory, $location) {
+myApp.controller('savedPlaylistsController', ['$scope', '$http', 'DataFactory', 'PassportFactory', '$uibModal', '$location', '$log', function($scope, $http, DataFactory, PassportFactory, $uibModal, $location, $log) {
   console.log("saved playlists controller!");
 
 
   $scope.dataFactory = DataFactory;
 
   $scope.passportFactory = PassportFactory;
+
+  $scope.animationsEnabled = true;
 
   $scope.loggedInUser = $scope.passportFactory.factoryLoggedInUser();
 
@@ -66,6 +68,44 @@ myApp.controller('savedPlaylistsController', ['$scope', '$http', 'DataFactory', 
   $scope.deletePlaylist = function(){
     console.log('the playlist ID:', currentPlaylistID);
     $scope.dataFactory.factoryDeletePlaylist(currentPlaylistID);
+  };
+
+  $scope.discoverModalOpen = function(size){
+    //if($scope.playlistTitle) {
+    //  $scope.temporaryPlaylist.playlist_name = $scope.playlistTitle;
+    //} else {
+    //  $scope.temporaryPlaylist.playlist_name = "Untitled Playlist";
+    //}
+    var modalInstance = $uibModal.open({
+      animation: $scope.animationsEnabled,
+      templateUrl: 'discoverNewSongModalContent.html',
+      controller: 'discoverNewSongModalController',
+      size: size,
+      resolve: {
+        author: function () {
+          return $scope.loggedInUser.username
+        },
+        author_id: function () {
+          return $scope.loggedInUser.user_id
+        },
+        playlistTitle: function () {
+          return $scope.playlistTitle
+        },
+        playlistID: function () {
+          return $scope.playlistID
+        }
+      }
+    });
+
+    modalInstance.result.then(function (myPlaylist) {
+      $scope.playlistTitle = myPlaylist.playlist_name;
+      $scope.playlistID = myPlaylist.playlist_id;
+      $scope.temporaryPlaylist.playlist_id = myPlaylist.playlist_id;
+      console.log('is this id getting thru', myPlaylist);
+      $scope.temporaryPlaylist.playlist_name = myPlaylist.playlist_name;
+    }, function () {
+      $log.info('Modal dismissed at: ' + new Date());
+    });
   };
 
 }]);

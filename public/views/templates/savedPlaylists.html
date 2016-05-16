@@ -23,8 +23,8 @@
       </table>
     </div>
       <div class="col-md-6">
-        <button class="discovery-tab" ng-show="showPlaylistButtons" ng-click="">Discover New Songs</button>
-        <button class="discovery-tab" ng-show="showPlaylistButtons" ng-click="">Add Your Own Music</button>
+        <button class="discovery-tab" ng-show="showPlaylistButtons" ng-click="discoverModalOpen()">Discover New Songs</button>
+        <button class="discovery-tab" ng-show="showPlaylistButtons" ng-click="addOwnSongModalOpen">Add Your Own Music</button>
         <table class="table">
           <thead>
             <tr>
@@ -42,3 +42,40 @@
     </div>
   </div>
 </div>
+
+<script type="text/ng-template" id="discoverNewSongModalContent.html">
+  <div class="modal-body container">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="form-group">
+          <h3>Discover new songs!</h3>
+          <select ng-model="selectedGenre" ng-options="genre.query as genre.label for genre in genres">Select a Genre!</select>
+
+          <button class="discover-button" ng-click="discoverSongs()">Discover</button>
+
+          <div ng-repeat="tune in discoveredSong">
+            <h3>Here's what you discovered!</h3>
+            <div class="discovered-songs-container">
+              <p>Song ::
+                {{tune.song}}
+              </p>
+              <p>Artist ::
+                {{tune.artist}}
+              </p>
+              <p>Album ::
+                {{tune.album}}
+              </p>
+            </div>
+            <button ng-click="addDiscoveredSongs(discoveredSongObject)">Add Song</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
+        <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+      </div>
+    </div>
+  </div>
+</script>
