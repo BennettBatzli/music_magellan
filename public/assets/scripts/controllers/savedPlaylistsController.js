@@ -54,7 +54,7 @@ myApp.controller('savedPlaylistsController', ['$scope', '$http', 'DataFactory', 
       console.log('well hey');
       $scope.playlistInfo = $scope.dataFactory.playlistInfoData();
       console.log('moneyyyyy', $scope.playlistInfo);
-      $scope.showDeletePlaylistButton = true;
+      $scope.showPlaylistButtons = true;
     });
 
     currentPlaylistID = {

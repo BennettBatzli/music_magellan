@@ -23,6 +23,8 @@
       </table>
     </div>
       <div class="col-md-6">
+        <button class="discovery-tab" ng-show="showPlaylistButtons" ng-click="">Discover New Songs</button>
+        <button class="discovery-tab" ng-show="showPlaylistButtons" ng-click="">Add Your Own Music</button>
         <table class="table">
           <thead>
             <tr>
@@ -35,7 +37,7 @@
             </tr>
           </tbody>
         </table>
-        <button ng-show="showDeletePlaylistButton" ng-click="deletePlaylist()">Delete Playlist</button>
+        <button ng-show="showPlaylistButtons" ng-click="deletePlaylist()">Delete Playlist</button>
       </div>
     </div>
   </div>
