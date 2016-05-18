@@ -7,6 +7,7 @@ myApp.controller('savedPlaylistsController', ['$scope', '$http', 'DataFactory', 
   $scope.passportFactory = PassportFactory;
 
   $scope.animationsEnabled = true;
+  var theActivePlaylistName;
 
   $scope.loggedInUser = $scope.passportFactory.factoryLoggedInUser();
 
@@ -25,6 +26,7 @@ myApp.controller('savedPlaylistsController', ['$scope', '$http', 'DataFactory', 
       $scope.dataFactory.factoryRetrievePlaylistNames($scope.loggedInUser.user_id).then(function() {
         $scope.playlistNames = $scope.dataFactory.playlistNameData();
         console.log('playlist names???', $scope.playlistNames);
+        $scope.isActive = $scope.playlistNames[theActivePlaylistName];
       });
     //} else {
     //  $scope.playlistNames = $scope.dataFactory.playlistNameData();
@@ -47,9 +49,10 @@ myApp.controller('savedPlaylistsController', ['$scope', '$http', 'DataFactory', 
   // $scope.showPlaylist = function() {
   //   userDatum.favoritesArrayData
   // };
-  var currentPlaylistID = {};
+  var currentPlaylistInfo = {};
   $scope.getPlaylistInfo = function(index){
     $scope.isActive = $scope.playlistNames[index];
+    theActivePlaylistName = index;
 
     console.log('eh?', $scope.playlistNames[index]);
     $scope.dataFactory.factoryGetPlaylistInfo($scope.playlistNames[index].playlist_id).then(function() {
@@ -59,18 +62,19 @@ myApp.controller('savedPlaylistsController', ['$scope', '$http', 'DataFactory', 
       $scope.showPlaylistButtons = true;
     });
 
-    currentPlaylistID = {
+    currentPlaylistInfo = {
       playlist_id: $scope.playlistNames[index].playlist_id
     };
 
   };
 
   $scope.deletePlaylist = function(){
-    console.log('the playlist ID:', currentPlaylistID);
-    $scope.dataFactory.factoryDeletePlaylist(currentPlaylistID);
+    console.log('the playlist ID:', currentPlaylistInfo);
+    $scope.dataFactory.factoryDeletePlaylist(currentPlaylistInfo);
   };
 
-  $scope.discoverModalOpen = function(size){
+
+  $scope.addPlaylistNameModalOpen = function(size){
     //if($scope.playlistTitle) {
     //  $scope.temporaryPlaylist.playlist_name = $scope.playlistTitle;
     //} else {
@@ -78,8 +82,8 @@ myApp.controller('savedPlaylistsController', ['$scope', '$http', 'DataFactory', 
     //}
     var modalInstance = $uibModal.open({
       animation: $scope.animationsEnabled,
-      templateUrl: 'discoverNewSongModalContent.html',
-      controller: 'discoverNewSongModalController',
+      templateUrl: 'addTitleModalContent.html',
+      controller: 'newPlaylistModalController',
       size: size,
       resolve: {
         author: function () {
@@ -98,14 +102,67 @@ myApp.controller('savedPlaylistsController', ['$scope', '$http', 'DataFactory', 
     });
 
     modalInstance.result.then(function (myPlaylist) {
+      console.log('is this id getting thru', myPlaylist);
       $scope.playlistTitle = myPlaylist.playlist_name;
       $scope.playlistID = myPlaylist.playlist_id;
-      $scope.temporaryPlaylist.playlist_id = myPlaylist.playlist_id;
-      console.log('is this id getting thru', myPlaylist);
-      $scope.temporaryPlaylist.playlist_name = myPlaylist.playlist_name;
+      getPlaylistNames();
     }, function () {
       $log.info('Modal dismissed at: ' + new Date());
     });
   };
 
+  $scope.discoverModalOpen = function(size){
+    //if($scope.playlistTitle) {
+    //  $scope.temporaryPlaylist.playlist_name = $scope.playlistTitle;
+    //} else {
+    //  $scope.temporaryPlaylist.playlist_name = "Untitled Playlist";
+    //}
+    var modalInstance = $uibModal.open({
+      animation: $scope.animationsEnabled,
+      templateUrl: 'discoverNewSongModalContent.html',
+      controller: 'discoverNewSongModalController',
+      size: size,
+      resolve: {
+        playlistID: function () {
+          return currentPlaylistInfo.playlist_id
+        }
+      }
+    });
+
+    modalInstance.result.then(function (myPlaylist) {
+      $scope.playlistID = myPlaylist.playlist_id;
+      //$scope.temporaryPlaylist.playlist_id = myPlaylist.playlist_id;
+      console.log('is this id getting thru', myPlaylist);
+      $scope.playlistInfo.push(myPlaylist.tracks[0]);
+      //$scope.getPlaylistInfo(myPlaylist.playlist_id);
+      //$scope.temporaryPlaylist.playlist_name = myPlaylist.playlist_name;
+    }, function () {
+      $log.info('Modal dismissed at: ' + new Date());
+    });
+  };
+
+
+
+  $scope.addOwnSongModalOpen = function(size) {
+    var modalInstance = $uibModal.open({
+      animation: $scope.animationsEnabled,
+      templateUrl: 'addOwnSongModalContent.html',
+      controller: 'addOwnSongModalController',
+      size: size,
+      resolve: {
+        playlistID: function () {
+          return currentPlaylistInfo.playlist_id
+        }
+      }
+    });
+
+    modalInstance.result.then(function (myPlaylist) {
+      $scope.playlistID = myPlaylist.playlist_id;
+      console.log('is this id getting thru', myPlaylist);
+      $scope.playlistInfo.push(myPlaylist.tracks[0]);
+
+    }, function () {
+      $log.info('Modal dismissed at: ' + new Date());
+    });
+  };
 }]);
