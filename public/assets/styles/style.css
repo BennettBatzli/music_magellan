@@ -349,6 +349,17 @@
 	/*margin-right: 20%;*/
 /*}*/
 
+html {
+    height: 100%;
+}
+
+body {
+    height: 100%;
+}
+main {
+    height: 100%;
+}
+
 .login-form {
     margin: 80px auto 0 auto;
 }
@@ -376,4 +387,26 @@
 .modal-body {
     /*background-color: blue;*/
     height: 300px;
+}
+
+.saved-playlist-container {
+    height: 100%;
+}
+
+.playlist-select-row {
+    height: 90%;
+}
+
+.playlist-select {
+    border: 1px solid gray;
+    border-radius: 3px;
+    max-height: 70%;
+    overflow: auto;
+}
+
+.playlist-info {
+    border: 1px solid gray;
+    border-radius: 3px;
+    max-height: 70%;
+    overflow: auto;
 }

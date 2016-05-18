@@ -203,8 +203,4 @@ myApp.controller('discoverMusicController', ['$scope', '$http', 'DataFactory', '
     });
   };
 
-  $scope.toggleAnimation = function () {
-    $scope.animationsEnabled = !$scope.animationsEnabled;
-  };
-
 }]);

@@ -85,7 +85,7 @@
         </thead>
         <tbody ng-repeat="music in temporaryPlaylistArray">
         <tr class="track-info-table-row">
-          <td></td><td>{{music.song}}</td><td>{{music.artist}}</td><td>{{music.album}}</td>
+          <td>{{$index + 1}}</td><td>{{music.song}}</td><td>{{music.artist}}</td><td>{{music.album}}</td>
         </tr>
         </tbody>
       </table>
