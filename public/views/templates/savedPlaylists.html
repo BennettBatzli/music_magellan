@@ -87,14 +87,9 @@
       <div class="col-md-4">
         <div class="form-group">
           <form>
-            <label for="song">Song:</label>
-            <input type="text" ng-model="song" id="song" />
-            <label for="artist">Artist:</label>
-            <input type="text" ng-model="artist" id="artist" />
-            <label for="album">Album:</label>
-            <input type="text" ng-model="album" id="album" />
-
-            <button id="add-song-button" ng-click="addOwnSong()">Add to Playlist</button>
+            <input type="text" class="form-control" ng-model="song" id="song" placeholder="Add Song Title" autofocus="" />
+            <input type="text" class="form-control" ng-model="artist" id="artist" placeholder="Add Artist Name" />
+            <input type="text" class="form-control" ng-model="album" id="album" placeholder="Add Album Title" />
 
           </form>
         </div>
@@ -105,6 +100,22 @@
         <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
         <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
       </div>
+    </div>
+  </div>
+</script>
+
+<script type="text/ng-template" id="deletePlaylistModalContent.html">
+  <div class="modal-body container">
+    <div class="row">
+      <div class="col-md-4">
+        <h2>Are you sure you want to delete your playlist <strong>{{playlistTitle}}</strong>?</h2>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4">
+      <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
+      <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
     </div>
   </div>
 </script>
