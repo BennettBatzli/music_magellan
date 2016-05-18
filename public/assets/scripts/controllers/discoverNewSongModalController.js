@@ -74,8 +74,9 @@ myApp.controller('discoverNewSongModalController', ['$scope', '$uibModalInstance
   }
 
   $scope.ok = function () {
-    $scope.dataFactory.factoryAddSongs($scope.discoveredSongObject);
-    $uibModalInstance.close($scope.discoveredSongObject);
+    $scope.dataFactory.factoryAddSongs($scope.discoveredSongObject).then(function() {
+      $uibModalInstance.close($scope.discoveredSongObject);
+    });
   };
 
   $scope.cancel = function () {

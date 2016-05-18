@@ -68,11 +68,33 @@ myApp.controller('savedPlaylistsController', ['$scope', '$http', 'DataFactory', 
 
   };
 
-  $scope.deletePlaylist = function(){
-    console.log('the playlist ID:', currentPlaylistInfo);
-    $scope.dataFactory.factoryDeletePlaylist(currentPlaylistInfo);
-  };
+  $scope.deletePlaylist = function(size){
+    var modalInstance = $uibModal.open({
+      animation: $scope.animationsEnabled,
+      templateUrl: 'deletePlaylistModalContent.html',
+      controller: 'deletePlaylistModalController',
+      size: size,
+      resolve: {
+        playlistTitle: function () {
+          return $scope.playlistNames[theActivePlaylistName].title
+        },
+        playlistID: function () {
+          return $scope.playlistID
+        }
+      }
+    });
 
+    modalInstance.result.then(function () {
+      console.log('the playlist ID:', currentPlaylistInfo);
+      $scope.dataFactory.factoryDeletePlaylist(currentPlaylistInfo).then(function() {
+        getPlaylistNames();
+        theActivePlaylistName = undefined;
+        $scope.playlistInfo = [];
+      });
+    }, function () {
+      $log.info('Modal dismissed at: ' + new Date());
+    });
+  };
 
   $scope.addPlaylistNameModalOpen = function(size){
     //if($scope.playlistTitle) {

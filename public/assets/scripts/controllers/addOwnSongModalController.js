@@ -4,8 +4,8 @@ myApp.controller('addOwnSongModalController', ['$scope', '$uibModalInstance', '$
   $scope.dataFactory = DataFactory;
 
 
-  $scope.addOwnSong = function() {
-    if ($scope.song && $scope.artist && $scope.album){
+  var addOwnSong = function() {
+    //if ($scope.song && $scope.artist && $scope.album){
       $scope.ownSongObject = {
         tracks: [ {
           song: $scope.song,
@@ -18,16 +18,24 @@ myApp.controller('addOwnSongModalController', ['$scope', '$uibModalInstance', '$
       $scope.artist = '';
       $scope.album = '';
 
-    } else{
-      alert("Please fill all song info fields");
-    }
+    //} else{
+    //  alert("Please fill all song info fields");
+    //}
   };
 
   $scope.ok = function () {
-    $scope.dataFactory.factoryAddSongs($scope.ownSongObject).then(function(){
-      $uibModalInstance.close($scope.ownSongObject);
+    if ($scope.song && $scope.artist && $scope.album){
 
-    });
+      addOwnSong();
+      $scope.dataFactory.factoryAddSongs($scope.ownSongObject).then(function(){
+        $uibModalInstance.close($scope.ownSongObject);
+      });
+
+    } else {
+        alert("Please fill all song info fields");
+    }
+
+
   };
 
   $scope.cancel = function () {
