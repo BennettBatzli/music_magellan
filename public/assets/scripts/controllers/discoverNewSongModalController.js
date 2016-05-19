@@ -50,16 +50,14 @@ myApp.controller('discoverNewSongModalController', ['$scope', '$uibModalInstance
           console.log('the album name:', response.data.tracks.items[0].album.name);
 
           $scope.tune = response.data.tracks;
-          // return $scope.animalType;
           getSong();
         }
       );
+
     } else {
       alert("Please select a genre.");
     }
   };
-
-  // $scope.discoveredSongArray = [];
 
   function getSong(){
     $scope.discoveredSongObject = {

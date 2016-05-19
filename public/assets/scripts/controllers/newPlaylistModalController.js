@@ -25,7 +25,6 @@ myApp.controller('newPlaylistModalController', ['$scope', '$uibModalInstance', '
       $scope.myPlaylist.playlist_id = $scope.playlistID;
       console.log('ID>???', $scope.playlistID);
       $uibModalInstance.close($scope.myPlaylist);
-
     });
   };
 
