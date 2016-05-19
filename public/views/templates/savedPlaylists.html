@@ -1,8 +1,8 @@
-<button ng-click="addPlaylistNameModalOpen()">add new playlist</button>
 <div class="container saved-playlist-container">
   <div class="row">
     <div class="col-md-11 col-md-offset-1">
       <h2>You are {{userName}}</h2>
+      <button ng-click="addPlaylistNameModalOpen()">+ new playlist</button>
     </div>
   </div>
   <div class="row playlist-select-row">
@@ -29,12 +29,12 @@
         <table class="table">
           <thead>
             <tr>
-              <th>Track</th><th>Song</th><th>Artist</th><th>Album</th>
+              <th>Track</th><th>Song</th><th>Artist</th><th>Album</th><th>Find on Spotify</th>
             </tr>
           </thead>
           <tbody ng-repeat="playlist in playlistInfo">
             <tr class="track-info-table-row">
-              <td>{{$index + 1}}</td><td>{{playlist.song}}</td><td>{{playlist.artist}}</td><td>{{playlist.album}}</td>
+              <td>{{$index + 1}}</td><td>{{playlist.song}}</td><td>{{playlist.artist}}</td><td>{{playlist.album}}</td><td><button>Find</button></td>
             </tr>
           </tbody>
         </table>
@@ -50,7 +50,7 @@
       <div class="col-md-4">
         <div class="form-group">
           <h3>Discover new songs!</h3>
-          <select ng-model="selectedGenre" ng-options="genre.query as genre.label for genre in genres">Select a Genre!</select>
+          <select ng-model="selectedGenre" class="form-control" ng-options="genre.query as genre.label for genre in genres">Select a Genre!</select>
 
           <button class="discover-button" ng-click="discoverSongs()">Discover</button>
 
@@ -67,14 +67,14 @@
                 {{tune.tracks[$index].album}}
               </p>
             </div>
-            <button ng-click="addDiscoveredSongs(discoveredSongObject)">Add Song</button>
+            <!--<button ng-click="addDiscoveredSongs(discoveredSongObject)">Add Song</button>-->
           </div>
         </div>
       </div>
     </div>
     <div class="row">
       <div class="col-md-4">
-        <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
+        <button class="btn btn-primary" type="button" ng-click="ok()">Add Song</button>
         <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
       </div>
     </div>
@@ -97,7 +97,7 @@
     </div>
     <div class="row">
       <div class="col-md-4">
-        <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
+        <button class="btn btn-primary" type="button" ng-click="ok()">Add Song</button>
         <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
       </div>
     </div>
@@ -111,11 +111,39 @@
         <h2>Are you sure you want to delete your playlist <strong>{{playlistTitle}}</strong>?</h2>
       </div>
     </div>
-  </div>
-  <div class="row">
-    <div class="col-md-4">
-      <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
-      <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+    <div class="row">
+      <div class="col-md-4">
+        <button class="btn btn-primary" type="button" ng-click="ok()">Delete</button>
+        <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+      </div>
     </div>
   </div>
+</script>
+
+<script type="text/ng-template" id="addTitleModalContent.html">
+  <!--<div class="modal-header">-->
+  <!--<h3 class="modal-title">I'm a modal!</h3>-->
+  <!--</div>-->
+  <div class="modal-body container">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="form-group">
+          <form>
+            <!--<label for="playlistTitle">Add a Title to your Playlist:</label>-->
+            <input type="text" class="form-control" placeholder="Add a Title to your Playlist" autofocus="" ng-model="playlistTitle" id="playlistTitle" />
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
+        <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+      </div>
+    </div>
+  </div>
+  <!--<div class="modal-footer">-->
+  <!--<button class="btn btn-primary" type="button" ng-click="ok()">OK</button>-->
+  <!--<button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>-->
+  <!--</div>-->
 </script>
