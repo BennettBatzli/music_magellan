@@ -377,6 +377,14 @@ script {
     margin: 10px auto;
 }
 
+.test-app-no-login {
+    margin: 80px auto 0 auto;
+}
+
+.no-save-warning {
+    color: red;
+}
+
 .select-playlist-table-row {
     cursor: pointer;
 }

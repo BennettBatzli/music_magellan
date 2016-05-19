@@ -1,11 +1,9 @@
-myApp.controller('signInController', ['$scope', 'DataFactory', 'PassportFactory', '$http', function($scope, DataFactory, PassportFactory, $http) {
-  // $scope.userName;
+myApp.controller('signInController', ['$scope', 'DataFactory', 'PassportFactory', '$http', '$location', function($scope, DataFactory, PassportFactory, $http, $location) {
   $scope.dataFactory = DataFactory;
-
   $scope.passportFactory = PassportFactory;
 
   $scope.loginUser = function (username, password) {
-    $scope.passportFactory.factoryUserSubmit(username, password)
+    $scope.passportFactory.factoryUserSubmit(username, password);
   };
 
   //$scope.signInUser = function() {

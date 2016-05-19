@@ -6,6 +6,7 @@ myApp.controller('savedPlaylistsController', ['$scope', '$http', 'DataFactory', 
   $scope.animationsEnabled = true;
   var theActivePlaylistName;
 
+  $scope.loggedIn = true;
   $scope.loggedInUser = $scope.passportFactory.factoryLoggedInUser();
 
   validateUser();
