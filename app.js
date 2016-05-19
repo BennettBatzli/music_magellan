@@ -14,6 +14,7 @@ var favoritesData = require('./routes/favoritesData');
 var getPlaylistInfo = require('./routes/getPlaylistInfo');
 var deletePlaylist = require('./routes/deletePlaylist');
 var tracklistData = require('./routes/tracklistData');
+var logOut = require('./routes/logOut');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
@@ -38,7 +39,8 @@ app.use('/signIn', signIn);
 app.use('/favoritesData', favoritesData);
 app.use('/getPlaylistInfo', getPlaylistInfo);
 app.use('/deletePlaylist', deletePlaylist);
-app.use('/tracklistData', tracklistData)
+app.use('/tracklistData', tracklistData);
+app.use('/logOut', logOut);
 
 // Serve back static files
 app.use(express.static('public'));

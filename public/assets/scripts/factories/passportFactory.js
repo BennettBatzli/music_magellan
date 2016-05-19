@@ -16,7 +16,7 @@ myApp.factory('PassportFactory', ['$http', '$location', function($http, $locatio
 
       loggedInUser = response.data;
       console.log('logged user', loggedInUser);
-      $location.path('/discoverMusic');
+      $location.path('/savedPlaylists');
 
     });
   };
@@ -68,9 +68,9 @@ myApp.factory('PassportFactory', ['$http', '$location', function($http, $locatio
 
   //logout user
   var logoutUser = function() {
-    var promise = $http.get('/logout').then( function(response) {
+    var promise = $http.get('/logOut').then( function(response) {
       loggedInUser = '';
-      $location.path('/home');
+      $location.path('/signIn');
     });
     return promise;
   };

@@ -1,7 +1,7 @@
-<nav class="container">
+<nav class="container" ng-controller="navController">
     <ul class="navigators nav nav-tabs">
-        <li id="home-nav"><a href="#discoverMusic">New Playlist</a></li>
-        <li id="saved-playlists-nav"><a href="#savedPlaylists">Your Saved Playlists</a></li>
-        <li id="login-nav"><a href="#signIn">Log In</a></li>
+        <li ng-if="!loggedIn" id="login-nav"><a href="#signIn">Log In</a></li>
+        <!--<li ng-if="loggedIn" id="saved-playlists-nav"><a href="#savedPlaylists">Your Saved Playlists</a></li>-->
+        <li ng-if="loggedIn"><a href="" ng-click="logout()">Logout</a></li>
     </ul>
 </nav>
