@@ -356,7 +356,12 @@ html {
 body {
     height: 100%;
 }
+
 main {
+    height: 100%;
+}
+
+script {
     height: 100%;
 }
 
@@ -384,9 +389,14 @@ main {
     color: blue;
 }
 
+.modal-script {
+    height: 100%;
+}
+
 .modal-body {
     /*background-color: blue;*/
-    height: 300px;
+    max-height: 70vh;
+    overflow: auto;
 }
 
 .saved-playlist-container {

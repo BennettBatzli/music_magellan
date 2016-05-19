@@ -10,6 +10,4 @@ myApp.controller('deletePlaylistModalController', ['$scope', '$uibModalInstance'
     $uibModalInstance.dismiss('cancel');
   };
 
-
-
 }]);
