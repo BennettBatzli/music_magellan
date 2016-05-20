@@ -28,7 +28,9 @@ router.post('/', function(req, res) {
       song = playlist.tracklist[i].song.replace(/'/g, "''");
       artist = playlist.tracklist[i].artist.replace(/'/g, "''");
       album = playlist.tracklist[i].album.replace(/'/g, "''");
-      spotifyURL = playlist.tracklist[i].spotify_url.replace(/'/g, "''");
+      if (playlist.tracklist[i].spotify_url) {
+        spotifyURL = playlist.tracklist[i].spotify_url.replace(/'/g, "''");
+      }
 
       sqlString = sqlString + '(\'' + playlist.playlist_id + '\', \'' + song + '\', \'' +
         artist + '\', \'' + album + '\', \'' + spotifyURL + '\')';
