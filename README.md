@@ -16,5 +16,4 @@ Technologies used include: PostgreSQL, Express, AngularJS, Node.js, Passport, Sp
 UI Bootstrap, Heroku
 
 Live App:
-
-music-magellan.herokuapp.com
+https://music-magellan.herokuapp.com
