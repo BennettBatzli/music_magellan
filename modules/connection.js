@@ -12,7 +12,7 @@ module.exports = connectionString;
 
 
 
-////##########connectionsString for localhost database
+//////##########connectionsString for localhost database
 //var connectionString = '';
 //
 //if(process.env.DATABASE_URL !== undefined) {
@@ -22,4 +22,4 @@ module.exports = connectionString;
 //}
 //
 //module.exports = connectionString;
-////##########connectionsString for localhost database
+//////##########connectionsString for localhost database

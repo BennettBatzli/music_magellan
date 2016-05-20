@@ -83,7 +83,8 @@ myApp.controller('discoverMusicController', ['$scope', '$http', 'DataFactory', '
     $scope.discoveredSongObject = {
       song: $scope.tune.items[0].name,
       artist: $scope.tune.items[0].artists[0].name,
-      album: $scope.tune.items[0].album.name
+      album: $scope.tune.items[0].album.name,
+      spotify_url: $scope.tune.items[0].external_urls.spotify
     };
 
     // for (var i = 0; i < $scope.tune.items[0].artists[i].length; i++) {
@@ -148,7 +149,7 @@ myApp.controller('discoverMusicController', ['$scope', '$http', 'DataFactory', '
       $scope.temporaryPlaylist.tracks.push($scope.ownSongObject);
       console.log('from added songs:', $scope.temporaryPlaylist.tracks);
 
-      $scope.temporaryPlaylistArray = [$scope.temporaryPlaylist];
+      $scope.temporaryPlaylistArray = $scope.temporaryPlaylist.tracks;
     } else{
       alert("Please fill all song info fields");
     }
