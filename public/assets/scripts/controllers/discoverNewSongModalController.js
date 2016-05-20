@@ -48,6 +48,7 @@ myApp.controller('discoverNewSongModalController', ['$scope', '$uibModalInstance
           console.log('the artist name:', response.data.tracks.items[0].artists[0].name);
 
           console.log('the album name:', response.data.tracks.items[0].album.name);
+          console.log('link?', response.data.tracks.items[0].external_urls.spotify);
 
           $scope.tune = response.data.tracks;
           getSong();
@@ -64,7 +65,9 @@ myApp.controller('discoverNewSongModalController', ['$scope', '$uibModalInstance
       tracks: [ {
       song: $scope.tune.items[0].name,
       artist: $scope.tune.items[0].artists[0].name,
-      album: $scope.tune.items[0].album.name }],
+      album: $scope.tune.items[0].album.name,
+      spotify_url: $scope.tune.items[0].external_urls.spotify
+      }],
       playlist_id: playlistID
     };
 

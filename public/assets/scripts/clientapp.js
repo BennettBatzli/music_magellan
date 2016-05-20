@@ -28,6 +28,10 @@ myApp.config(['$routeProvider', function($routeProvider) {
       templateUrl: '/views/templates/discoverMusic.html',
       controller: 'discoverMusicController'
     })
+    .when('/about', {
+      templateUrl: '/views/templates/about.html',
+      controller: 'discoverMusicController'
+    })
     .otherwise({
       redirectTo: 'signIn'
     });

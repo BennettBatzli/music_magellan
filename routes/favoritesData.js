@@ -29,42 +29,10 @@ router.post('/', function(req, res) {
           res.send(false);
         } else {
           res.send(result);
-
-
-          //console.log('what result', result);
-          //var sqlString = 'INSERT INTO "songs" ("fk_playlist_id", "song", "artist", "album") VALUES ';
-          //var song = '';
-          //var artist = '';
-          //var album = '';
-          //
-          //for (var i = 0; i < playlist.tracklist.length; i++){
-          //  song = song +  playlist.tracklist[i].song.replace(/'/g, "''");
-          //  artist = artist +  playlist.tracklist[i].artist.replace(/'/g, "''");
-          //  album = album +  playlist.tracklist[i].album.replace(/'/g, "''");
-          //
-          //  sqlString = sqlString + '(' + result.rows[0].playlist_id + ', \'' + song + '\', \'' +
-          //    artist + '\', \'' + album + '\')';
-          //  if (i < (playlist.tracklist.length - 1)){
-          //    sqlString = sqlString + ', ';
-          //  }
-          //}
-          //console.log('the string', sqlString);
-          //
-          //client.query(sqlString,
-          //  function (err, result) {
-          //    done();
-          //    if(err) {
-          //      console.log("Error inserting data: ", err);
-          //      res.send(false);
-          //    } else {
-          //      res.send(result);
-          //    }
-          //  });
         }
       });
   });
 });
-
 
 router.get('/:user_id', function(req, res){
   var results = [];
@@ -93,66 +61,5 @@ router.get('/:user_id', function(req, res){
     }
   });
 });
-
-
-//router.get('/:playlist_id', function(req, res){
-//  var results = [];
-//  console.log('what req.body???', req.body);
-//  var playlist_id = req.params.playlist_id;
-//  pg.connect(connection, function(err, client, done) {
-//    var query = client.query('SELECT * ' +
-//      //'FROM playlists ' +
-//      //'JOIN songs ON playlists.playlist_id = songs.fk_playlist_id ' +
-//      //'WHERE playlists.author_id = ($1) AND playlists.deleted IS NOT true'
-//      'FROM songs WHERE playlist_id = ($1)',
-//      [playlist_id]);
-//
-//    //Stream results back one row at a time
-//    query.on('row', function(row) {
-//      results.push(row);
-//    });
-//
-//    //close connection
-//    query.on('end', function() {
-//      done();
-//
-//      return res.json(results);
-//    });
-//
-//    if(err) {
-//      console.log(err);
-//    }
-//  });
-//});
-
-//
-//router.delete('/:playlistID', function(req, res){
-//  console.log('req body', req.body);
-//  console.log('req params::', req.params);
-//
-//  User.findByIdAndRemove(req.params.id, function (err, result) {
-//    if(err) {
-//        console.log('error message::', err);
-//    }
-//
-//    res.send(result);
-//    console.log('sent result', result);
-//    // res.send({
-//    //       message:'the appointment has been saved'
-//    //   });
-//  });
-//});
-
-
-// router.get('/:playlistID', function(req, res){
-//   console.log('req body', req.body);
-//   console.log('req params::', req.params);
-  // findBYId? User or would it be deeper?
-
-
-
-  // User.find({"favorites._id" : ObjectId("56e98e0ceab36e5db3a4e135")});
-
-// });
 
 module.exports = router;

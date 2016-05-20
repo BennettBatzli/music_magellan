@@ -17,6 +17,7 @@ CREATE TABLE songs (
     song VARCHAR(100) NOT NULL,
     artist VARCHAR(100) NOT NULL,
     album VARCHAR(100) NOT NULL,
+    spotify_url VARCHAR(300),
     fk_playlist_id INTEGER NOT NULL REFERENCES playlists (playlist_id)
 );
 

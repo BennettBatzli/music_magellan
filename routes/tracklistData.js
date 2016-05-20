@@ -12,23 +12,26 @@ router.post('/', function(req, res) {
     playlist_id: req.body.playlist_id,
     published: new Date(),
     tracklist: req.body.tracks,
+    spotify_url: req.body.spotify_url,
     comments: req.body.comments,
     deleted: false
   };
 
   pg.connect(connection, function (err, client, done) {
-    var sqlString = 'INSERT INTO "songs" ("fk_playlist_id", "song", "artist", "album") VALUES ';
+    var sqlString = 'INSERT INTO "songs" ("fk_playlist_id", "song", "artist", "album", "spotify_url") VALUES ';
     var song = '';
     var artist = '';
     var album = '';
+    var spotifyURL = '';
 
     for (var i = 0; i < playlist.tracklist.length; i++) {
       song = playlist.tracklist[i].song.replace(/'/g, "''");
       artist = playlist.tracklist[i].artist.replace(/'/g, "''");
       album = playlist.tracklist[i].album.replace(/'/g, "''");
+      spotifyURL = playlist.tracklist[i].spotify_url.replace(/'/g, "''");
 
       sqlString = sqlString + '(\'' + playlist.playlist_id + '\', \'' + song + '\', \'' +
-        artist + '\', \'' + album + '\')';
+        artist + '\', \'' + album + '\', \'' + spotifyURL + '\')';
       if (i < (playlist.tracklist.length - 1)) {
         sqlString = sqlString + ', ';
       }

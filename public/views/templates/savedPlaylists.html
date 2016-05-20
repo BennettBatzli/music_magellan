@@ -34,7 +34,7 @@
           </thead>
           <tbody ng-repeat="playlist in playlistInfo">
             <tr class="track-info-table-row">
-              <td>{{$index + 1}}</td><td>{{playlist.song}}</td><td>{{playlist.artist}}</td><td>{{playlist.album}}</td><td><button>Find</button></td>
+              <td>{{$index + 1}}</td><td>{{playlist.song}}</td><td>{{playlist.artist}}</td><td>{{playlist.album}}</td><td><a href="{{playlist.spotify_url}}" target="_blank">Find</a></td>
             </tr>
           </tbody>
         </table>
@@ -65,6 +65,9 @@
               </p>
               <p>Album ::
                 {{tune.tracks[$index].album}}
+              </p>
+              <p>
+                <a href="{{tune.tracks[$index].spotify_url}}" target="_blank">Find on Spotify</a>
               </p>
             </div>
             <!--<button ng-click="addDiscoveredSongs(discoveredSongObject)">Add Song</button>-->
