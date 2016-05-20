@@ -99,9 +99,10 @@ myApp.controller('savedPlaylistsController', ['$scope', '$http', 'DataFactory', 
 
     modalInstance.result.then(function (myPlaylist) {
       console.log('is this id getting thru', myPlaylist);
-      $scope.playlistTitle = myPlaylist.playlist_name;
+      $scope.playlistTitle = "";
       $scope.playlistID = myPlaylist.playlist_id;
       getPlaylistNames();
+
     }, function () {
       $log.info('Modal dismissed at: ' + new Date());
     });
