@@ -1,4 +1,4 @@
-myApp.controller('discoverMusicController', ['$scope', '$http', 'DataFactory', 'PassportFactory', '$uibModal', '$log', function($scope, $http, DataFactory, PassportFactory, $uibModal, $log) {
+myApp.controller('discoverMusicController', ['$scope', '$http', 'DataFactory', 'PassportFactory', '$uibModal', '$log', '$sce', function($scope, $http, DataFactory, PassportFactory, $uibModal, $log, $sce) {
   console.log("discover mus controller!");
 
   $scope.dataFactory = DataFactory;
@@ -68,6 +68,7 @@ myApp.controller('discoverMusicController', ['$scope', '$http', 'DataFactory', '
           console.log('the album name:', response.data.tracks.items[0].album.name);
 
           $scope.tune = response.data.tracks;
+          $scope.uri_link = $sce.trustAsResourceUrl('https://embed.spotify.com/?uri=' + $scope.tune.items[0].uri);
           // return $scope.animalType;
           getSong();
         }
@@ -84,7 +85,8 @@ myApp.controller('discoverMusicController', ['$scope', '$http', 'DataFactory', '
       song: $scope.tune.items[0].name,
       artist: $scope.tune.items[0].artists[0].name,
       album: $scope.tune.items[0].album.name,
-      spotify_url: $scope.tune.items[0].external_urls.spotify
+      spotify_url: $scope.tune.items[0].external_urls.spotify,
+      spotify_uri: $scope.uri_link
     };
 
     // for (var i = 0; i < $scope.tune.items[0].artists[i].length; i++) {

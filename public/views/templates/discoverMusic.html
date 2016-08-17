@@ -33,6 +33,7 @@
                 {{tune.album}}
               </p>
               <a href="{{tune.spotify_url}}" target="_blank">Find on Spotify</a>
+              <iframe src="{{tune.spotify_uri}}" width="300" height="380" frameborder="0" allowtransparency="true"></iframe>
             </div>
             <button ng-click="addDiscoveredSongs(discoveredSongObject)">Add Song</button>
           </div>
