@@ -28,3 +28,9 @@ CREATE TABLE favorites
      fk_playlist_id INTEGER NOT NULL REFERENCES playlists (playlist_id),
      favorite_status BOOLEAN NOT NULL
 );
+
+CREATE TABLE genres (
+    genre_id SERIAL PRIMARY KEY,
+    description VARCHAR(100) NOT NULL,
+    query_string VARCHAR(100) NOT NULL
+);
