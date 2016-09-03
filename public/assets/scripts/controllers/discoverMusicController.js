@@ -16,14 +16,6 @@ myApp.controller('discoverMusicController', ['$scope', '$http', 'DataFactory', '
   } else {
     $scope.loggedInMessage = 'You are not logged in! You won\'t be able to save this Playlist!';
   }
-  //$scope.dataFactory.factoryUserAuthenication().then(function(userDatum) {
-  //  $scope.userData = userDatum;
-  //  $scope.id = userDatum.id;
-  //  $scope.userName = userDatum.userName;
-  //  $scope.favoritesArray = userDatum.favorites;
-  //
-  //  console.log('userdatum:::::', userDatum.userName);
-  //});
 
   var randomNumber = function (min, max){
     return Math.floor(Math.random() * (1 + max - min) + min);
@@ -104,10 +96,7 @@ myApp.controller('discoverMusicController', ['$scope', '$http', 'DataFactory', '
     {query: "hip%20hop", label: "Hip Hop"}, {query: "indie%20rock", label: "Indie Rock"},
     {query: "jazz", label: "Jazz"}, {query: "metal", label: "Metal"},
     {query: "pop", label: "Pop"}];
-  // };
-//   $scope.initialGenre = $scope.genres[0].label;
-// $scope.selectedGenre = $scope.genres[0].label;
-// console.log('selectedgenre', $scope.genres[0].label);
+
 
   $scope.temporaryPlaylist = {
     tracks: [],
