@@ -34,3 +34,15 @@ CREATE TABLE genres (
     description VARCHAR(100) NOT NULL,
     query_string VARCHAR(100) NOT NULL
 );
+
+INSERT INTO genres (description, query_string)
+VALUES
+('Rock', 'rock'),
+('Classical', 'classical'),
+('Country', 'country'),
+('Electronic', 'electronic'),
+('Hip Hop', 'hip%20hop'),
+('Indie Rock', 'indie%20rock'),
+('Jazz', 'jazz'),
+('Metal', 'metal'),
+('Pop', 'pop');

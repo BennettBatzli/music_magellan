@@ -17,8 +17,12 @@ module.exports = function(config) {
     files: [
       'public/vendors/angular.min.js',
       'public/vendors/angular-ui-router.min.js',
+      'public/vendors/angular-animate.min.js',
+      'public/vendors/ui-bootstrap-tpls.js',
       'node_modules/angular-mocks/angular-mocks.js',
       'public/assets/scripts/clientapp.js',
+      'public/assets/scripts/factories/passportFactory.js',
+      'public/assets/scripts/factories/dataFactory.js',
       'public/assets/scripts/controllers/discoverMusicController.js',
       'test/*/*.js',
       'test/*.js'
@@ -72,4 +76,4 @@ module.exports = function(config) {
     // how many browser should be started simultaneous
     concurrency: Infinity
   })
-}
+};

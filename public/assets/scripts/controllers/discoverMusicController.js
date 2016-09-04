@@ -2,12 +2,11 @@ myApp.controller('discoverMusicController', ['$scope', '$http', 'DataFactory', '
   console.log("discover mus controller!");
 
   $scope.dataFactory = DataFactory;
-
   $scope.passportFactory = PassportFactory;
 
   $scope.animationsEnabled = true;
 
-  $scope.loggedIn = false;
+  //$scope.loggedIn = false;
   $scope.loggedInUser = $scope.passportFactory.factoryLoggedInUser();
 
   if($scope.loggedInUser.username){
@@ -16,6 +15,12 @@ myApp.controller('discoverMusicController', ['$scope', '$http', 'DataFactory', '
   } else {
     $scope.loggedInMessage = 'You are not logged in! You won\'t be able to save this Playlist!';
   }
+
+  $scope.genres = undefined;
+  $http.get('/getGenres').then(function(response){
+    console.log('we got genres!!', response.data);
+    $scope.genres = response.data;
+  });
 
   var randomNumber = function (min, max){
     return Math.floor(Math.random() * (1 + max - min) + min);
@@ -89,14 +94,6 @@ myApp.controller('discoverMusicController', ['$scope', '$http', 'DataFactory', '
     // $scope.discoveredSongArray.push($scope.discoveredSongObject);
     $scope.discoveredSong = [$scope.discoveredSongObject];
   }
-
-  // $scope.genreObject = {
-    $scope.genres = [{query: "rock", label: "Rock"}, {query: "classical", label: "Classical"},
-    {query: "country", label: "Country"}, {query: "electronic", label: "Electronic"},
-    {query: "hip%20hop", label: "Hip Hop"}, {query: "indie%20rock", label: "Indie Rock"},
-    {query: "jazz", label: "Jazz"}, {query: "metal", label: "Metal"},
-    {query: "pop", label: "Pop"}];
-
 
   $scope.temporaryPlaylist = {
     tracks: [],
