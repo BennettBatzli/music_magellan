@@ -15,6 +15,7 @@ myApp.controller('discoverMusicController', ['$scope', '$http', 'DataFactory', '
   } else {
     $scope.loggedInMessage = 'You are not logged in! You won\'t be able to save this Playlist!';
   }
+
   $scope.genres = undefined;
   $http.get('/getGenres').then(function(response){
     console.log('we got genres!!', response.data);

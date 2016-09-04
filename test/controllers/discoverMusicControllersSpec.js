@@ -5,7 +5,7 @@ describe('Controller: discoverMusicController ', function() {
 
   var cut;// short for Controller Under Test
   var mockBackend; // will represent/mock our backend that returns our data
-  var scope
+  var scope;
 
   // the $httpBackend service is provided by angular-mocks
 

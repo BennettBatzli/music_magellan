@@ -16,9 +16,7 @@ module.exports = function(config) {
     // list of files / patterns to load in the browser
     files: [
       'public/vendors/angular.min.js',
-      //'public/vendors/angular-ui-router.min.js',
-      'node_modules/angular-ui-router/release/angular-ui-router.js',
-      'public/vendors/angular-route.min.js',
+      'public/vendors/angular-ui-router.min.js',
       'public/vendors/angular-animate.min.js',
       'public/vendors/ui-bootstrap-tpls.js',
       'node_modules/angular-mocks/angular-mocks.js',
