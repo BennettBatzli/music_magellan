@@ -19,6 +19,9 @@ describe('Controller: discoverMusicController ', function() {
     mockBackend.expectGET('/getGenres')
       .respond({id: 3, description: 'Country', query_string: 'country'});
 
+    mockBackend.expectGET('/getVariousPlaylists')
+      .respond({id: 3, description: 'Country', query_string: 'country'});
+
     // injecting this service allows us to create an instance of our controller
     cut = $controller('discoverMusicController', {$scope: scope});
   }));
@@ -33,6 +36,7 @@ describe('Controller: discoverMusicController ', function() {
     expect(scope.genres).toEqual({id: 3, description: 'Country', query_string: 'country'});
 
   });
+
   // actions that will performed after each test
   afterEach(function() {
     // ensure all expects set on the backend were actually called
@@ -42,7 +46,7 @@ describe('Controller: discoverMusicController ', function() {
     mockBackend.verifyNoOutstandingRequest();
   });
 
-  //it('should retrieve most recent play lists created by users on page load', function(){
+  //it('should retrieve most RECENT play lists created by users on page load', function(){
   //
   //});
   //
