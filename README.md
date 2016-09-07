@@ -12,7 +12,7 @@ song you'd like to your playlists. So if you're paranoid that tomorrow U2 might 
 create a U2 playlist!
 
 This application was created as a way of honing my skills in full stack development.
-Technologies used include: PostgreSQL, Express, AngularJS, Node.js, Passport, Spotify API, Bootstrap,
+Technologies used: PostgreSQL, Express, AngularJS, Node.js, Passport, Spotify API, Bootstrap,
 UI Bootstrap, Heroku
 
 Live App:
