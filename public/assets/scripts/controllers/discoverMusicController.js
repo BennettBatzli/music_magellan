@@ -16,6 +16,7 @@ myApp.controller('discoverMusicController', ['$scope', '$http', 'DataFactory', '
     $scope.loggedInMessage = 'You are not logged in! You won\'t be able to save this Playlist!';
   }
 
+  // genre tags populate for user to select from
   $scope.genres = undefined;
   $http.get('/getGenres').then(function(response){
     console.log('we got genres!!', response.data);
@@ -75,8 +76,6 @@ myApp.controller('discoverMusicController', ['$scope', '$http', 'DataFactory', '
     }
   };
 
-  // $scope.discoveredSongArray = [];
-
   function getSong(){
     $scope.discoveredSongObject = {
       song: $scope.tune.items[0].name,
@@ -86,12 +85,6 @@ myApp.controller('discoverMusicController', ['$scope', '$http', 'DataFactory', '
       spotify_uri: $scope.uri_link
     };
 
-    // for (var i = 0; i < $scope.tune.items[0].artists[i].length; i++) {
-    //   $scope.discoveredSongObject.artist.push($scope.tune.items[0].artists[i].name);
-    //   console.log('ARTISTS IN ARRAY::', $scope.tune.items[0].artists[i].name);
-    // }
-
-    // $scope.discoveredSongArray.push($scope.discoveredSongObject);
     $scope.discoveredSong = [$scope.discoveredSongObject];
   }
 
@@ -104,13 +97,11 @@ myApp.controller('discoverMusicController', ['$scope', '$http', 'DataFactory', '
   };
 
   $scope.addDiscoveredSongs = function(songObject) {
-    console.log('discovered song array::', $scope.discoveredSongArray);
 
     $scope.temporaryPlaylist.tracks.push(songObject);
 
     console.log($scope.temporaryPlaylist);
 
-    //$scope.temporaryPlaylistArray = [$scope.temporaryPlaylist];
     $scope.temporaryPlaylistArray = $scope.temporaryPlaylist.tracks;
 
     console.log('playlist songs array:', $scope.temporaryPlaylist.tracks);
