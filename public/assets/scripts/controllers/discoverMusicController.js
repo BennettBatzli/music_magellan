@@ -76,6 +76,7 @@ myApp.controller('discoverMusicController', ['$scope', '$http', 'DataFactory', '
     }
   };
 
+  $scope.discoveredSongArray = [];
   function getSong(){
     $scope.discoveredSongObject = {
       song: $scope.tune.items[0].name,
@@ -85,7 +86,13 @@ myApp.controller('discoverMusicController', ['$scope', '$http', 'DataFactory', '
       spotify_uri: $scope.uri_link
     };
 
-    $scope.discoveredSong = [$scope.discoveredSongObject];
+    if ($scope.discoveredSongArray.length <= 2) {
+      $scope.discoveredSongArray.unshift($scope.discoveredSongObject);
+    } else {
+      $scope.discoveredSongArray.pop();
+      $scope.discoveredSongArray.unshift($scope.discoveredSongObject);
+    }
+    console.log('arayrayrayrayryary', $scope.discoveredSongArray);
   }
 
   $scope.temporaryPlaylist = {
@@ -109,30 +116,12 @@ myApp.controller('discoverMusicController', ['$scope', '$http', 'DataFactory', '
     $scope.discoveredSong = undefined;
   };
 
-  $scope.addOwnSong = function() {
-    if ($scope.song && $scope.artist && $scope.album){
-      $scope.ownSongObject = {
-        song: $scope.song,
-        artist: $scope.artist,
-        album: $scope.album
-      };
 
-      $scope.song = '';
-      $scope.artist = '';
-      $scope.album = '';
-      console.log('add song!', $scope.ownSongObject);
 
-      $scope.songChoice = [$scope.ownSongObject];
-      console.log('song choiceeee', $scope.songChoice);
 
-      $scope.temporaryPlaylist.tracks.push($scope.ownSongObject);
-      console.log('from added songs:', $scope.temporaryPlaylist.tracks);
 
-      $scope.temporaryPlaylistArray = $scope.temporaryPlaylist.tracks;
-    } else{
-      alert("Please fill all song info fields");
-    }
-  };
+
+
 
   $scope.savePlaylist = function(){
 

@@ -8,39 +8,40 @@
           <!--<button ng-click="addPlaylistName()">Add</button>-->
       <!--</form>-->
       <!--<h2>{{playlistTitle}}</h2>-->
-      <button class="discovery-tab" ng-click="addOwn=false">Discover New Songs</button>
-      <button class="discovery-tab" ng-click="addOwn=true">Add Your Own Music</button>
+      <!--<button class="discovery-tab" ng-click="addOwn=false">Discover New Songs</button>-->
+      <!--<button class="discovery-tab" ng-click="addOwn=true">Add Your Own Music</button>-->
 
       <div class="discovery-form-container">
 
 
-        <section ng-hide="addOwn">
+        <section>
           <h3>Discover new songs!</h3>
           <select class="form-control" ng-model="selectedGenre" ng-options="genre.query_string as genre.description for genre in genres">Select a Genre!</select>
 
           <button class="discover-button" ng-click="discoverSongs()">Discover</button>
 
-          <div ng-repeat="tune in discoveredSong">
-            <div class="discovered-songs-container">
-              <iframe src="{{tune.spotify_uri}}" width="300" height="380" frameborder="0" allowtransparency="true"></iframe>
-            </div>
-            <button ng-click="addDiscoveredSongs(discoveredSongObject)">Add Song</button>
-          </div>
+          <cycle-songs-directive discoveredSongArray="discoveredSongArray"></cycle-songs-directive>
+          <!--<div ng-repeat="song in discoveredSongArray">-->
+            <!--<div class="discovered-songs-container">-->
+              <!--<iframe src="{{song.spotify_uri}}" width="300" height="380" frameborder="0" allowtransparency="true"></iframe>-->
+            <!--</div>-->
+            <!--&lt;!&ndash;<button ng-click="addDiscoveredSongs(discoveredSongObject)">Add Song</button>&ndash;&gt;-->
+          <!--</div>-->
         </section>
 
-        <section ng-show="addOwn">
-          <h2>add some songs!</h2>
-          <form class="form-group">
-            <label for="song">Song:</label>
-            <input type="text" class="form-control" ng-model="song" id="song" />
-            <label for="artist">Artist:</label>
-            <input type="text" class="form-control" ng-model="artist" id="artist" />
-            <label for="album">Album:</label>
-            <input type="text" class="form-control" ng-model="album" id="album" />
+        <!--<section ng-show="addOwn">-->
+          <!--<h2>add some songs!</h2>-->
+          <!--<form class="form-group">-->
+            <!--<label for="song">Song:</label>-->
+            <!--<input type="text" class="form-control" ng-model="song" id="song" />-->
+            <!--<label for="artist">Artist:</label>-->
+            <!--<input type="text" class="form-control" ng-model="artist" id="artist" />-->
+            <!--<label for="album">Album:</label>-->
+            <!--<input type="text" class="form-control" ng-model="album" id="album" />-->
 
-            <button id="add-song-button" ng-click="addOwnSong()">Add to Playlist</button>
-          </form>
-        </section>
+            <!--<button id="add-song-button" ng-click="addOwnSong()">Add to Playlist</button>-->
+          <!--</form>-->
+        <!--</section>-->
       </div>
     </div>
   </div>
@@ -66,23 +67,23 @@
 
 </div>
 
-<script type="text/ng-template" id="addTitleModalContent.html">
-  <div class="modal-body container">
-    <div class="row">
-      <div class="col-md-4">
-        <div class="form-group">
-          <form>
-            <!--<label for="playlistTitle">Add a Title to your Playlist:</label>-->
-            <input type="text" class="form-control" placeholder="Add a Title to your Playlist" autofocus="" ng-model="playlistTitle" id="playlistTitle" />
-          </form>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-4">
-        <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
-        <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
-      </div>
-    </div>
-  </div>
-</script>
+<!--<script type="text/ng-template" id="addTitleModalContent.html">-->
+  <!--<div class="modal-body container">-->
+    <!--<div class="row">-->
+      <!--<div class="col-md-4">-->
+        <!--<div class="form-group">-->
+          <!--<form>-->
+            <!--&lt;!&ndash;<label for="playlistTitle">Add a Title to your Playlist:</label>&ndash;&gt;-->
+            <!--<input type="text" class="form-control" placeholder="Add a Title to your Playlist" autofocus="" ng-model="playlistTitle" id="playlistTitle" />-->
+          <!--</form>-->
+        <!--</div>-->
+      <!--</div>-->
+    <!--</div>-->
+    <!--<div class="row">-->
+      <!--<div class="col-md-4">-->
+        <!--<button class="btn btn-primary" type="button" ng-click="ok()">OK</button>-->
+        <!--<button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>-->
+      <!--</div>-->
+    <!--</div>-->
+  <!--</div>-->
+<!--</script>-->
