@@ -20,8 +20,9 @@
 
           <button class="discover-button" ng-click="discoverSongs()">Discover</button>
 
-          <cycle-songs-directive discoveredSongArray="discoveredSongArray"></cycle-songs-directive>
           <!--<div ng-repeat="song in discoveredSongArray">-->
+            <cycle-songs-directive info="song"></cycle-songs-directive>
+
             <!--<div class="discovered-songs-container">-->
               <!--<iframe src="{{song.spotify_uri}}" width="300" height="380" frameborder="0" allowtransparency="true"></iframe>-->
             <!--</div>-->
