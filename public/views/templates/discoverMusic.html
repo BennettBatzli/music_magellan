@@ -1,18 +1,8 @@
 <div class="container">
   <div class="row">
     <div class="col-md-8 col-md-offset-2">
-      <!--<h2>{{loggedInMessage}}</h2>-->
-      <!--<form class="form-group">-->
-          <!--<label for="playlistTitle">Add a Title to your Playlist:</label>-->
-          <!--<input type="text" ng-model="playlistTitle" id="playlistTitle" />-->
-          <!--<button ng-click="addPlaylistName()">Add</button>-->
-      <!--</form>-->
-      <!--<h2>{{playlistTitle}}</h2>-->
-      <!--<button class="discovery-tab" ng-click="addOwn=false">Discover New Songs</button>-->
-      <!--<button class="discovery-tab" ng-click="addOwn=true">Add Your Own Music</button>-->
 
       <div class="discovery-form-container">
-
 
         <section>
           <h3>Discover new songs!</h3>
@@ -20,57 +10,30 @@
 
           <button class="discover-button" ng-click="discoverSongs()">Discover</button>
 
-          <!--<div ng-repeat="song in discoveredSongArray">-->
-            <cycle-songs-directive info="song"></cycle-songs-directive>
-
-            <!--<div class="discovered-songs-container">-->
-              <!--<iframe src="{{song.spotify_uri}}" width="300" height="380" frameborder="0" allowtransparency="true"></iframe>-->
-            <!--</div>-->
-            <!--&lt;!&ndash;<button ng-click="addDiscoveredSongs(discoveredSongObject)">Add Song</button>&ndash;&gt;-->
-          <!--</div>-->
+          <cycle-songs-directive info="song"></cycle-songs-directive>
         </section>
       </div>
     </div>
   </div>
 
-  <div class="row">
-    <div class="col-md-8 col-md-offset-2">
-      <table class="table">
-        <thead>
-        <tr>
-          <th>Track</th><th>Song</th><th>Artist</th><th>Album</th><th>Find on Spotify</th>
-        </tr>
-        </thead>
-        <tbody ng-repeat="music in temporaryPlaylistArray">
-        <tr class="track-info-table-row">
-          <td>{{$index + 1}}</td><td>{{music.song}}</td><td>{{music.artist}}</td><td>{{music.album}}</td><td><a href="{{music.spotify_url}}" target="_blank">Find</a></td>
-        </tr>
-        </tbody>
-      </table>
-      <!--<button ng-click="savePlaylist(id)">Save Playlist</button>-->
+  <!--<div class="row">-->
+    <!--<div class="col-md-8 col-md-offset-2">-->
+      <!--<table class="table">-->
+        <!--<thead>-->
+        <!--<tr>-->
+          <!--<th>Track</th><th>Song</th><th>Artist</th><th>Album</th><th>Find on Spotify</th>-->
+        <!--</tr>-->
+        <!--</thead>-->
+        <!--<tbody ng-repeat="music in temporaryPlaylistArray">-->
+        <!--<tr class="track-info-table-row">-->
+          <!--<td>{{$index + 1}}</td><td>{{music.song}}</td><td>{{music.artist}}</td><td>{{music.album}}</td><td><a href="{{music.spotify_url}}" target="_blank">Find</a></td>-->
+        <!--</tr>-->
+        <!--</tbody>-->
+      <!--</table>-->
+      <!--&lt;!&ndash;<button ng-click="savePlaylist(id)">Save Playlist</button>&ndash;&gt;-->
 
-    </div>
+    <!--</div>-->
   </div>
 
 </div>
 
-<!--<script type="text/ng-template" id="addTitleModalContent.html">-->
-  <!--<div class="modal-body container">-->
-    <!--<div class="row">-->
-      <!--<div class="col-md-4">-->
-        <!--<div class="form-group">-->
-          <!--<form>-->
-            <!--&lt;!&ndash;<label for="playlistTitle">Add a Title to your Playlist:</label>&ndash;&gt;-->
-            <!--<input type="text" class="form-control" placeholder="Add a Title to your Playlist" autofocus="" ng-model="playlistTitle" id="playlistTitle" />-->
-          <!--</form>-->
-        <!--</div>-->
-      <!--</div>-->
-    <!--</div>-->
-    <!--<div class="row">-->
-      <!--<div class="col-md-4">-->
-        <!--<button class="btn btn-primary" type="button" ng-click="ok()">OK</button>-->
-        <!--<button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>-->
-      <!--</div>-->
-    <!--</div>-->
-  <!--</div>-->
-<!--</script>-->

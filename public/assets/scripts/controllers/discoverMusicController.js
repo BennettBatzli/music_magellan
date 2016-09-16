@@ -52,11 +52,11 @@ myApp.controller('discoverMusicController', ['$scope', '$http', 'DataFactory', '
 
       query += "&offset=" + randomOffset;
       query += "&limit=1&type=track&callback=JSON_CALLBACK";
-      var bestRequest = baseURL + query;
+      var request = baseURL + query;
 
       var coolRequest = "https://api.spotify.com/v1/search?q=randomTrack&offset=randomOffset&limit=1&type=song&callback=JSON_CALLBACK";
 
-      $http.get(bestRequest).then(
+      $http.get(request).then(
         function(response) {
           console.log('response dataaaaa::', response.data);
 
@@ -95,26 +95,26 @@ myApp.controller('discoverMusicController', ['$scope', '$http', 'DataFactory', '
     console.log('arayrayrayrayryary', $scope.discoveredSongArray);
   }
 
-  $scope.temporaryPlaylist = {
-    tracks: [],
-    playlist_name: "Untitled Playlist",
-    playlist_id: $scope.playlistID,
-    author: $scope.loggedInUser.username,
-    author_id: $scope.loggedInUser.user_id
-  };
-
-  $scope.addDiscoveredSongs = function(songObject) {
-
-    $scope.temporaryPlaylist.tracks.push(songObject);
-
-    console.log($scope.temporaryPlaylist);
-
-    $scope.temporaryPlaylistArray = $scope.temporaryPlaylist.tracks;
-
-    console.log('playlist songs array:', $scope.temporaryPlaylist.tracks);
-
-    $scope.discoveredSong = undefined;
-  };
+  //$scope.temporaryPlaylist = {
+  //  tracks: [],
+  //  playlist_name: "Untitled Playlist",
+  //  playlist_id: $scope.playlistID,
+  //  author: $scope.loggedInUser.username,
+  //  author_id: $scope.loggedInUser.user_id
+  //};
+  //
+  //$scope.addDiscoveredSongs = function(songObject) {
+  //
+  //  $scope.temporaryPlaylist.tracks.push(songObject);
+  //
+  //  console.log($scope.temporaryPlaylist);
+  //
+  //  $scope.temporaryPlaylistArray = $scope.temporaryPlaylist.tracks;
+  //
+  //  console.log('playlist songs array:', $scope.temporaryPlaylist.tracks);
+  //
+  //  $scope.discoveredSong = undefined;
+  //};
 
 
 
