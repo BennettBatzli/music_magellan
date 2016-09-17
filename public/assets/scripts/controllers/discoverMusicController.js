@@ -9,91 +9,45 @@ myApp.controller('discoverMusicController', ['$scope', '$http', 'DataFactory', '
   //$scope.loggedIn = false;
   $scope.loggedInUser = $scope.passportFactory.factoryLoggedInUser();
 
-  if($scope.loggedInUser.username){
-    var userName = $scope.loggedInUser.username;
-    $scope.loggedInMessage = 'Logged in as ' + userName + '.';
-  } else {
-    $scope.loggedInMessage = 'You are not logged in! You won\'t be able to save this Playlist!';
-  }
+  //if($scope.loggedInUser.username){
+  //  var userName = $scope.loggedInUser.username;
+  //  $scope.loggedInMessage = 'Logged in as ' + userName + '.';
+  //} else {
+  //  $scope.loggedInMessage = 'You are not logged in! You won\'t be able to save this Playlist!';
+  //}
 
   // genre tags populate for user to select from
   $scope.genres = undefined;
   $http.get('/getGenres').then(function(response){
-    console.log('we got genres!!', response.data);
     $scope.genres = response.data;
   });
 
-  var randomNumber = function (min, max){
-    return Math.floor(Math.random() * (1 + max - min) + min);
-  };
-
-
-  $scope.discoverSongs = function() {
-    $scope.data = {};
-
-    // var request = baseURL + encodeURI(query) + '&callback=JSON_CALLBACK';
-    // console.log('the rquest!!!', request);
-    // var songsArray = ['*a*', '*o*', '*u*', '*i*', '*e*'];
-
-    // var songsArray = ['*a*', 'a*', '*e*', 'e*', '*i*', 'i*', '*o*', 'o*', '*y*'];
-
-    var songsArray = ['a'];
-
-    // var songsArray = ['%25a%25', 'a%25', '%25e%25', 'e%25', '%25i%25', 'i%25', '%25o%25', 'o%25'];
-    var randomTrack = songsArray[Math.floor(Math.random()*songsArray.length)];
-    var randomOffset = randomNumber(1, 100);
-    // var genre =
-    console.log('the wild card', randomTrack);
-
-    if($scope.selectedGenre) {
-      var baseURL = "https://api.spotify.com/v1/search";
-      var query = "?q=";
-      query += "%20genre:%22" + $scope.selectedGenre + "%22";
-
-      query += "&offset=" + randomOffset;
-      query += "&limit=1&type=track&callback=JSON_CALLBACK";
-      var request = baseURL + query;
-
-      var coolRequest = "https://api.spotify.com/v1/search?q=randomTrack&offset=randomOffset&limit=1&type=song&callback=JSON_CALLBACK";
-
-      $http.get(request).then(
-        function(response) {
-          console.log('response dataaaaa::', response.data);
-
-          console.log('the track name:', response.data.tracks.items[0].name);
-          console.log('the artist name:', response.data.tracks.items[0].artists[0].name);
-
-          console.log('the album name:', response.data.tracks.items[0].album.name);
-
-          $scope.tune = response.data.tracks;
-          $scope.uri_link = $sce.trustAsResourceUrl('https://embed.spotify.com/?uri=' + $scope.tune.items[0].uri);
-          // return $scope.animalType;
-          getSong();
-        }
-      );
-    } else {
-        alert("Please select a genre.");
-    }
-  };
+  //var randomNumber = function (min, max){
+  //  return Math.floor(Math.random() * (1 + max - min) + min);
+  //};
 
   $scope.discoveredSongArray = [];
-  function getSong(){
-    $scope.discoveredSongObject = {
-      song: $scope.tune.items[0].name,
-      artist: $scope.tune.items[0].artists[0].name,
-      album: $scope.tune.items[0].album.name,
-      spotify_url: $scope.tune.items[0].external_urls.spotify,
-      spotify_uri: $scope.uri_link
-    };
 
-    if ($scope.discoveredSongArray.length <= 2) {
-      $scope.discoveredSongArray.unshift($scope.discoveredSongObject);
-    } else {
-      $scope.discoveredSongArray.pop();
-      $scope.discoveredSongArray.unshift($scope.discoveredSongObject);
-    }
-    console.log('arayrayrayrayryary', $scope.discoveredSongArray);
-  }
+  $scope.discoverSongs = function(selectedGenre) {
+
+    var spotify_uri;
+
+    $scope.dataFactory.discoverSong(selectedGenre).then(function(discoveredSong){
+      spotify_uri = discoveredSong;
+
+
+      $scope.discoveredSongObject = {
+        spotify_uri: spotify_uri
+      };
+
+      if ($scope.discoveredSongArray.length <= 2) {
+        $scope.discoveredSongArray.unshift($scope.discoveredSongObject);
+      } else {
+        $scope.discoveredSongArray.pop();
+        $scope.discoveredSongArray.unshift($scope.discoveredSongObject);
+      }
+    });
+  };
 
   //$scope.temporaryPlaylist = {
   //  tracks: [],
