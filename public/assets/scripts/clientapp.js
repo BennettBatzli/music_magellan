@@ -20,6 +20,11 @@ myApp.config(function($stateProvider, $urlRouterProvider) {
       templateUrl: '../../views/templates/signIn.html',
       controller: 'signInController'
     })
+    .state('register', {
+      url: '/register',
+      templateUrl: '../../views/templates/register.html',
+      controller: 'signInController'
+    })
     .state('savedPlaylists', {
       url: '/savedPlaylists',
       templateUrl: '../../views/templates/savedPlaylists.html',

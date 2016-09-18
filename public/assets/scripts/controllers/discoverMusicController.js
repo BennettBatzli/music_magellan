@@ -40,6 +40,7 @@ myApp.controller('discoverMusicController', ['$scope', '$http', 'DataFactory', '
         spotify_uri: spotify_uri
       };
 
+      // To keep 3 or less songs displayed at a time.
       if ($scope.discoveredSongArray.length <= 2) {
         $scope.discoveredSongArray.unshift($scope.discoveredSongObject);
       } else {
