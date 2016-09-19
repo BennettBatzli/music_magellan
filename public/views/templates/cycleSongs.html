@@ -1,5 +1,6 @@
-<div ng-repeat="song in discoveredSongArray">
+<!--<div ng-repeat="song in discoveredSongArray" class="iframe-fade">-->
     <div class="discovered-songs-container">
-        <iframe src="{{song.spotify_uri}}" width="300" height="380" frameborder="0" allowtransparency="true"></iframe>
+        <iframe src="{{song.spotify_uri}}" width="250" height="380" frameborder="0"
+                allowtransparency="true" ng-repeat="song in discoveredSongArray" class="fade-hi"></iframe>
     </div>
-</div>
+<!--</div>-->
