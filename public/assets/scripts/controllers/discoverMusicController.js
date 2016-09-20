@@ -17,10 +17,11 @@ myApp.controller('discoverMusicController', ['$scope', '$http', 'DataFactory', '
   //}
 
   // genre tags populate for user to select from
-  $scope.genres = undefined;
-  $http.get('/getGenres').then(function(response){
-    $scope.genres = response.data;
-  });
+  (function getGenres(){
+    $scope.dataFactory.getGenres().then(function(genres){
+      $scope.genres = genres;
+    });
+  })();
 
   //var randomNumber = function (min, max){
   //  return Math.floor(Math.random() * (1 + max - min) + min);
