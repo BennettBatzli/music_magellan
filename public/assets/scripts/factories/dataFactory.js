@@ -8,6 +8,8 @@ myApp.factory('DataFactory', ['$http', '$window', '$sce', function($http, $windo
 
   var uriLink = undefined;
 
+  var genres = undefined;
+
 
   // This happens after page load, which means it has authenticated if it was ever going to
   // NOT SECURE
@@ -131,10 +133,20 @@ myApp.factory('DataFactory', ['$http', '$window', '$sce', function($http, $windo
     }
   };
 
+  var privateGetGenres = function(){
+    var promise = $http.get('/getGenres').then(function(response){
+      return response.data;
+    });
+    return promise;
+  };
+
   //public
   var publicApi = {
     factoryUserAuthenication: function() {
       return privateUserAuthentication();
+    },
+    getGenres: function() {
+      return privateGetGenres();
     },
     discoverSong: function(selectedGenre) {
       return privateDiscoverSong(selectedGenre);
