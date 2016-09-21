@@ -33,7 +33,11 @@ myApp.controller('discoverMusicController', ['$scope', '$http', 'DataFactory', '
 
     var spotify_uri;
 
-    $scope.dataFactory.discoverSong(selectedGenre).then(function(discoveredSong){
+    if ($scope.discoveredSongArray.length >= 3) {
+      $scope.discoveredSongArray.pop();
+    }
+
+    $scope.dataFactory.discoverSong(selectedGenre).then(function(discoveredSong) {
       spotify_uri = discoveredSong;
 
 
@@ -42,13 +46,15 @@ myApp.controller('discoverMusicController', ['$scope', '$http', 'DataFactory', '
       };
 
       // To keep 3 or less songs displayed at a time.
-      if ($scope.discoveredSongArray.length <= 2) {
+      //if ($scope.discoveredSongArray.length <= 2) {
         $scope.discoveredSongArray.unshift($scope.discoveredSongObject);
-      } else {
-        $scope.discoveredSongArray.pop();
-        $scope.discoveredSongArray.unshift($scope.discoveredSongObject);
-      }
+      //
+      //} else {
+      //  $scope.discoveredSongArray.unshift($scope.discoveredSongObject);
+      //}
+
     });
+
   };
 
   //$scope.temporaryPlaylist = {
