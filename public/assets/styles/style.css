@@ -388,6 +388,7 @@ script {
 iframe {
     float: right;
 }
+
 .fade-in.ng-leave {
     transition: 0.5s linear all;
     opacity: 1;
