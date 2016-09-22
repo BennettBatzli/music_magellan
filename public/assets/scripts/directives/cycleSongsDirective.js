@@ -11,9 +11,25 @@ myApp.directive('cycleSongsDirective',
     };
     return directive;
 
-    function link(element, scope, attrs) {
-      console.log(scope.tune);
+    function link(scope, element, attrs) {
+      scope.discoverSongs = function(selectedGenre) {
+        var spotify_uri;
 
+        // To keep 3 or less songs displayed at a time.
+        if (scope.discoveredSongArray.length >= 3) {
+          scope.discoveredSongArray.pop();
+        }
+
+        scope.dataFactory.discoverSong(selectedGenre).then(function (discoveredSong) {
+          spotify_uri = discoveredSong;
+
+          scope.discoveredSongObject = {
+            spotify_uri: spotify_uri
+          };
+
+          scope.discoveredSongArray.unshift(scope.discoveredSongObject);
+        });
+      };
     }
   }
 );

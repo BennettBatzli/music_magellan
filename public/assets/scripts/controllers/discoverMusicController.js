@@ -9,13 +9,6 @@ myApp.controller('discoverMusicController', ['$scope', '$http', 'DataFactory', '
   //$scope.loggedIn = false;
   $scope.loggedInUser = $scope.passportFactory.factoryLoggedInUser();
 
-  //if($scope.loggedInUser.username){
-  //  var userName = $scope.loggedInUser.username;
-  //  $scope.loggedInMessage = 'Logged in as ' + userName + '.';
-  //} else {
-  //  $scope.loggedInMessage = 'You are not logged in! You won\'t be able to save this Playlist!';
-  //}
-
   // genre tags populate for user to select from
   (function getGenres(){
     $scope.dataFactory.getGenres().then(function(genres){
@@ -23,37 +16,9 @@ myApp.controller('discoverMusicController', ['$scope', '$http', 'DataFactory', '
     });
   })();
 
-  //var randomNumber = function (min, max){
-  //  return Math.floor(Math.random() * (1 + max - min) + min);
-  //};
-
   $scope.discoveredSongArray = [];
 
-  $scope.discoverSongs = function(selectedGenre) {
-
-    var spotify_uri;
-
-    if ($scope.discoveredSongArray.length >= 3) {
-      $scope.discoveredSongArray.pop();
-    }
-
-    $scope.dataFactory.discoverSong(selectedGenre).then(function(discoveredSong) {
-      spotify_uri = discoveredSong;
-
-
-      $scope.discoveredSongObject = {
-        spotify_uri: spotify_uri
-      };
-
-      // To keep 3 or less songs displayed at a time.
-      //if ($scope.discoveredSongArray.length <= 2) {
-        $scope.discoveredSongArray.unshift($scope.discoveredSongObject);
-      //
-      //} else {
-      //  $scope.discoveredSongArray.unshift($scope.discoveredSongObject);
-      //}
-
-    });
+  $scope.recentPlaylists = function() {
 
   };
 
