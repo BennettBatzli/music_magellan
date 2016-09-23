@@ -106,13 +106,11 @@ myApp.factory('DataFactory', ['$http', '$window', '$sce', function($http, $windo
     if(selectedGenre) {
       var baseURL = "https://api.spotify.com/v1/search";
       var query = "?q=";
-      query += "%20genre:%22" + selectedGenre + "%22";
+      query += selectedGenre + "%22";
 
       query += "&offset=" + randomOffset;
       query += "&limit=1&type=track&callback=JSON_CALLBACK";
       var request = baseURL + query;
-
-      //var coolRequest = "https://api.spotify.com/v1/search?q=randomTrack&offset=randomOffset&limit=1&type=song&callback=JSON_CALLBACK";
 
       var promise = $http.get(request).then(
         function(response) {

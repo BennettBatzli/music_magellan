@@ -13,7 +13,6 @@ myApp.directive('cycleSongsDirective',
 
     function link(scope, element, attrs) {
       scope.discoverSongs = function(selectedGenre) {
-        var spotify_uri;
 
         // To keep 3 or less songs displayed at a time.
         if (scope.discoveredSongArray.length >= 3) {
@@ -21,10 +20,9 @@ myApp.directive('cycleSongsDirective',
         }
 
         scope.dataFactory.discoverSong(selectedGenre).then(function (discoveredSong) {
-          spotify_uri = discoveredSong;
 
           scope.discoveredSongObject = {
-            spotify_uri: spotify_uri
+            spotify_uri: discoveredSong
           };
 
           scope.discoveredSongArray.unshift(scope.discoveredSongObject);

@@ -392,6 +392,8 @@ iframe {
 .fade-in.ng-leave {
     transition: 0.5s linear all;
     opacity: 1;
+    position: absolute;
+    z-index: -1;
 }
 
 .fade-in.ng-leave.ng-leave-active {
