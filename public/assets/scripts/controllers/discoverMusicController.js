@@ -10,7 +10,7 @@ myApp.controller('discoverMusicController', ['$scope', '$http', 'DataFactory', '
   $scope.loggedInUser = $scope.passportFactory.factoryLoggedInUser();
 
   // genre tags populate for user to select from
-  (function getGenres(){
+  (function getGenres() {
     $scope.dataFactory.getGenres().then(function(genres){
       $scope.genres = genres;
     });
@@ -18,9 +18,12 @@ myApp.controller('discoverMusicController', ['$scope', '$http', 'DataFactory', '
 
   $scope.discoveredSongArray = [];
 
-  $scope.recentPlaylists = function() {
-
-  };
+  // links to recently created playlists populate for user to select
+  (function recentPlaylists() {
+    $scope.dataFactory.getRecentPlaylists().then(function(recentPlaylists){
+      $scope.recentPlaylists = recentPlaylists;
+    });
+  })();
 
   //$scope.temporaryPlaylist = {
   //  tracks: [],
