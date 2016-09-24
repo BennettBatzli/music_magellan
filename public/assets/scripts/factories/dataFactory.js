@@ -89,7 +89,7 @@ myApp.factory('DataFactory', ['$http', '$window', '$sce', function($http, $windo
     console.log('datafactory genre', selectedGenre);
     //$scope.data = {};
 
-    // var request = baseURL + encodeURI(query) + '&callback=JSON_CALLBACK';
+     //var request = baseURL + encodeURI(query) + '&callback=JSON_CALLBACK';
     // console.log('the rquest!!!', request);
     // var songsArray = ['*a*', '*o*', '*u*', '*i*', '*e*'];
 
@@ -100,13 +100,13 @@ myApp.factory('DataFactory', ['$http', '$window', '$sce', function($http, $windo
     // var songsArray = ['%25a%25', 'a%25', '%25e%25', 'e%25', '%25i%25', 'i%25', '%25o%25', 'o%25'];
     var randomTrack = songsArray[Math.floor(Math.random()*songsArray.length)];
     var randomOffset = randomNumber(1, 100);
-    // var genre =
+
     console.log('the wild card', randomTrack);
 
     if(selectedGenre) {
       var baseURL = "https://api.spotify.com/v1/search";
       var query = "?q=";
-      query += selectedGenre + "%22";
+      query += "genre:%22" + selectedGenre + "%22";
 
       query += "&offset=" + randomOffset;
       query += "&limit=1&type=track&callback=JSON_CALLBACK";
