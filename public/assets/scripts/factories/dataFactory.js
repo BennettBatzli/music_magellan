@@ -138,6 +138,13 @@ myApp.factory('DataFactory', ['$http', '$window', '$sce', function($http, $windo
     return promise;
   };
 
+  var privateGetRecentPlaylists = function(){
+    var promise = $http.get('/getRecentPlaylists').then(function(response){
+      return response.data;
+    });
+    return promise;
+  };
+
   //public
   var publicApi = {
     factoryUserAuthenication: function() {
@@ -145,6 +152,9 @@ myApp.factory('DataFactory', ['$http', '$window', '$sce', function($http, $windo
     },
     getGenres: function() {
       return privateGetGenres();
+    },
+    getRecentPlaylists: function() {
+      return privateGetRecentPlaylists();
     },
     discoverSong: function(selectedGenre) {
       return privateDiscoverSong(selectedGenre);
