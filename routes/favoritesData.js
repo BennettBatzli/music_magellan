@@ -19,8 +19,8 @@ router.post('/', function(req, res) {
 
   pg.connect(connection, function(err, client, done) {
     client.query(
-      'INSERT INTO playlists (title, author, author_id, deleted) VALUES ($1, $2, $3, $4) RETURNING playlist_id',
-      [playlist.title, playlist.author, playlist.author_id, playlist.deleted],
+      'INSERT INTO playlists (title, author, author_id, published, deleted) VALUES ($1, $2, $3, $4, $5) RETURNING playlist_id',
+      [playlist.title, playlist.author, playlist.author_id, playlist.published, playlist.deleted],
 
       function(err, result) {
         done();
