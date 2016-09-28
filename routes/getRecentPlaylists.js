@@ -5,12 +5,14 @@ var pg = require('pg');
 
 router.get('/', function(req, res){
   var results = [];
-  //console.log(req.body.user_id);
+  //console.log(req.body.published);
   //var author_id = req.params.user_id;
   pg.connect(connection, function(err, client, done) {
-    //var query = client.query('SELECT * ' +
-    //  'FROM playlists ' +
-    //  'WHERE playlists.author_id = ($1) AND playlists.deleted IS NOT true',
+    var query = client.query('SELECT * ' +
+      'FROM playlists ' +
+      'WHERE playlists.deleted IS NOT true ' +
+      'ORDER BY published DESC ' +
+      'LIMIT 3');
     //  [author_id]);
 
     //Stream results back one row at a time
