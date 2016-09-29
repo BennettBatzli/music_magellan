@@ -5,8 +5,7 @@ var pg = require('pg');
 
 router.get('/', function(req, res){
   var results = [];
-  //console.log(req.body.published);
-  //var author_id = req.params.user_id;
+
   pg.connect(connection, function(err, client, done) {
     var query = client.query('SELECT * ' +
       'FROM playlists ' +
