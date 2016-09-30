@@ -1,4 +1,4 @@
-myApp.controller('navController', ['$scope', 'PassportFactory', function($scope, PassportFactory) {
+myApp.controller('navController', ['$scope', 'PassportFactory', '$uibModal', '$log', function($scope, PassportFactory, $uibModal, $log) {
 
   $scope.passportFactory = PassportFactory;
 
@@ -30,6 +30,29 @@ myApp.controller('navController', ['$scope', 'PassportFactory', function($scope,
   //$scope.reloadRoute = function() {
   //  $route.reload();
   //};
+
+  $scope.loginModal = function(size) {
+    var modalInstance = $uibModal.open({
+      animation: $scope.animationsEnabled,
+      templateUrl: '../../../views/templates/signInModalContent.html',
+      controller: 'signInModalController',
+      size: size,
+      resolve: {
+        username: function () {
+          return $scope.passportFactory.loggedInUser;
+        }
+      }
+    });
+
+    modalInstance.result.then(function (user) {
+      //$scope.playlistID = myPlaylist.playlist_id;
+      console.log('is this getting thru', user);
+      //$scope.playlistInfo.push(myPlaylist.tracks[0]);
+
+    }, function () {
+      $log.info('Modal dismissed at: ' + new Date());
+    });
+  };
 
   $scope.logout = function() {
     $scope.passportFactory.factoryLogoutUser().then(function () {

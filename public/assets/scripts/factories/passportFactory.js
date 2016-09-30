@@ -12,13 +12,14 @@ myApp.factory('PassportFactory', ['$http', '$location', function($http, $locatio
       password: password
     };
 
-    $http.post('/signIn', user).then( function(response) {
+    var promise = $http.post('/signIn', user).then( function(response) {
 
       loggedInUser = response.data;
       console.log('logged user', loggedInUser);
-      $location.path('/savedPlaylists');
-
+      //$location.path('/savedPlaylists');
+      return loggedInUser;
     });
+    return promise;
   };
 
   //add new user
@@ -70,7 +71,7 @@ myApp.factory('PassportFactory', ['$http', '$location', function($http, $locatio
   var logoutUser = function() {
     var promise = $http.get('/logOut').then( function(response) {
       loggedInUser = '';
-      $location.path('/signIn');
+      //$location.path('/signIn');
     });
     return promise;
   };
