@@ -71,7 +71,7 @@ myApp.factory('PassportFactory', ['$http', '$location', function($http, $locatio
   var logoutUser = function() {
     var promise = $http.get('/logOut').then( function(response) {
       loggedInUser = '';
-      //$location.path('/signIn');
+      $location.path('/discoverMusic');
     });
     return promise;
   };
