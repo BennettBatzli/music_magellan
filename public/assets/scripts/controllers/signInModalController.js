@@ -10,6 +10,13 @@ myApp.controller('signInModalController', ['$scope', 'DataFactory', 'PassportFac
     $uibModalInstance.close();
   };
 
+  $scope.registerUser = function (username, password) {
+    $scope.passportFactory.factoryRegisterUser(username, password).then(function(response) {
+      console.log('REGISTER responze::', response);
+    });
+    $uibModalInstance.close();
+  };
+
   $scope.cancel = function () {
     $uibModalInstance.dismiss('cancel');
   };
