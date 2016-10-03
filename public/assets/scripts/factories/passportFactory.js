@@ -22,6 +22,20 @@ myApp.factory('PassportFactory', ['$http', '$location', function($http, $locatio
     return promise;
   };
 
+  //register user
+  var registerUser = function(username, password) {
+    var newUser = {
+      username: username,
+      password: password
+    };
+
+    var promise = $http.post('/register', newUser).then( function(response) {
+      console.log('factory register', response);
+      return response
+    });
+    return promise;
+  };
+
   //add new user
   var saveNewEntry = function(entry) {
     var promise = $http.post('/register', entry).then( function(response) {
@@ -81,6 +95,9 @@ myApp.factory('PassportFactory', ['$http', '$location', function($http, $locatio
   var publicApi = {
     factoryUserSubmit: function(username, password) {
       return userSubmit(username, password);
+    },
+    factoryRegisterUser: function(username, password) {
+      return registerUser(username, password);
     },
     factoryLoggedInUser: function() {
       return loggedInUser;
