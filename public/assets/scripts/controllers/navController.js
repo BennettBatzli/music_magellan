@@ -1,4 +1,4 @@
-myApp.controller('navController', ['$scope', 'PassportFactory', '$uibModal', '$log', function($scope, PassportFactory, $uibModal, $log) {
+myApp.controller('navController', ['$scope', 'PassportFactory', '$uibModal', '$log', '$state', function($scope, PassportFactory, $uibModal, $log, $state) {
 
   $scope.passportFactory = PassportFactory;
 
@@ -21,6 +21,7 @@ myApp.controller('navController', ['$scope', 'PassportFactory', '$uibModal', '$l
 
   function validateUser() {
     if($scope.loggedInUser.user_id) {
+      $state.go('discoverMusic.savedPlaylists');
       $scope.loggedIn = true;
     } else {
       $scope.loggedIn = false;
@@ -48,7 +49,6 @@ myApp.controller('navController', ['$scope', 'PassportFactory', '$uibModal', '$l
       //$scope.playlistID = myPlaylist.playlist_id;
       console.log('is this getting thru', user);
       //$scope.playlistInfo.push(myPlaylist.tracks[0]);
-
     }, function () {
       $log.info('Modal dismissed at: ' + new Date());
     });
