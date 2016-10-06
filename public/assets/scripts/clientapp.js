@@ -25,7 +25,7 @@ myApp.config(function($stateProvider, $urlRouterProvider) {
       templateUrl: '../../views/templates/register.html',
       controller: 'signInController'
     })
-    .state('savedPlaylists', {
+    .state('discoverMusic.savedPlaylists', {
       url: '/savedPlaylists',
       templateUrl: '../../views/templates/savedPlaylists.html',
       controller: 'savedPlaylistsController'
