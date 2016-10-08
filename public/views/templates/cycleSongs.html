@@ -1,5 +1,8 @@
 <button class="discover-button" ng-click="discoverSongs(selectedGenre)">Discover</button>
 <div class="discovered-songs-container">
-    <iframe src="{{song.spotify_uri}}" width="250" height="380" frameborder="0"
-            allowtransparency="true" ng-repeat="song in discoveredSongArray" class="fade-in fade-out"></iframe>
+    <div ng-repeat="song in discoveredSongArray" class="song-widget-box fade-in fade-out">
+        <iframe src="{{song.spotify_uri}}" width="250" height="380" frameborder="0"
+                allowtransparency="true"></iframe>
+        <button class="save-song-button">Save</button>
+    </div>
 </div>
