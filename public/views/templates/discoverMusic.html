@@ -9,10 +9,12 @@
           <select class="form-control" ng-model="selectedGenre" ng-options="genre.query_string as genre.description for genre in genres">Select a Genre!</select>
 
           <cycle-songs-directive info="song"></cycle-songs-directive>
+
         </section>
       </div>
     </div>
   </div>
+
   <div class="row">
     <div class="col-md-8 col-md-offset-2">
       <div ng-repeat="playlist in recentPlaylists">
@@ -20,25 +22,9 @@
       </div>
     </div>
   </div>
-  <section ui-view></section>
-  <!--<div class="row">-->
-    <!--<div class="col-md-8 col-md-offset-2">-->
-      <!--<table class="table">-->
-        <!--<thead>-->
-        <!--<tr>-->
-          <!--<th>Track</th><th>Song</th><th>Artist</th><th>Album</th><th>Find on Spotify</th>-->
-        <!--</tr>-->
-        <!--</thead>-->
-        <!--<tbody ng-repeat="music in temporaryPlaylistArray">-->
-        <!--<tr class="track-info-table-row">-->
-          <!--<td>{{$index + 1}}</td><td>{{music.song}}</td><td>{{music.artist}}</td><td>{{music.album}}</td><td><a href="{{music.spotify_url}}" target="_blank">Find</a></td>-->
-        <!--</tr>-->
-        <!--</tbody>-->
-      <!--</table>-->
-      <!--&lt;!&ndash;<button ng-click="savePlaylist(id)">Save Playlist</button>&ndash;&gt;-->
 
-    <!--</div>-->
-  </div>
+  <section ui-view></section>
 
 </div>
+
 

@@ -385,8 +385,20 @@ script {
 
 }
 
-iframe {
+.song-widget-box {
     float: right;
+    height: 420px;
+    width: 250px;
+}
+
+
+iframe {
+
+}
+
+.save-song-button {
+    height: 40px;
+    width: 100%;
 }
 
 .fade-in.ng-leave {
@@ -407,12 +419,6 @@ iframe {
 
 .fade-in.ng-enter.ng-enter-active {
     opacity: 1;
-}
-
-
-
-.no-save-warning {
-    color: red;
 }
 
 .select-playlist-table-row {
