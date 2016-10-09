@@ -26,6 +26,9 @@ myApp.controller('discoverMusicController', ['$scope', '$http', 'DataFactory', '
     });
   })();
 
+  $scope.saveSong = function(song) {
+    console.log('I need this song', song);
+  };
   //$scope.temporaryPlaylist = {
   //  tracks: [],
   //  playlist_name: "Untitled Playlist",
