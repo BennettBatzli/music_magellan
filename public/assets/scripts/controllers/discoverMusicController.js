@@ -7,7 +7,31 @@ myApp.controller('discoverMusicController', ['$scope', '$http', 'DataFactory', '
   $scope.animationsEnabled = true;
 
   //$scope.loggedIn = false;
-  $scope.loggedInUser = $scope.passportFactory.factoryLoggedInUser();
+  //$scope.loggedInUser = $scope.passportFactory.factoryLoggedInUser();
+  //console.log('logged user', $scope.loggedInUser);
+  //  .then( function() {
+  //    isLoggedIn = true;
+  //  }
+  //);
+
+
+  $scope.$watch(function (scope) {return scope.passportFactory.factoryLoggedInUser()},
+    function (newValue, oldValue) {
+      $scope.loggedInUser = newValue;
+      console.log('new value?', newValue);
+      validateUser();
+    }
+  );
+
+  function validateUser() {
+    if($scope.loggedInUser.user_id) {
+      //$state.go('discoverMusic.savedPlaylists');
+      $scope.loggedIn = true;
+    } else {
+      $scope.loggedIn = false;
+    }
+  }
+
 
   // genre tags populate for user to select from
   (function getGenres() {
@@ -27,7 +51,11 @@ myApp.controller('discoverMusicController', ['$scope', '$http', 'DataFactory', '
   })();
 
   $scope.saveSong = function(song) {
-    console.log('I need this song', song);
+    if($scope.loggedIn) {
+      console.log('I need this song', song);
+    } else {
+      prompt('ya aint logged in');
+    }
   };
   //$scope.temporaryPlaylist = {
   //  tracks: [],
