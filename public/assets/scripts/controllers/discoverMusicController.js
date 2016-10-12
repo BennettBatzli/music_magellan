@@ -54,8 +54,30 @@ myApp.controller('discoverMusicController', ['$scope', '$http', 'DataFactory', '
     if($scope.loggedIn) {
       console.log('I need this song', song);
     } else {
-      prompt('ya aint logged in');
+      $scope.loginModal();
     }
+  };
+
+  $scope.loginModal = function(size) {
+    var modalInstance = $uibModal.open({
+      animation: $scope.animationsEnabled,
+      templateUrl: '../../../views/templates/signInModalContent.html',
+      controller: 'signInModalController',
+      size: size,
+      resolve: {
+        username: function () {
+          return $scope.passportFactory.loggedInUser;
+        }
+      }
+    });
+
+    modalInstance.result.then(function (user) {
+      //$scope.playlistID = myPlaylist.playlist_id;
+      console.log('is this getting thru', user);
+      //$scope.playlistInfo.push(myPlaylist.tracks[0]);
+    }, function () {
+      $log.info('Modal dismissed at: ' + new Date());
+    });
   };
   //$scope.temporaryPlaylist = {
   //  tracks: [],
