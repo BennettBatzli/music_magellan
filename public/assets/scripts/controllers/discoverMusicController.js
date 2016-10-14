@@ -72,9 +72,7 @@ myApp.controller('discoverMusicController', ['$scope', '$http', 'DataFactory', '
     });
 
     modalInstance.result.then(function (user) {
-      //$scope.playlistID = myPlaylist.playlist_id;
       console.log('is this getting thru', user);
-      //$scope.playlistInfo.push(myPlaylist.tracks[0]);
     }, function () {
       $log.info('Modal dismissed at: ' + new Date());
     });
