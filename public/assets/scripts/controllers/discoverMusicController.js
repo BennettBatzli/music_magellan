@@ -25,7 +25,6 @@ myApp.controller('discoverMusicController', ['$scope', '$http', 'DataFactory', '
 
   function validateUser() {
     if($scope.loggedInUser.user_id) {
-      //$state.go('discoverMusic.savedPlaylists');
       $scope.loggedIn = true;
     } else {
       $scope.loggedIn = false;
