@@ -83,19 +83,6 @@ myApp.controller('discoverMusicController', ['$scope', '$http', 'DataFactory', '
   //  author: $scope.loggedInUser.username,
   //  author_id: $scope.loggedInUser.user_id
   //};
-  //
-  //$scope.addDiscoveredSongs = function(songObject) {
-  //
-  //  $scope.temporaryPlaylist.tracks.push(songObject);
-  //
-  //  console.log($scope.temporaryPlaylist);
-  //
-  //  $scope.temporaryPlaylistArray = $scope.temporaryPlaylist.tracks;
-  //
-  //  console.log('playlist songs array:', $scope.temporaryPlaylist.tracks);
-  //
-  //  $scope.discoveredSong = undefined;
-  //};
 
 
 
