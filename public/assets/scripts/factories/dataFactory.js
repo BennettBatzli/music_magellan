@@ -14,26 +14,26 @@ myApp.factory('DataFactory', ['$http', '$window', '$sce', function($http, $windo
   // This happens after page load, which means it has authenticated if it was ever going to
   // NOT SECURE
 
-  var privateUserAuthentication = function() {
-    var promise = $http.get('/user').then(function (response) {
-      if (response.data) {
-        console.log('response.dataaaaaaa', response.data);
-        var userData = {
-        userName: response.data.username,
-        id: response.data._id,
-        favoritesArrayData: response.data.favorites
-        };
-        console.log('User Data: ', userData);
-        console.log('response of fav array?', response.data.favorites);
-
-        return userData;
-      } else {
-        $window.location.href = '/templates/signIn.html';
-      }
-    });
-
-    return promise;
-  };
+  //var privateUserAuthentication = function() {
+  //  var promise = $http.get('/user').then(function (response) {
+  //    if (response.data) {
+  //      console.log('response.dataaaaaaa', response.data);
+  //      var userData = {
+  //      userName: response.data.username,
+  //      id: response.data._id,
+  //      favoritesArrayData: response.data.favorites
+  //      };
+  //      console.log('User Data: ', userData);
+  //      console.log('response of fav array?', response.data.favorites);
+  //
+  //      return userData;
+  //    } else {
+  //      $window.location.href = '/templates/signIn.html';
+  //    }
+  //  });
+  //
+  //  return promise;
+  //};
 
   var privateSaveFavorite = function(favorite) {
     console.log('fav!!', favorite);
