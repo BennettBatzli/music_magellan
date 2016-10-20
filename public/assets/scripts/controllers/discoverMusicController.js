@@ -6,7 +6,6 @@ myApp.controller('discoverMusicController', ['$scope', '$http', 'DataFactory', '
 
   $scope.animationsEnabled = true;
 
-  //$scope.loggedIn = false;
   //$scope.loggedInUser = $scope.passportFactory.factoryLoggedInUser();
   //console.log('logged user', $scope.loggedInUser);
   //  .then( function() {
