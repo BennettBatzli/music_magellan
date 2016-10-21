@@ -43,7 +43,6 @@ myApp.controller('discoverMusicController', ['$scope', '$http', 'DataFactory', '
   // links to recently created playlists populate for user to select
   (function recentPlaylists() {
     $scope.dataFactory.getRecentPlaylists().then(function(recentPlaylists){
-      console.log('recent', recentPlaylists);
       $scope.recentPlaylists = recentPlaylists;
     });
   })();
