@@ -49,7 +49,11 @@ myApp.controller('discoverMusicController', ['$scope', '$http', 'DataFactory', '
 
   $scope.saveSong = function(song) {
     if($scope.loggedIn) {
-      console.log('I need this song', song);
+      console.log('song?', song);
+      console.log('disc', $scope.discoveredSongObject);
+      $scope.dataFactory.factoryAddSongs($scope.discoveredSongObject).then(function() {
+        console.log('oy');
+      });
     } else {
       $scope.loginModal();
     }
