@@ -9,10 +9,11 @@ router.post('/', function(req, res) {
     author: req.body.author,
     author_id: req.body.author_id,
     title: req.body.playlist_name,
-    playlist_id: req.body.playlist_id,
+    //playlist_id: req.body.playlist_id,
+    playlist_id: 1,
     published: new Date(),
     tracklist: req.body.tracks,
-    spotify_url: req.body.spotify_url,
+    spotify_uri: req.body.spotify_uri,
     comments: req.body.comments,
     deleted: false
   };
@@ -28,8 +29,8 @@ router.post('/', function(req, res) {
       song = playlist.tracklist[i].song.replace(/'/g, "''");
       artist = playlist.tracklist[i].artist.replace(/'/g, "''");
       album = playlist.tracklist[i].album.replace(/'/g, "''");
-      if (playlist.tracklist[i].spotify_url) {
-        spotifyURL = playlist.tracklist[i].spotify_url.replace(/'/g, "''");
+      if (playlist.spotify_uri) {
+        spotifyURL = playlist.spotify_uri.replace(/'/g, "''");
       }
 
       sqlString = sqlString + '(\'' + playlist.playlist_id + '\', \'' + song + '\', \'' +

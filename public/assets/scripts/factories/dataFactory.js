@@ -99,7 +99,15 @@ myApp.factory('DataFactory', ['$http', '$window', '$sce', function($http, $windo
 
           console.log('the album name:', response.data.tracks.items[0].album.name);
 
-          return $sce.trustAsResourceUrl('https://embed.spotify.com/?uri=' + response.data.tracks.items[0].uri);
+          var discoveredSong = {
+            tracks: [{
+              song: response.data.tracks.items[0].name,
+              artist: response.data.tracks.items[0].artists[0].name,
+              album: response.data.tracks.items[0].album.name
+            }],
+            spotify_uri: response.data.tracks.items[0].uri
+          };
+          return discoveredSong;
         }
       );
       return promise;
