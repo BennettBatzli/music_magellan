@@ -1,5 +1,5 @@
-myApp.directive('cycleSongsDirective',
-  function() {
+myApp.directive('cycleSongsDirective', ['$sce',
+  function($sce) {
     var directive = {
       controller: 'discoverMusicController',
       link: link,
@@ -18,13 +18,24 @@ myApp.directive('cycleSongsDirective',
 
         scope.dataFactory.discoverSong(selectedGenre).then(function (discoveredSong) {
 
-          scope.discoveredSongObject = {
-            spotify_uri: discoveredSong
-          };
+          console.log('I discovered dis', discoveredSong);
+          scope.discoveredSongObject = discoveredSong;
+          scope.spotify_uri = $sce.trustAsResourceUrl('https://embed.spotify.com/?uri=' + discoveredSong.spotify_uri);
+          //spotify_uri: $sce.trustAsResourceUrl('https://embed.spotify.com/?uri=' + response.data.tracks.items[0].uri)
 
-          scope.discoveredSongArray.unshift(scope.discoveredSongObject);
+          //tracks: [ {
+            //  //song: $scope.tune.items[0].name,
+            //  //artist: $scope.tune.items[0].artists[0].name,
+            //  //album: $scope.tune.items[0].album.name,
+            //  spotify_uri: discoveredSong
+            //}],
+            //playlist_id: playlistID
+            //spotify_uri: discoveredSong
+          //};
+
+          scope.discoveredSongArray.unshift(scope.spotify_uri);
         });
       };
     }
   }
-);
+]);
