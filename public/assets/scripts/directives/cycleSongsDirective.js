@@ -21,7 +21,6 @@ myApp.directive('cycleSongsDirective', ['$sce',
           console.log('I discovered dis', discoveredSong);
           scope.discoveredSongObject = discoveredSong;
           scope.spotify_uri = $sce.trustAsResourceUrl('https://embed.spotify.com/?uri=' + discoveredSong.spotify_uri);
-          //spotify_uri: $sce.trustAsResourceUrl('https://embed.spotify.com/?uri=' + response.data.tracks.items[0].uri)
 
           //tracks: [ {
             //  //song: $scope.tune.items[0].name,
