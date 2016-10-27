@@ -39,7 +39,7 @@ router.post('/', function(req, res) {
         sqlString = sqlString + ', ';
       }
     }
-    console.log('the string', sqlString);
+    console.log('the sql string', sqlString);
 
     client.query(sqlString,
       function (err, result) {
