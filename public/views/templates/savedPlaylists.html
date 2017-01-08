@@ -34,7 +34,8 @@
           </thead>
           <tbody ng-repeat="playlist in playlistInfo">
             <tr class="track-info-table-row">
-              <td>{{$index + 1}}</td><td>{{playlist.song}}</td><td>{{playlist.artist}}</td><td>{{playlist.album}}</td><td><a href="{{playlist.spotify_url}}" target="_blank">Find</a></td>
+              <td>{{$index + 1}}</td><td>{{playlist.song}}</td><td>{{playlist.artist}}</td><td>{{playlist.album}}</td><td><iframe src="{{playlist.spotify_uri_link}}" width="250" height="80" frameborder="0"
+                                                                                                                                                                                             allowtransparency="true"></iframe></td>
             </tr>
           </tbody>
         </table>
