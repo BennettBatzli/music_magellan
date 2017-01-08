@@ -1,4 +1,4 @@
-myApp.controller('savedPlaylistsController', ['$scope', '$http', 'DataFactory', 'PassportFactory', '$uibModal', '$location', '$log', function($scope, $http, DataFactory, PassportFactory, $uibModal, $location, $log) {
+myApp.controller('savedPlaylistsController', ['$scope', '$http', 'DataFactory', 'PassportFactory', '$uibModal', '$location', '$log', '$sce', function($scope, $http, DataFactory, PassportFactory, $uibModal, $location, $log, $sce) {
 
   $scope.dataFactory = DataFactory;
   $scope.passportFactory = PassportFactory;
@@ -39,6 +39,8 @@ myApp.controller('savedPlaylistsController', ['$scope', '$http', 'DataFactory', 
       console.log('well hey');
       $scope.playlistInfo = $scope.dataFactory.playlistInfoData();
       console.log('moneyyyyy', $scope.playlistInfo);
+      $scope.playlistInfo[0].spotify_uri_link = $sce.trustAsResourceUrl('https://embed.spotify.com/?uri=' + $scope.playlistInfo[0].spotify_uri);
+      console.log('uriiii::', $scope.playlistInfo);
       $scope.showPlaylistButtons = true;
     });
 
