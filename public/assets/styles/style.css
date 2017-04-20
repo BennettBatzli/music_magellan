@@ -464,3 +464,8 @@ iframe {
     max-height: 70%;
     overflow: auto;
 }
+
+.discover-button-container {
+    margin: 10px 0;
+    text-align: center;
+}

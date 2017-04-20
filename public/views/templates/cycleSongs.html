@@ -1,8 +1,10 @@
-<button class="discover-button" ng-click="discoverSongs(selectedGenre)">Discover</button>
+<div class="discover-button-container">
+    <button class="discover-button" ng-click="discoverSongs(selectedGenre)">Discover</button>
+</div>
 <div class="discovered-songs-container">
     <div ng-repeat="song in discoveredSongArray" class="song-widget-box fade-in fade-out">
         <iframe src="{{song}}" width="250" height="380" frameborder="0"
                 allowtransparency="true"></iframe>
-        <button class="save-song-button" ng-click="saveSong(song)">Save</button>
+        <!--<button class="save-song-button" ng-click="saveSong(song)">Save</button>-->
     </div>
 </div>
