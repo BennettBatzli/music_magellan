@@ -6,8 +6,8 @@
 
         <section>
           <h3>Select a genre</h3>
-          <select class="form-control" ng-model="selectedGenre" ng-options="genre.query_string as genre.description for genre in genres">Select a Genre!</select>
-
+          <!--<select class="form-control" ng-model="selectedGenre" ng-options="genre.query_string as genre.description for genre in genres">Select a Genre!</select>-->
+          <get-genres-directive></get-genres-directive>
           <cycle-songs-directive info="song"></cycle-songs-directive>
 
         </section>
