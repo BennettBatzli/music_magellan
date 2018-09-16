@@ -349,14 +349,123 @@
 	/*margin-right: 20%;*/
 /*}*/
 
+html {
+    height: 100%;
+}
+
+body {
+    height: 100%;
+}
+
+main {
+    height: 100%;
+}
+
+script {
+    height: 100%;
+}
+
+.login-form {
+    margin: 80px auto 0 auto;
+}
+
+.login-username-field {
+    margin: 10px auto;
+}
+
+.login-password-field {
+    margin: 10px auto;
+}
+
+.test-app-no-login {
+    margin: 80px auto 0 auto;
+}
+
+.discovered-songs-container {
+
+}
+
+.song-widget-box {
+    float: right;
+    height: 420px;
+    width: 250px;
+}
+
+
+iframe {
+
+}
+
+.save-song-button {
+    height: 40px;
+    width: 100%;
+}
+
+.fade-in.ng-leave {
+    transition: 0.5s linear all;
+    opacity: 1;
+    position: absolute;
+    z-index: -1;
+}
+
+.fade-in.ng-leave.ng-leave-active {
+    opacity: 0;
+}
+
+.fade-in.ng-enter {
+    transition: 0.5s linear all;
+    opacity: 0;
+}
+
+.fade-in.ng-enter.ng-enter-active {
+    opacity: 1;
+}
+
 .select-playlist-table-row {
     cursor: pointer;
 }
 
-.select-playlist-table-row:active {
+.select-playlist-table-row:hover {
     background-color: grey;
 }
 
-.select-playlist-table-row:hover {
-    background-color: grey;
+.active {
+    color: blue;
+}
+
+.modal-script {
+    height: 100%;
+}
+
+.modal-body {
+    /*background-color: blue;*/
+    max-height: 70vh;
+    overflow: auto;
+}
+
+.saved-playlist-container {
+    height: 100%;
+}
+
+.playlist-select-row {
+    height: 90%;
+}
+
+.playlist-select {
+    border: 1px solid gray;
+    border-radius: 3px;
+    max-height: 70%;
+    overflow: auto;
+}
+
+.playlist-info {
+    border: 1px solid gray;
+    border-radius: 3px;
+    max-height: 70%;
+    overflow: auto;
+}
+
+.discover-button-container {
+    margin: 10px 0;
+    text-align: center;
 }

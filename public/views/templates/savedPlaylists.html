@@ -1,15 +1,12 @@
-<div class="container">
+<div class="container saved-playlist-container">
   <div class="row">
     <div class="col-md-11 col-md-offset-1">
       <h2>You are {{userName}}</h2>
+      <button ng-click="addPlaylistNameModalOpen()">+ new playlist</button>
     </div>
   </div>
-  <div class="row">
-    <div class="col-md-3 col-md-offset-1">
-
-
-      <!--<select ng-model="selectedPlaylist" ng-options="playlistName.title for playlistName in playlistNames"></select>-->
-      <!--<div class="playlist-page-container">-->
+  <div class="row playlist-select-row">
+    <div class="col-md-3 col-md-offset-1 playlist-select">
       <table class="table">
         <thead>
           <tr>
@@ -18,65 +15,139 @@
         </thead>
         <tbody ng-repeat="playlistName in playlistNames">
           <tr class="select-playlist-table-row" ng-click="getPlaylistInfo($index)">
-            <td>{{playlistName.title}}</td>
+            <td class="ng-class: {
+              active: isActive === playlistName,
+              inactive: isActive !== playlistName
+              };">{{playlistName.title}}</td>
           </tr>
         </tbody>
       </table>
-
-
-
-        <!--<section class="playlist-selector-container" ng-repeat="playlistName in playlistNames">-->
-          <!--<button class="playlist-selector-button" ng-click="getPlaylistInfo($index)">{{playlistName.title}}</button>-->
-        <!--</section>-->
     </div>
-      <div class="col-md-6">
+      <div class="col-md-8 playlist-info">
+        <button class="discovery-tab" ng-show="showPlaylistButtons" ng-click="discoverModalOpen()">Discover New Songs</button>
+        <button class="discovery-tab" ng-show="showPlaylistButtons" ng-click="addOwnSongModalOpen()">Add Your Own Music</button>
         <table class="table">
           <thead>
             <tr>
-              <th>Track</th><th>Song</th><th>Artist</th><th>Album</th>
+              <th>Track</th><th>Song</th><th>Artist</th><th>Album</th><th>Find on Spotify</th>
             </tr>
           </thead>
           <tbody ng-repeat="playlist in playlistInfo">
             <tr class="track-info-table-row">
-              <td></td><td>{{playlist.song}}</td><td>{{playlist.artist}}</td><td>{{playlist.album}}</td>
+              <td>{{$index + 1}}</td><td>{{playlist.song}}</td><td>{{playlist.artist}}</td><td>{{playlist.album}}</td><td><iframe src="{{playlist.spotify_uri_link}}" width="250" height="80" frameborder="0"
+                                                                                                                                                                                             allowtransparency="true"></iframe></td>
             </tr>
           </tbody>
         </table>
-        <button ng-show="showDeletePlaylistButton" ng-click="deletePlaylist()">Delete Playlist</button>
-
-
-        <!--<section class="saved-playlist-container" ng-repeat="playlist in playlistInfo">-->
-          <!--<h4 class="song-info-element">hola &#45;&#45;&#45;&#45; {{playlist.song}}</h4>-->
-
-
-        <!--<h3>Select a Playlist</h3>-->
-        <!--<br />-->
-        <!---->
-          <!--<div class="saved-playlist-container-tracklist" ng-if="selectedPlaylist">-->
-        <!---->
-        <!---->
-            <!--<h1>{{selectedPlaylist.playlist.playlist_name}}</h1>-->
-            <!--<p><span class="track-span">Track 1 ::</span>-->
-              <!--{{selectedPlaylist.playlist.tracklist[0].track_one_info.song}} &#45;&#45; {{selectedPlaylist.playlist.tracklist[0].track_one_info.artist}} &#45;&#45; {{selectedPlaylist.playlist.tracklist[0].track_one_info.album}}-->
-        <!---->
-            <!--</p>-->
-            <!--<br />-->
-            <!--<p><span class="track-span">Track 2 ::</span>-->
-              <!--{{selectedPlaylist.playlist.tracklist[0].track_two_info.song}} &#45;&#45; {{selectedPlaylist.playlist.tracklist[0].track_two_info.artist}} &#45;&#45; {{selectedPlaylist.playlist.tracklist[0].track_two_info.album}}-->
-            <!--</p>-->
-            <!--<br />-->
-            <!--<p><span class="track-span">Track 3 ::</span>-->
-              <!--{{selectedPlaylist.playlist.tracklist[0].track_three_info.song}} &#45;&#45; {{selectedPlaylist.playlist.tracklist[0].track_three_info.artist}} &#45;&#45; {{selectedPlaylist.playlist.tracklist[0].track_three_info.album}}-->
-            <!--</p>-->
-            <!--<br />-->
-            <!--<p><span class="track-span">Track 4 ::</span>-->
-              <!--{{selectedPlaylist.playlist.tracklist[0].track_four_info.song}} &#45;&#45; {{selectedPlaylist.playlist.tracklist[0].track_four_info.artist}} &#45;&#45; {{selectedPlaylist.playlist.tracklist[0].track_four_info.album}}-->
-        <!---->
-            <!--</p>-->
-            <!--&lt;!&ndash; <button ng-click="deletePlaylist(selectedPlaylist._id)">Delete Playlist</button> &ndash;&gt;-->
-          <!--</div>-->
-        <!--</section>-->
+        <button ng-show="showPlaylistButtons" ng-click="deletePlaylist()">Delete Playlist</button>
       </div>
     </div>
   </div>
 </div>
+
+<script type="text/ng-template" id="discoverNewSongModalContent.html" class="modal-script">
+  <div class="modal-body container">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="form-group">
+          <h3>Discover new songs!</h3>
+          <select ng-model="selectedGenre" class="form-control" ng-options="genre.query as genre.label for genre in genres">Select a Genre!</select>
+
+          <button class="discover-button" ng-click="discoverSongs()">Discover</button>
+
+          <div ng-repeat="tune in discoveredSong" class="fade-in fade-out">
+            <h3>Here's what you discovered!</h3>
+            <div class="discovered-songs-container">
+              <p>Song ::
+                {{tune.tracks[$index].song}}
+              </p>
+              <p>Artist ::
+                {{tune.tracks[$index].artist}}
+              </p>
+              <p>Album ::
+                {{tune.tracks[$index].album}}
+              </p>
+              <p>
+                <a href="{{tune.tracks[$index].spotify_url}}" target="_blank">Find on Spotify</a>
+              </p>
+            </div>
+            <!--<button ng-click="addDiscoveredSongs(discoveredSongObject)">Add Song</button>-->
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <button class="btn btn-primary" type="button" ng-click="ok()">Add Song</button>
+        <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+      </div>
+    </div>
+  </div>
+</script>
+
+<script type="text/ng-template" id="addOwnSongModalContent.html">
+  <div class="modal-body container">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="form-group">
+          <form>
+            <input type="text" class="form-control" ng-model="song" id="song" placeholder="Add Song Title" autofocus="" />
+            <input type="text" class="form-control" ng-model="artist" id="artist" placeholder="Add Artist Name" />
+            <input type="text" class="form-control" ng-model="album" id="album" placeholder="Add Album Title" />
+
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <button class="btn btn-primary" type="button" ng-click="ok()">Add Song</button>
+        <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+      </div>
+    </div>
+  </div>
+</script>
+
+<script type="text/ng-template" id="deletePlaylistModalContent.html">
+  <div class="modal-body container">
+    <div class="row">
+      <div class="col-md-4">
+        <h2>Are you sure you want to delete your playlist <strong>{{playlistTitle}}</strong>?</h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <button class="btn btn-primary" type="button" ng-click="ok()">Delete</button>
+        <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+      </div>
+    </div>
+  </div>
+</script>
+
+<script type="text/ng-template" id="addTitleModalContent.html">
+  <!--<div class="modal-header">-->
+  <!--<h3 class="modal-title">I'm a modal!</h3>-->
+  <!--</div>-->
+  <div class="modal-body container">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="form-group">
+          <form>
+            <!--<label for="playlistTitle">Add a Title to your Playlist:</label>-->
+            <input type="text" class="form-control" placeholder="Add a Title to your Playlist" autofocus="" ng-model="playlistTitle" id="playlistTitle" />
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
+        <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+      </div>
+    </div>
+  </div>
+  <!--<div class="modal-footer">-->
+  <!--<button class="btn btn-primary" type="button" ng-click="ok()">OK</button>-->
+  <!--<button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>-->
+  <!--</div>-->
+</script>

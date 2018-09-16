@@ -1,35 +1,33 @@
-var myApp = angular.module('myApp', ['ngRoute']);
+var myApp = angular.module('myApp', ['ui.router', 'ngAnimate', 'ui.bootstrap']);
 
-myApp.config(['$routeProvider', function($routeProvider) {
+myApp.config(function($stateProvider, $urlRouterProvider) {
 
-  $routeProvider
+  $urlRouterProvider.otherwise('/discoverMusic');
 
-    .when('/home', {
-      templateUrl: '/views/templates/home.html',
-      controller: 'homeController'
-    })
-    .when('/savedPlaylists', {
-      templateUrl: '/views/templates/savedPlaylists.html',
-      controller: 'savedPlaylistsController'
-    })
-    .when('/userHome', {
-      templateUrl: '/views/templates/userHome.html',
-      controller: 'userHomeController'
-    })
-    .when('/signIn', {
-      templateUrl: '/views/templates/signIn.html',
-      controller: 'signInController'
-    })
-    .when('/register', {
-      templateUrl: '/views/templates/register.html',
-      controller: 'signInController'
-    })
-    .when('/discoverMusic', {
-      templateUrl: '/views/templates/discoverMusic.html',
+  $stateProvider
+
+    .state('discoverMusic', {
+      url: '/discoverMusic',
+      templateUrl: '../../views/templates/discoverMusic.html',
       controller: 'discoverMusicController'
     })
-    .otherwise({
-      redirectTo: 'home'
+    .state('about', {
+      url: '/about',
+      templateUrl: '../../views/templates/about.html'
+    })
+    .state('signIn', {
+      url: '/signIn',
+      templateUrl: '../../views/templates/signIn.html',
+      controller: 'signInController'
+    })
+    .state('register', {
+      url: '/register',
+      templateUrl: '../../views/templates/register.html',
+      controller: 'signInController'
+    })
+    .state('discoverMusic.savedPlaylists', {
+      url: '/savedPlaylists',
+      templateUrl: '../../views/templates/savedPlaylists.html',
+      controller: 'savedPlaylistsController'
     });
-
-}]);
+});

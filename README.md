@@ -1,1 +1,8 @@
-The primary focus of this application is to provide users with a highly enjoyable and customizable music discovery experience. Often it is desirable for a user to have the ability to seek out new music while also enjoying some of their favorite familiar music mixed in. This will be accomplished by granting the user the ability to generate their own playlist of songs, customized to their individual preference in the volume of familiar songs that they may specify and new songs for them to discover.
+The primary focus of this application is to provide a music discovery experience. With the click of a button, you
+can retrieve a random song from whatever specified genre you want to explore.
+
+Technologies used: PostgreSQL, Express, AngularJS, Node.js, Passport, Spotify API, Bootstrap,
+UI Bootstrap, Heroku
+
+Live App:
+https://music-magellan.herokuapp.com

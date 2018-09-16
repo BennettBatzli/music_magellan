@@ -1,7 +1,10 @@
-<nav class="container">
-    <ul class="navigators nav nav-tabs"">
-        <li id="home-nav"><a href="#userHome">New Playlist</a></li>
-        <li id="saved-playlists-nav"><a href="#savedPlaylists">Your Saved Playlists</a></li>
-        <li id="login-nav"><a href="#signIn">Log In</a></li>
+<nav class="container" ng-controller="navController">
+    <ul class="navigators nav nav-tabs">
+        <h1>Music Magellan</h1>
+        <li><a ui-sref="about">About</a></li>
+        <li><a ui-sref="discoverMusic">Home</a></li>
+        <!--<li ng-if="!loggedIn" id="login-nav"><a href="" ng-click="loginModal()">Log In</a></li>-->
+        <!--&lt;!&ndash;<li ng-if="loggedIn" id="saved-playlists-nav"><a ui-sref="savedPlaylists">Your Saved Playlists</a></li>&ndash;&gt;-->
+        <!--<li ng-if="loggedIn"><a href="" ng-click="logout()">Logout {{loggedInUser.username}}</a></li>-->
     </ul>
 </nav>

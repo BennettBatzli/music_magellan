@@ -12,13 +12,28 @@ myApp.factory('PassportFactory', ['$http', '$location', function($http, $locatio
       password: password
     };
 
-    $http.post('/signIn', user).then( function(response) {
+    var promise = $http.post('/signIn', user).then( function(response) {
 
       loggedInUser = response.data;
       console.log('logged user', loggedInUser);
-      $location.path('/userHome');
-
+      //$location.path('/savedPlaylists');
+      return loggedInUser;
     });
+    return promise;
+  };
+
+  //register user
+  var registerUser = function(username, password) {
+    var newUser = {
+      username: username,
+      password: password
+    };
+
+    var promise = $http.post('/register', newUser).then( function(response) {
+      console.log('factory register', response);
+      return response
+    });
+    return promise;
   };
 
   //add new user
@@ -68,9 +83,9 @@ myApp.factory('PassportFactory', ['$http', '$location', function($http, $locatio
 
   //logout user
   var logoutUser = function() {
-    var promise = $http.get('/logout').then( function(response) {
+    var promise = $http.get('/logOut').then( function(response) {
       loggedInUser = '';
-      $location.path('/home');
+      $location.path('/discoverMusic');
     });
     return promise;
   };
@@ -80,6 +95,9 @@ myApp.factory('PassportFactory', ['$http', '$location', function($http, $locatio
   var publicApi = {
     factoryUserSubmit: function(username, password) {
       return userSubmit(username, password);
+    },
+    factoryRegisterUser: function(username, password) {
+      return registerUser(username, password);
     },
     factoryLoggedInUser: function() {
       return loggedInUser;

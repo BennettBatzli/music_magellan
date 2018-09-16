@@ -6,23 +6,29 @@
   <link rel="stylesheet" href="/vendors/bootstrap.min.css" />
   <link rel="stylesheet" href="/assets/styles/style.css" />
   <script type="text/javascript" src="/vendors/angular.min.js"></script>
-  <script type="text/javascript" src="/vendors/angular-route.min.js"></script>
+  <script type="text/javascript" src="/vendors/angular-ui-router.min.js"></script>
+  <script type="text/javascript" src="/vendors/angular-animate.min.js"></script>
+  <script type="text/javascript" src="/vendors/ui-bootstrap-tpls.js"></script>
   <script type="text/javascript" src="/assets/scripts/clientapp.js"></script>
   <script type="text/javascript" src="/assets/scripts/factories/dataFactory.js"></script>
   <script type="text/javascript" src="/assets/scripts/factories/passportFactory.js"></script>
-  <script type="text/javascript" src="/assets/scripts/controllers/homeController.js"></script>
+  <script type="text/javascript" src="/assets/scripts/directives/getGenresDirective.js"></script>
+  <script type="text/javascript" src="/assets/scripts/directives/cycleSongsDirective.js"></script>
   <script type="text/javascript" src="/assets/scripts/controllers/userHomeController.js"></script>
   <script type="text/javascript" src="/assets/scripts/controllers/discoverMusicController.js"></script>
   <script type="text/javascript" src="/assets/scripts/controllers/savedPlaylistsController.js"></script>
   <script type="text/javascript" src="/assets/scripts/controllers/signInController.js"></script>
-
+  <script type="text/javascript" src="/assets/scripts/controllers/signInModalController.js"></script>
+  <script type="text/javascript" src="/assets/scripts/controllers/navController.js"></script>
+  <script type="text/javascript" src="/assets/scripts/controllers/newPlaylistModalController.js"></script>
+  <script type="text/javascript" src="/assets/scripts/controllers/discoverNewSongModalController.js"></script>
+  <script type="text/javascript" src="/assets/scripts/controllers/addOwnSongModalController.js"></script>
+  <script type="text/javascript" src="/assets/scripts/controllers/deletePlaylistModalController.js"></script>
 
 </head>
 <body>
-  <header ng-include="'/templates/header.html'"></header>
-  <nav ng-include="'/templates/nav.html'"></nav>
-  <main ng-view></main>
-  <footer ng-include="'/templates/footer.html'"></footer>
-
+  <nav ng-include="'templates/nav.html'"></nav>
+  <main ui-view ></main>
+  <!--<footer ng-include="'templates/footer.html'"></footer>-->
 </body>
 </html>

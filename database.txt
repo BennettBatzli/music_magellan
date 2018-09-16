@@ -9,6 +9,7 @@ CREATE TABLE playlists (
     title VARCHAR(100) NOT NULL,
     author VARCHAR(120) NOT NULL,
     author_id INTEGER NOT NULL,
+    published VARCHAR(100) NOT NULL,
     deleted BOOLEAN NOT NULL DEFAULT FALSE
 );
 
@@ -17,6 +18,7 @@ CREATE TABLE songs (
     song VARCHAR(100) NOT NULL,
     artist VARCHAR(100) NOT NULL,
     album VARCHAR(100) NOT NULL,
+    spotify_uri VARCHAR(300),
     fk_playlist_id INTEGER NOT NULL REFERENCES playlists (playlist_id)
 );
 
@@ -27,3 +29,21 @@ CREATE TABLE favorites
      fk_playlist_id INTEGER NOT NULL REFERENCES playlists (playlist_id),
      favorite_status BOOLEAN NOT NULL
 );
+
+CREATE TABLE genres (
+    genre_id SERIAL PRIMARY KEY,
+    description VARCHAR(100) NOT NULL,
+    query_string VARCHAR(100) NOT NULL
+);
+
+INSERT INTO genres (description, query_string)
+VALUES
+('Rock', 'rock'),
+('Classical', 'classical'),
+('Country', 'country'),
+('Electronic', 'electronic'),
+('Hip Hop', 'hip%20hop'),
+('Indie Rock', 'indie%20rock'),
+('Jazz', 'jazz'),
+('Metal', 'metal'),
+('Pop', 'pop');
