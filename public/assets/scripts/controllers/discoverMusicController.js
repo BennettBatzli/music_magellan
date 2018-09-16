@@ -14,13 +14,13 @@ myApp.controller('discoverMusicController', ['$scope', '$http', 'DataFactory', '
   //);
 
 
-  $scope.$watch(function (scope) {return scope.passportFactory.factoryLoggedInUser()},
-    function (newValue, oldValue) {
-      $scope.loggedInUser = newValue;
-      console.log('new value?', newValue);
-      validateUser();
-    }
-  );
+  // $scope.$watch(function (scope) {return scope.passportFactory.factoryLoggedInUser()},
+  //   function (newValue, oldValue) {
+  //     $scope.loggedInUser = newValue;
+  //     console.log('new value?', newValue);
+  //     validateUser();
+  //   }
+  // );
 
   function validateUser() {
     if($scope.loggedInUser.user_id) {
@@ -30,6 +30,18 @@ myApp.controller('discoverMusicController', ['$scope', '$http', 'DataFactory', '
     }
   }
 
+  //token for spotify API
+  console.log("Scoocococo: ", $scope.token);
+  if($scope.token == undefined) {
+    (function getToken() {
+      $scope.dataFactory.getToken().then(function(token){
+        $scope.token = token;
+        console.log("tokekekekeke: ", $scope.token);
+      });
+    })();
+  } else {
+    console.log("dsajfdsfkdasl");
+  }
 
   // genre tags populate for user to select from
   (function getGenres() {

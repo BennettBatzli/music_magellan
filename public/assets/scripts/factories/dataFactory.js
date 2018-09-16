@@ -10,6 +10,7 @@ myApp.factory('DataFactory', ['$http', '$window', '$sce', function($http, $windo
 
   var genres = undefined;
 
+  var token = undefined;
 
   // This happens after page load, which means it has authenticated if it was ever going to
   // NOT SECURE
@@ -63,58 +64,74 @@ myApp.factory('DataFactory', ['$http', '$window', '$sce', function($http, $windo
     return Math.floor(Math.random() * (1 + max - min) + min);
   };
 
-  var privateDiscoverSong = function(selectedGenre) {
-    console.log('datafactory genre', selectedGenre);
-    //$scope.data = {};
+  var privateGetToken = function() {
+    var promise = $http.get('/getToken/').then(function(response){
+      console.log("get tokennnn: ", response.data);
+      return response.data;
+    });
+    return promise;
+  };
 
+  var privateDiscoverSong = function(selectedGenre, token) {
+    console.log('datafactory genre', selectedGenre);
+    console.log('token: ', token)
+    // var genreObject = {myGenre: selectedGenre};
+    // var promise = $http.get('/discoverSong/', selectedGenre).then(function(response) {
+    var promise = $http.get('/discoverSong/', {params: {selectedGenre: selectedGenre, token: token}}).then(function(response) {
+      return response.data;  
+      // console.log('DISCOVER SONGS CALL RESPONSE.data ::', response.data);
+    });
+    return promise;
+
+    //$scope.data = {};
      //var request = baseURL + encodeURI(query) + '&callback=JSON_CALLBACK';
     // console.log('the rquest!!!', request);
     // var songsArray = ['*a*', '*o*', '*u*', '*i*', '*e*'];
 
     // var songsArray = ['*a*', 'a*', '*e*', 'e*', '*i*', 'i*', '*o*', 'o*', '*y*'];
 
-    var songsArray = ['a'];
+    // var songsArray = ['a'];
 
-    // var songsArray = ['%25a%25', 'a%25', '%25e%25', 'e%25', '%25i%25', 'i%25', '%25o%25', 'o%25'];
-    var randomTrack = songsArray[Math.floor(Math.random()*songsArray.length)];
-    var randomOffset = randomNumber(1, 100);
+    // // var songsArray = ['%25a%25', 'a%25', '%25e%25', 'e%25', '%25i%25', 'i%25', '%25o%25', 'o%25'];
+    // var randomTrack = songsArray[Math.floor(Math.random()*songsArray.length)];
+    // var randomOffset = randomNumber(1, 100);
 
-    console.log('the wild card', randomTrack);
+    // console.log('the wild card', randomTrack);
 
-    if(selectedGenre) {
-      var baseURL = "https://api.spotify.com/v1/search";
-      var query = "?q=";
-      query += "genre:%22" + selectedGenre + "%22";
+    // if(selectedGenre) {
+    //   var baseURL = "https://api.spotify.com/v1/search";
+    //   var query = "?q=";
+    //   query += "genre:%22" + selectedGenre + "%22";
 
-      query += "&offset=" + randomOffset;
-      query += "&limit=1&type=track&callback=JSON_CALLBACK";
-      var request = baseURL + query;
+    //   query += "&offset=" + randomOffset;
+    //   query += "&limit=1&type=track&callback=JSON_CALLBACK";
+    //   var request = baseURL + query;
 
-      var promise = $http.get(request).then(
-        function(response) {
-          console.log('response dataaaaa::', response.data);
+    //   var promise = $http.get(request).then(
+    //     function(response) {
+    //       console.log('response dataaaaa::', response.data);
 
-          console.log('the track name:', response.data.tracks.items[0].name);
-          console.log('the artist name:', response.data.tracks.items[0].artists[0].name);
+    //       console.log('the track name:', response.data.tracks.items[0].name);
+    //       console.log('the artist name:', response.data.tracks.items[0].artists[0].name);
 
-          console.log('the album name:', response.data.tracks.items[0].album.name);
+    //       console.log('the album name:', response.data.tracks.items[0].album.name);
 
-          var discoveredSong = {
-            tracks: [{
-              song: response.data.tracks.items[0].name,
-              artist: response.data.tracks.items[0].artists[0].name,
-              album: response.data.tracks.items[0].album.name
-            }],
-            spotify_uri: response.data.tracks.items[0].uri
-          };
-          return discoveredSong;
-        }
-      );
-      return promise;
+    //       var discoveredSong = {
+    //         tracks: [{
+    //           song: response.data.tracks.items[0].name,
+    //           artist: response.data.tracks.items[0].artists[0].name,
+    //           album: response.data.tracks.items[0].album.name
+    //         }],
+    //         spotify_uri: response.data.tracks.items[0].uri
+    //       };
+    //       return discoveredSong;
+    //     }
+    //   );
+    //   return promise;
 
-    } else {
-      alert("Please select a genre.");
-    }
+    // } else {
+    //   alert("Please select a genre.");
+    // }
   };
 
   var privateGetGenres = function(){
@@ -142,8 +159,14 @@ myApp.factory('DataFactory', ['$http', '$window', '$sce', function($http, $windo
     getRecentPlaylists: function() {
       return privateGetRecentPlaylists();
     },
-    discoverSong: function(selectedGenre) {
-      return privateDiscoverSong(selectedGenre);
+    getToken: function() {
+      return privateGetToken();
+    },
+    // retrieveToken: function() {
+    //   return token;
+    // },
+    discoverSong: function(selectedGenre, token) {
+      return privateDiscoverSong(selectedGenre, token);
     },
     factorySaveFavorite: function(favorite) {
       return privateSaveFavorite(favorite);

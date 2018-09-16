@@ -1,6 +1,5 @@
 The primary focus of this application is to provide a music discovery experience. With the click of a button, you
-can retrieve a random song from whatever specified genre you want to explore. You may also create playlists of songs
-you've discovered.
+can retrieve a random song from whatever specified genre you want to explore.
 
 Technologies used: PostgreSQL, Express, AngularJS, Node.js, Passport, Spotify API, Bootstrap,
 UI Bootstrap, Heroku

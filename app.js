@@ -16,6 +16,9 @@ var getPlaylistInfo = require('./routes/getPlaylistInfo');
 var deletePlaylist = require('./routes/deletePlaylist');
 var tracklistData = require('./routes/tracklistData');
 var logOut = require('./routes/logOut');
+var discoverSong = require('./routes/discoverSong');
+var getToken = require('./routes/getToken');
+// var submitTokenCredentials = require('./routes/submitTokenCredentials');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
@@ -44,6 +47,9 @@ app.use('/getPlaylistInfo', getPlaylistInfo);
 app.use('/deletePlaylist', deletePlaylist);
 app.use('/tracklistData', tracklistData);
 app.use('/logOut', logOut);
+app.use('/discoverSong', discoverSong);
+app.use('/getToken', getToken);
+// app.use('submitTokenCredentials',submitTokenCredentials);
 
 // Serve back static files
 app.use(express.static('public'));

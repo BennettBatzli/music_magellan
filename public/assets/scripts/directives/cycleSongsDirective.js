@@ -9,18 +9,18 @@ myApp.directive('cycleSongsDirective', ['$sce',
     return directive;
 
     function link(scope, element, attrs) {
-      scope.discoverSongs = function(selectedGenre) {
+      scope.discoverSongs = function(selectedGenre, token) {
 
         // To keep 3 or less songs displayed at a time.
         if (scope.discoveredSongArray.length >= 3) {
           scope.discoveredSongArray.pop();
         }
 
-        scope.dataFactory.discoverSong(selectedGenre).then(function (discoveredSong) {
+        scope.dataFactory.discoverSong(selectedGenre, token).then(function (discoveredSong) {
 
           console.log('I discovered dis', discoveredSong);
           scope.discoveredSongObject = discoveredSong;
-          scope.spotify_uri = $sce.trustAsResourceUrl('https://embed.spotify.com/?uri=' + discoveredSong.spotify_uri);
+          scope.spotify_uri = $sce.trustAsResourceUrl('https://embed.spotify.com/?uri=' + discoveredSong[0].uri);
 
           //tracks: [ {
             //  //song: $scope.tune.items[0].name,
